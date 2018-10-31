@@ -7,6 +7,7 @@ function animate()
 {
     requestAnimationFrame(animate);
     newBornPlanet.rotation.y -= 0.01;
+    //test.rotation.y += 0.01;
     renderer.render(scene, camera);
 }
 
@@ -51,8 +52,14 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
 
 //Add objects to the scene.
-scene.add(newBornPlanet);
-//scene.add(pole);
+//scene.add(newBornPlanet);
+scene.add(test);
 
+test.rotation.z = Math.PI / -4;
+
+let p = new Planet("Mike", "2", "3", 4, 5);
+p.getName();
+p.setPos(9, 10);
+p.getPos();
 //Run the animation loop.
 animate();
