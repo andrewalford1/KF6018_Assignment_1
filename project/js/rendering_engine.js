@@ -6,7 +6,7 @@
 function animate()
 {
     requestAnimationFrame(animate);
-    cube.rotation.x += 0.01;
+    newBornPlanet.rotation.y -= 0.01;
     renderer.render(scene, camera);
 }
 
@@ -14,11 +14,17 @@ function animate()
 //MAIN CODE...
 var scene = new THREE.Scene();
 
-//Lighting
-var spotLight = new THREE.SpotLight(0xFFFFFF);
-spotLight.position.set(30, 60, 60);
-spotLight.intensity = 0.6;
-scene.add(spotLight);
+// Ambient light
+var lightAmbient = new THREE.AmbientLight(colours.WHITE, 0.2); // soft white light
+scene.add(lightAmbient);
+
+//point light.
+var pointLight = new THREE.PointLight(colours.WHITE, 1);
+pointLight.position.set(25, 50, 25);
+pointLight.castShadow = true;
+pointLight.shadow.mapSize.width = 1024;
+pointLight.shadow.mapSize.height = 1024;
+scene.add(pointLight);
 
 //Perspective projection parameters.
 var camera = new THREE.PerspectiveCamera(
@@ -34,11 +40,19 @@ var renderer = new THREE.WebGLRenderer();
 //Size of the 2D projection.
 renderer.setSize(window.innerWidth, window.innerHeight);
 
+//Set the background colour.
+renderer.setClearColor(colours.GREEN);
+
+//shadows.
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
 //Connect the renderer to the canvas.
 document.body.appendChild(renderer.domElement);
 
 //Add objects to the scene.
-scene.add(cube);
+scene.add(newBornPlanet);
+//scene.add(pole);
 
 //Run the animation loop.
 animate();
