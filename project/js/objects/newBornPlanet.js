@@ -1,20 +1,3 @@
-const RADIUS = 3;
-const SMOOTHNESS = 2;
-
-//Geometries.
-const planetGeometry = new THREE.OctahedronGeometry(RADIUS, SMOOTHNESS);
-
-//Meshes.
-const newBornPlanet = new THREE.Mesh(planetGeometry, getPlanetMaterial(colours.SIENNA));
-
-//Define shadow traits.
-newBornPlanet.castShadow = true;
-newBornPlanet.receiveShadow = true;
-
-//Set rotation.
-//newBornPlanet.rotation.z = Math.PI / -16;
-
-
 //Geometries.
 const geometry = new THREE.CylinderGeometry( 0.1, 0.1, 10, 8 );
 
@@ -26,33 +9,41 @@ const pole = new THREE.Mesh(geometry, poleMaterial);
 
 var test = new THREE.Group();
 test.add(pole);
-test.add(newBornPlanet);
 
 class Planet
 {
 
-    constructor(colour, radius, smoothness, initialX, initialY)
+    constructor(radius, smoothness, colour, initialX, initialY, initialZ)
     {
-        const m_colour = colour;
-        const m_Radius = radius;
-        const m_smoothness = smoothness;
-        var m_xPos = initialX;
-        var m_yPos = initialY;
+        //Create the planet's surface.
+        const M_GEOMETRY = new THREE.OctahedronGeometry(radius, smoothness);
+        const M_MATERIAL = new THREE.MeshStandardMaterial( {color: colour, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} );
+        const planetSurface = new THREE.Mesh(M_GEOMETRY, M_MATERIAL);
 
-        this.getName = function()
-        {
-            alert(initialY);
-        }
+        //Set up shadows for the planet's surface.
+        //Define shadow traits.
+        planetSurface.castShadow = true;
+        planetSurface.receiveShadow = true;
 
-        this.setPos = function(x, y)
+        var m_xPosition = initialX;
+        var m_yPosition = initialY;
+        var m_zPosition = initialZ;
+
+        this.setPosition = function(x, y, z)
         {
             m_xPos = x;
             m_yPos = y;
+            m_zPos = z;
         }
 
-        this.getPos = function()
+        this.addToScene = function(scene)
         {
-            alert(m_xPos);
+            scene.add(planetSurface);
+        }
+
+        this.update = function()
+        {
+            planetSurface.rotation.y += 0.01;
         }
     }
 }
