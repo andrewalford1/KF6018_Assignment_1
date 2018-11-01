@@ -54,8 +54,9 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
 
 //Add objects to the scene.
-let newBornPlanet = new Planet(3, 2, colours.SIENNA, 0, 0, 0);
+let newBornPlanet = new Planet(3, 2, colours.SIENNA, 0.01, 0, 0, 0);
 newBornPlanet.addToScene(scene);
+newBornPlanet.showPole(true);
 
 //Run the animation loop.
 animate();
