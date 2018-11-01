@@ -18,64 +18,139 @@ class Planet
         const POLE = new THREE.Mesh(POLE_GEOMETRY, POLE_MESH);
         POLE.visible = false;
 
-        var m_xPosition = initialX;
-        var m_yPosition = initialY;
-        var m_zPosition = initialZ;
-
+        //[PLANET] Groups all items that make up the planet.
         const PLANET = new THREE.Group();
         PLANET.add(planetSurface);
         PLANET.add(POLE);
 
-        this.setPosition = function(x, y, z)
+        //Set the initial position of the planet.
+        PLANET.position.set(initialX, initialY, initialZ);
+
+        /**
+         * @brief Allows the full position of the planet to be set.
+         * @param position - A Vector3 containing the new 'X', 'Y', & 'Z' coordinates for the planet.
+         */
+        this.setPosition = function(position)
         {
-            m_xPosition = x;
-            m_yPosition = y;
-            m_zPosition = z;
+            PLANET.position.set(position.x, position.y, position.z);
         }
 
+        /**
+         * @brief Allows the 'X' coordinate of the planet to be set.
+         * @param x - This is the new 'X' coordinate for the planet.
+         */
         this.setXPosition = function(x)
         {
-            m_xPosition = x;
+            PLANET.position.setX(x);
         }
 
+        /**
+         * @brief Allows the 'Y' coordinate of the planet to be set.
+         * @param y - This is the new 'Y' coordinate for the planet.
+         */
         this.setYPosition = function(y)
         {
-            m_yPosition = y;
+            PLANET.position.setY(y);
         }
 
+        /**
+         * @brief Allows the 'Z' coordinate of the planet to be set.
+         * @param z - This is the new 'Z' coordinate for the plaent.
+         */
         this.setZPosition = function(z)
         {
-            m_zPosition = z;
+            PLANET.position.setZ(z);
         }
 
+        /**
+         * @return Returns the planet's 'X' coordinate.
+         */
         this.getXPosition = function()
         {
-            return m_xPosition;
+            return PLANET.position.getX();
         }
 
+        /**
+         * @return Returns the planet's 'Y' coordinate.
+         */
         this.getYPosition = function()
         {
-            return m_yPosition;
+            return PLANET.position.getY();
         }
 
+        /**
+         * @return Returns the planet's 'Z' coordinate.
+         */
         this.getZPosition = function()
         {
-            return m_zPosition;
+            return PLANET.position.getZ();
         }
 
+        /**
+         * @brief Sets the visibility of the planet's pole.
+         * @param visible - If true the the planet's pole will be visible,
+         *                  otherwise the pole will be invisible.
+         */
         this.showPole = function(visible)
         {
             POLE.visible = visible;
         }
 
+        /**
+         * @brief Adds the planet to the scene.
+         */
         this.addToScene = function(scene)
         {
             scene.add(PLANET);
         }
 
+        /**
+         * @brief Allows an object to be added to the planet.
+         * @param object - This is the object to be added to the planet.
+         */
+        this.addObjectToGroup = function(object)
+        {
+            PLANET.add(object);
+        }
+
+        /**
+         * @brief Updates the planet.
+         */
         this.update = function()
         {
             PLANET.rotation.y += rotationSpeed;
         }
+
+        this.test = function()
+        {
+            alert("Broccoli");
+        }
+    }
+}
+
+class NewBornPlanet extends Planet
+{
+    constructor(radius, smoothness, colour, rotationSpeed, initialX, initialY, initialZ)
+    {
+        //Construct the superclass.
+        super(radius, smoothness, colour, rotationSpeed, initialX, initialY, initialZ);
+        this.setPosition(new THREE.Vector3(7, 8, 3));
+        
+
+        this.addMountians = function()
+        {
+            //Create the mountians.
+            var geometry = new THREE.ConeGeometry( 5, 5, 3 );
+            var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+            var cone = new THREE.Mesh( geometry, material );
+
+            //Set position relative to the planet.
+            cone.position.set(-10,0,0);
+            
+            //Add the mountians to the planet.
+            this.addObjectToGroup(cone);
+        }
+
+        this.addMountians();
     }
 }

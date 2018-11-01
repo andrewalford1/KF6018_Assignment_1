@@ -36,7 +36,7 @@ var camera = new THREE.PerspectiveCamera(
 
 camera.position.x = 0;
 camera.position.y = 0;
-camera.position.z = 10;
+camera.position.z = 25;
 
 var renderer = new THREE.WebGLRenderer();
 
@@ -54,7 +54,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
 
 //Add objects to the scene.
-let newBornPlanet = new Planet(3, 2, colours.SIENNA, 0.01, 0, 0, 0);
+let newBornPlanet = new NewBornPlanet(3, 2, colours.SIENNA, 0.01, 0, 0, 0);
 newBornPlanet.addToScene(scene);
 newBornPlanet.showPole(true);
 
