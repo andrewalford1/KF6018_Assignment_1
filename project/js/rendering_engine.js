@@ -31,6 +31,18 @@ pointLight.shadow.mapSize.width = 1024;
 pointLight.shadow.mapSize.height = 1024;
 scene.add(pointLight);
 
+<<<<<<< HEAD
+=======
+//Perspective projection parameters.
+var camera = new THREE.PerspectiveCamera(
+    75, window.innerWidth / window.innerHeight, 0.1, 1000
+);
+
+camera.position.x = 0;
+camera.position.y = 0;
+camera.position.z = 25;
+
+>>>>>>> d51853a3b82301890eb71eee4503f1fde642fe48
 var renderer = new THREE.WebGLRenderer();
 
 //Size of the 2D projection.
@@ -58,7 +70,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
 
 //Add objects to the scene.
-let newBornPlanet = new Planet(3, 2, colours.SIENNA, 0.01, 0, 0, 0);
+let newBornPlanet = new NewBornPlanet(3, 2, colours.SIENNA, 0.01, 0, 0, 0);
 newBornPlanet.addToScene(scene);
 newBornPlanet.showPole(true);
 
