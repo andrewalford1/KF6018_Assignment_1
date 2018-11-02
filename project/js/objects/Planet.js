@@ -1,7 +1,11 @@
-class Planet
+class Planet extends AssignmentObject
 {
-    constructor(radius, smoothness, colour, rotationSpeed, initialX, initialY, initialZ, orbitSpeed)
+    constructor(radius, smoothness, colour, rotationSpeed, initialPosition, orbitSpeed)
     {
+        //Construct the superclass.
+        super(initialPosition);
+
+        //[m_orbitSpeed] How quickly the planet orbits other objects.
         var m_orbitSpeed = orbitSpeed;
 
         //Create the planet's surface.
@@ -25,76 +29,7 @@ class Planet
         PLANET.add(planetSurface);
         PLANET.add(POLE);
 
-        //Set the initial position of the planet.
-        PLANET.position.set(initialX, initialY, initialZ);
-
-        /**
-         * @brief Allows the full position of the planet to be set.
-         * @param position - A Vector3 containing the new 'X', 'Y', & 'Z' coordinates for the planet.
-         */
-        this.setPosition = function(position)
-        {
-            PLANET.position.set(position.x, position.y, position.z);
-        }
-
-        /**
-         * @brief Allows the 'X' coordinate of the planet to be set.
-         * @param x - This is the new 'X' coordinate for the planet.
-         */
-        this.setXPosition = function(x)
-        {
-            PLANET.position.setX(x);
-        }
-
-        /**
-         * @brief Allows the 'Y' coordinate of the planet to be set.
-         * @param y - This is the new 'Y' coordinate for the planet.
-         */
-        this.setYPosition = function(y)
-        {
-            PLANET.position.setY(y);
-        }
-
-        /**
-         * @brief Allows the 'Z' coordinate of the planet to be set.
-         * @param z - This is the new 'Z' coordinate for the plaent.
-         */
-        this.setZPosition = function(z)
-        {
-            PLANET.position.setZ(z);
-        }
-
-        /**
-         * @return Returns the planets position as a Vector3.
-         */
-        this.getPosition = function()
-        {
-            return PLANET.position;
-        }
-
-        /**
-         * @return Returns the planet's 'X' coordinate.
-         */
-        this.getXPosition = function()
-        {
-            return PLANET.position.x;
-        }
-
-        /**
-         * @return Returns the planet's 'Y' coordinate.
-         */
-        this.getYPosition = function()
-        {
-            return PLANET.position.y;
-        }
-
-        /**
-         * @return Returns the planet's 'Z' coordinate.
-         */
-        this.getZPosition = function()
-        {
-            return PLANET.position.z;
-        }
+        this.addObjectToGroup(PLANET);
 
         /**
          * @brief Sets the visibility of the planet's pole.
@@ -107,28 +42,11 @@ class Planet
         }
 
         /**
-         * @brief Adds the planet to the scene.
-         */
-        this.addToScene = function(scene)
-        {
-            scene.add(PLANET);
-        }
-
-        /**
-         * @brief Allows an object to be added to the planet.
-         * @param object - This is the object to be added to the planet.
-         */
-        this.addObjectToGroup = function(object)
-        {
-            PLANET.add(object);
-        }
-
-        /**
          * @brief Updates the planet.
          * @param orbitingObject - This is the object that the planet orbits around.
          * @param increment - Used to move the planet along it's orbiting path.
          */
-        this.update = function(orbitingObject, increment)
+        this.updatePlanet = function(orbitingObject, increment)
         {
             //Spin the planet on its axis.
             PLANET.rotation.y += rotationSpeed;
@@ -138,35 +56,37 @@ class Planet
 
             //Calculate the new position of the planets orbit.
             this.setPosition(new THREE.Vector3(
-                0 + distanceBetweenObjects * Math.sin(Math.PI + (increment * m_orbitSpeed)),
+                orbitingObject.getXPosition() + distanceBetweenObjects * Math.sin(Math.PI + (increment * m_orbitSpeed)),
                 0,
-                0 + distanceBetweenObjects * Math.cos(Math.PI + (increment * m_orbitSpeed))
+                orbitingObject.getXPosition() + distanceBetweenObjects * Math.cos(Math.PI + (increment * m_orbitSpeed))
             ));
         }
+
+        //TASKS: Remove planet as group. Find a way to put update() in the superclass and override it in this class.
     }
 }
 
-class NewBornPlanet extends Planet
-{
-    constructor(radius, smoothness, colour, rotationSpeed, initialX, initialY, initialZ)
-    {
-        //Construct the superclass.
-        super(radius, smoothness, colour, rotationSpeed, initialX, initialY, initialZ);
+// class NewBornPlanet extends Planet
+// {
+//     constructor(radius, smoothness, colour, rotationSpeed, initialX, initialY, initialZ)
+//     {
+//         //Construct the superclass.
+//         super(radius, smoothness, colour, rotationSpeed, initialX, initialY, initialZ);
 
-        this.addMountians = function()
-        {
-            //Create the mountians.
-            var geometry = new THREE.ConeGeometry( 5, 5, 3 );
-            var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-            var cone = new THREE.Mesh( geometry, material );
+//         this.addMountians = function()
+//         {
+//             //Create the mountians.
+//             var geometry = new THREE.ConeGeometry( 5, 5, 3 );
+//             var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+//             var cone = new THREE.Mesh( geometry, material );
 
-            //Set position relative to the planet.
-            cone.position.set(-10,0,0);
+//             //Set position relative to the planet.
+//             cone.position.set(-10,0,0);
             
-            //Add the mountians to the planet.
-            //this.addObjectToGroup(cone);
-        }
+//             //Add the mountians to the planet.
+//             //this.addObjectToGroup(cone);
+//         }
 
-        this.addMountians();
-    }
-}
+//         this.addMountians();
+//     }
+// }

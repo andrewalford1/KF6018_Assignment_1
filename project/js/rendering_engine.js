@@ -43,14 +43,14 @@ document.body.appendChild(renderer.domElement);
 //CREATE OBJECTS...
 
 //[sun] The sun is the object that all other planets orbit around.
-let sun = new Planet(16, 2, colours.YELLOW, 0.01, 0, 0, 0);
+let sun = new Star(16, 2, 0.01, new THREE.Vector3(0, 0, 0));
 
 //[planets] An array to hold all the planets in the solar system.
 var planets = [
-    new Planet(3, 2, colours.BLUE, 0.05, 32, 0, 0, 1),
-    new Planet(6, 2, colours.GREEN, 0.05, 48, 0, 0, 1.2),
-    new Planet(12, 2, colours.RED, 0.05, 24, 64, 0, 1.4),
-    new Planet(9, 2, colours.MAGENTA, 0.05, 92, 0, 0, 1.6),
+    new Planet(3, 2, colours.BLUE, 0.05, new THREE.Vector3(32, 0, 0), 1),
+    new Planet(6, 2, colours.GREEN, 0.05, new THREE.Vector3(48, 0, 0), 1.2),
+    new Planet(12, 2, colours.RED, 0.05, new THREE.Vector3(64, 0, 0), 1.4),
+    new Planet(9, 2, colours.MAGENTA, 0.05, new THREE.Vector3(92, 0, 0), 1.6)
 ];
 
 //ADD OBJECTS TO THE SCENE...
@@ -78,7 +78,7 @@ function animate()
     //Update all the planets.
     for(i = 0; i < planets.length; i++)
     {
-        planets[i].update(sun, incrementor); 
+        planets[i].updatePlanet(sun, incrementor); 
     }
 
     incrementor += 0.01;
