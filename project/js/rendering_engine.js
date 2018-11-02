@@ -7,6 +7,8 @@ function animate()
 {
     requestAnimationFrame(animate);
 
+    controls.update();
+
     //Animation code...
     newBornPlanet.update();
 
@@ -29,15 +31,6 @@ pointLight.shadow.mapSize.width = 1024;
 pointLight.shadow.mapSize.height = 1024;
 scene.add(pointLight);
 
-//Perspective projection parameters.
-var camera = new THREE.PerspectiveCamera(
-    75, window.innerWidth / window.innerHeight, 0.1, 1000
-);
-
-camera.position.x = 0;
-camera.position.y = 0;
-camera.position.z = 10;
-
 var renderer = new THREE.WebGLRenderer();
 
 //Size of the 2D projection.
@@ -45,6 +38,17 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 
 //Set the background colour.
 renderer.setClearColor(colours.GREEN);
+
+//Perspective projection parameters.
+var camera = new THREE.PerspectiveCamera(
+    75, window.innerWidth / window.innerHeight, 0.1, 1000
+);
+
+var controls = new THREE.OrbitControls( camera );
+
+//Set the cameras position.
+camera.position.set(0, 0, 10);
+controls.update();
 
 //shadows.
 renderer.shadowMap.enabled = true;
