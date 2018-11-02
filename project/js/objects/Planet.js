@@ -1,7 +1,9 @@
 class Planet
 {
-    constructor(radius, smoothness, colour, rotationSpeed, initialX, initialY, initialZ)
+    constructor(radius, smoothness, colour, rotationSpeed, initialX, initialY, initialZ, orbitSpeed)
     {
+        var m_orbitSpeed = orbitSpeed;
+
         //Create the planet's surface.
         const M_GEOMETRY = new THREE.OctahedronGeometry(radius, smoothness);
         const M_MATERIAL = new THREE.MeshStandardMaterial( {color: colour, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} );
@@ -63,6 +65,14 @@ class Planet
         }
 
         /**
+         * @return Returns the planets position as a Vector3.
+         */
+        this.getPosition = function()
+        {
+            return PLANET.position;
+        }
+
+        /**
          * @return Returns the planet's 'X' coordinate.
          */
         this.getXPosition = function()
@@ -84,11 +94,6 @@ class Planet
         this.getZPosition = function()
         {
             return PLANET.position.z;
-        }
-
-        this.getPosition = function()
-        {
-            return PLANET.position;
         }
 
         /**
@@ -126,30 +131,15 @@ class Planet
             PLANET.rotation.y += rotationSpeed;
         }
 
-        this.test = function()
+        this.orbit = function(planet, increment)
         {
-            var newX = 0 + 8 * Math.cos(Math.PI);
-            var newY = 0 + 8 * Math.sin(Math.PI);
-
-            this.setXPosition(newX);
-            this.setYPosition(newY);
-
-        }
-
-        this.orbit = function(p, increment)
-        {
-            var p2Location = new THREE.Vector3();
-            p2Location = p.getPosition();
-
-            var distanceVector = new THREE.Vector3();
-            distanceVector =  p2Location.distanceTo(this.getPosition());
-            
-            //alert(distanceVector);
+            var planetLocation = planet.getPosition();
+            var distanceVector =  planetLocation.distanceTo(this.getPosition());
 
             this.setPosition(new THREE.Vector3(
-                0 + distanceVector * Math.sin(Math.PI + increment),
+                0 + distanceVector * Math.sin(Math.PI + (increment * m_orbitSpeed)),
                 0,
-                0 + distanceVector * Math.cos(Math.PI + increment)
+                0 + distanceVector * Math.cos(Math.PI + (increment * m_orbitSpeed))
             ));
         }
     }

@@ -16,6 +16,7 @@ function animate()
 
     for(i = 0; i < planets.length; i++)
     {
+        planets[i].update();
         planets[i].addToScene(scene);
         planets[i].orbit(sun, incrementor);
     }
@@ -57,7 +58,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 //Set the background colour.
-renderer.setClearColor(colours.GREEN);
+renderer.setClearColor(colours.BLACK);
 
 //shadows.
 renderer.shadowMap.enabled = true;
@@ -66,20 +67,15 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 //Connect the renderer to the canvas.
 document.body.appendChild(renderer.domElement);
 
-var geometry = new THREE.CylinderGeometry( 8, 5, 1, 32 );
-var material = new THREE.MeshBasicMaterial( {color: colours.WHITE} );
-var cylinder = new THREE.Mesh( geometry, material );
-//scene.add( cylinder );
-
-let sun = new Planet(3, 2, colours.YELLOW, 0.01, 0, 0, 0);
+let sun = new Planet(16, 2, colours.YELLOW, 0.01, 0, 0, 0);
 sun.addToScene(scene);
 
 var distance = 2;
 var planets = [
-    new Planet(3, 2, colours.BLUE, 0.01, 8, 0, 0),
-    new Planet(3, 2, colours.PURPLE, 0.01, 16, 0, 0),
-    new Planet(3, 2, colours.RED, 0.01, 24, 0, 0),
-    new Planet(3, 2, colours.MAGENTA, 0.01, 32, 0, 0),
+    new Planet(3, 2, colours.BLUE, 0.05, 32, 0, 0, 1),
+    new Planet(6, 2, colours.GREEN, 0.05, 48, 0, 0, 1.2),
+    new Planet(12, 2, colours.RED, 0.05, 24, 64, 0, 1.4),
+    new Planet(9, 2, colours.MAGENTA, 0.05, 92, 0, 0, 1.6),
 ];
 
 for(i = 0; i < planets.length; i++)
@@ -87,12 +83,8 @@ for(i = 0; i < planets.length; i++)
     planets[i].addToScene(scene);
 }
 
+//[incrementor] Used to track the planets orbit.
 var incrementor = 0;
-
-// //Add objects to the scene.
-// let newBornPlanet = new NewBornPlanet(3, 2, colours.SIENNA, 0.01, 0, 0, 0);
-// newBornPlanet.addToScene(scene);
-// newBornPlanet.showPole(true);
 
 //Run the animation loop.
 animate();
