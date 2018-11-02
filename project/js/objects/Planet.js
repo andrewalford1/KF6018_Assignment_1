@@ -125,21 +125,22 @@ class Planet
 
         /**
          * @brief Updates the planet.
+         * @param orbitingObject - This is the object that the planet orbits around.
+         * @param increment - Used to move the planet along it's orbiting path.
          */
-        this.update = function()
+        this.update = function(orbitingObject, increment)
         {
+            //Spin the planet on its axis.
             PLANET.rotation.y += rotationSpeed;
-        }
 
-        this.orbit = function(planet, increment)
-        {
-            var planetLocation = planet.getPosition();
-            var distanceVector =  planetLocation.distanceTo(this.getPosition());
+            //[distanceBetweenObjects] Work out the distance between the planet and the object it is orbiting.
+            var distanceBetweenObjects =  orbitingObject.getPosition().distanceTo(this.getPosition());
 
+            //Calculate the new position of the planets orbit.
             this.setPosition(new THREE.Vector3(
-                0 + distanceVector * Math.sin(Math.PI + (increment * m_orbitSpeed)),
+                0 + distanceBetweenObjects * Math.sin(Math.PI + (increment * m_orbitSpeed)),
                 0,
-                0 + distanceVector * Math.cos(Math.PI + (increment * m_orbitSpeed))
+                0 + distanceBetweenObjects * Math.cos(Math.PI + (increment * m_orbitSpeed))
             ));
         }
     }

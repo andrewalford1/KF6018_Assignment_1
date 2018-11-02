@@ -1,31 +1,3 @@
-//FUNCTIONS
-
-/**
- * @brief Animates the scene.
- */
-function animate()
-{
-    requestAnimationFrame(animate);
-
-    controls.update();
-
-    //Animation code...
-    //newBornPlanet.update();
-
-    planets[0].orbit(sun, incrementor);
-
-    for(i = 0; i < planets.length; i++)
-    {
-        planets[i].update();
-        planets[i].addToScene(scene);
-        planets[i].orbit(sun, incrementor);
-    }
-
-    incrementor += 0.01;
-    renderer.render(scene, camera);
-}
-
-
 //MAIN CODE...
 var scene = new THREE.Scene();
 
@@ -46,6 +18,7 @@ var camera = new THREE.PerspectiveCamera(
     75, window.innerWidth / window.innerHeight, 0.1, 1000
 );
 
+//[controls] Used to orbit around the scene (just for debugging).
 var controls = new THREE.OrbitControls(camera);
 
 //Set the initial position of the camera.
@@ -67,10 +40,12 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 //Connect the renderer to the canvas.
 document.body.appendChild(renderer.domElement);
 
-let sun = new Planet(16, 2, colours.YELLOW, 0.01, 0, 0, 0);
-sun.addToScene(scene);
+//CREATE OBJECTS...
 
-var distance = 2;
+//[sun] The sun is the object that all other planets orbit around.
+let sun = new Planet(16, 2, colours.YELLOW, 0.01, 0, 0, 0);
+
+//[planets] An array to hold all the planets in the solar system.
 var planets = [
     new Planet(3, 2, colours.BLUE, 0.05, 32, 0, 0, 1),
     new Planet(6, 2, colours.GREEN, 0.05, 48, 0, 0, 1.2),
@@ -78,6 +53,12 @@ var planets = [
     new Planet(9, 2, colours.MAGENTA, 0.05, 92, 0, 0, 1.6),
 ];
 
+//ADD OBJECTS TO THE SCENE...
+
+//Add the sun to the scene.
+sun.addToScene(scene);
+
+//Add the planets to the scene.
 for(i = 0; i < planets.length; i++)
 {
     planets[i].addToScene(scene);
@@ -85,6 +66,26 @@ for(i = 0; i < planets.length; i++)
 
 //[incrementor] Used to track the planets orbit.
 var incrementor = 0;
+
+//ANIMATION FUNCTION...
+function animate()
+{
+    requestAnimationFrame(animate);
+
+    controls.update();
+
+    //Animation code...
+    //Update all the planets.
+    for(i = 0; i < planets.length; i++)
+    {
+        planets[i].update(sun, incrementor); 
+    }
+
+    incrementor += 0.01;
+
+    //Render the scene.
+    renderer.render(scene, camera);
+}
 
 //Run the animation loop.
 animate();
