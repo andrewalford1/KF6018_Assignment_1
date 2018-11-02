@@ -67,7 +67,7 @@ class Planet
          */
         this.getXPosition = function()
         {
-            return PLANET.position.getX();
+            return PLANET.position.x;
         }
 
         /**
@@ -75,7 +75,7 @@ class Planet
          */
         this.getYPosition = function()
         {
-            return PLANET.position.getY();
+            return PLANET.position.y;
         }
 
         /**
@@ -83,7 +83,12 @@ class Planet
          */
         this.getZPosition = function()
         {
-            return PLANET.position.getZ();
+            return PLANET.position.z;
+        }
+
+        this.getPosition = function()
+        {
+            return PLANET.position;
         }
 
         /**
@@ -123,7 +128,29 @@ class Planet
 
         this.test = function()
         {
-            alert("Broccoli");
+            var newX = 0 + 8 * Math.cos(Math.PI);
+            var newY = 0 + 8 * Math.sin(Math.PI);
+
+            this.setXPosition(newX);
+            this.setYPosition(newY);
+
+        }
+
+        this.orbit = function(p, increment)
+        {
+            var p2Location = new THREE.Vector3();
+            p2Location = p.getPosition();
+
+            var distanceVector = new THREE.Vector3();
+            distanceVector =  p2Location.distanceTo(this.getPosition());
+            
+            //alert(distanceVector);
+
+            this.setPosition(new THREE.Vector3(
+                0 + distanceVector * Math.sin(Math.PI + increment),
+                0,
+                0 + distanceVector * Math.cos(Math.PI + increment)
+            ));
         }
     }
 }
@@ -134,8 +161,6 @@ class NewBornPlanet extends Planet
     {
         //Construct the superclass.
         super(radius, smoothness, colour, rotationSpeed, initialX, initialY, initialZ);
-        this.setPosition(new THREE.Vector3(7, 8, 3));
-        
 
         this.addMountians = function()
         {
@@ -148,7 +173,7 @@ class NewBornPlanet extends Planet
             cone.position.set(-10,0,0);
             
             //Add the mountians to the planet.
-            this.addObjectToGroup(cone);
+            //this.addObjectToGroup(cone);
         }
 
         this.addMountians();
