@@ -5,7 +5,7 @@ const colours = {
     DARK_GREY:  0x404040,
     RED:        0xC50B0B,
     DARK_RED:   0xB50000,
-    GREEN:      0x008000,
+    GREEN:      0x3CCE7B,
     DARK_GREEN: 0x186A3B,
     BLUE:       0x0000FF,
     DARK_BLUE:  0x000080, 
