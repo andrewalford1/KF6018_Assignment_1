@@ -1,5 +1,16 @@
+/**
+ * Class representing a star.
+ * @extends AssignmentObject
+ */
 class Star extends AssignmentObject
 {
+    /**
+     * Create a star.
+     * @param {number} radius - The radius of the planet.
+     * @param {number} smoothness - How smooth the surface of the planet will be.
+     * @param {number} rotationSpeed - How quickly the planet rotates.
+     * @param {Vector3} initialPosition - The initial position of the planet.
+     */
     constructor(radius, smoothness, rotationSpeed, initialPosition)
     {
         //Construct the superclass.

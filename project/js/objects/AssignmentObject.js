@@ -1,13 +1,22 @@
+/**
+ * This class is the top of the heiriarchy for all objects created for the assignment.
+ */
 class AssignmentObject
 {
+    /**
+     * Creates an assignment object.
+     * @param {Vector3} initialPosition - This is the initial position of the assignment object.
+     */
     constructor(initialPosition)
     {
+        //[OBJECT] This is the object the class encases.
         const OBJECT = new THREE.Group();
         OBJECT.position.copy(initialPosition);
 
         /**
-         * @brief Allows the full position of the planet to be set.
-         * @param position - A Vector3 containing the new 'X', 'Y', & 'Z' coordinates for the planet.
+         * Allows the full position of the object to be set.
+         * @param {Vector3} position - A vector3 containing the new 'X', 'Y', and 'Z'
+         *                             coordinates for the object.
          */
         this.setPosition = function(position)
         {
@@ -15,8 +24,8 @@ class AssignmentObject
         }
 
         /**
-         * @brief Allows the 'X' coordinate of the planet to be set.
-         * @param x - This is the new 'X' coordinate for the planet.
+         * Allows the 'X' coordinate of the object to be set.
+         * @param {number} x - This is the new 'X' coordinate for the object.
          */
         this.setXPosition = function(x)
         {
@@ -24,8 +33,8 @@ class AssignmentObject
         }
 
         /**
-         * @brief Allows the 'Y' coordinate of the planet to be set.
-         * @param y - This is the new 'Y' coordinate for the planet.
+         * Allows the 'Y' coordinate of the planet to be set.
+         * @param {number} y - This is the new 'Y' coordinate for the object.
          */
         this.setYPosition = function(y)
         {
@@ -33,8 +42,8 @@ class AssignmentObject
         }
 
         /**
-         * @brief Allows the 'Z' coordinate of the planet to be set.
-         * @param z - This is the new 'Z' coordinate for the plaent.
+         * Allows the 'Z' coordinate of the planet to be set.
+         * @param {number} z - This is the new 'Z' coordinate for the object.
          */
         this.setZPosition = function(z)
         {
@@ -74,7 +83,8 @@ class AssignmentObject
         }
 
         /**
-         * @brief Adds the planet to the scene.
+         * Adds the object to a given scene.
+         * @param {THREE.Scene} scene - This is the scene to add the object to.
          */
         this.addToScene = function(scene)
         {
@@ -82,14 +92,17 @@ class AssignmentObject
         }
 
         /**
-         * @brief Allows an object to be added to the main object.
-         * @param object - This is the object to be added to the main object.
+         * Allows another object to be added to the main object.
+         * @param {THREE.Object3D} object - This is the other object to be added to the main object. 
          */
         this.addObjectToGroup = function(object)
         {
             OBJECT.add(object);
         }
 
+        /**
+         * @return Returns the main object.
+         */
         this.getObject = function()
         {
             return OBJECT;
