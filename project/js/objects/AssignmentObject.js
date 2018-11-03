@@ -89,5 +89,10 @@ class AssignmentObject
         {
             OBJECT.add(object);
         }
+
+        this.getObject = function()
+        {
+            return OBJECT;
+        }
     }
 }

@@ -78,7 +78,7 @@ function animate()
     //Update all the planets.
     for(i = 0; i < planets.length; i++)
     {
-        planets[i].updatePlanet(sun, incrementor); 
+        planets[i].update(sun, incrementor); 
     }
 
     incrementor += 0.01;
