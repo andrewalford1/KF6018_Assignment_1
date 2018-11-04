@@ -6,7 +6,7 @@ class Asteroid extends OrbitingObject
         super(initialPosition, orbitSpeed);
 
         //Create the asteroid.
-        var geometry = new THREE.BoxGeometry( 5, 5, 5 );
+        var geometry = new THREE.BoxGeometry( 6, 6, 6 );
         var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
         var cube = new THREE.Mesh( geometry, material );
 

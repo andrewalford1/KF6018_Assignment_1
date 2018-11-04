@@ -37,10 +37,18 @@ class Planet extends OrbitingObject
         );
         const POLE = new THREE.Mesh(POLE_GEOMETRY, POLE_MESH);
         POLE.visible = false;
+    
+        //Temp rings.
+        var ORBIT_RADIUS_G = new THREE.CylinderGeometry( radius * 2, radius * 2, 0.5, 32 );
+        var ORBIT_RADIUS_M = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+        var ORBIT_RADIUS = new THREE.Mesh(ORBIT_RADIUS_G, ORBIT_RADIUS_M);
+        ORBIT_RADIUS.visible = false;
+
 
         //Add the planet to the object group.
         this.addObjectToGroup(PLANET_SURFACE);
         this.addObjectToGroup(POLE);
+        this.addObjectToGroup(ORBIT_RADIUS);
 
         //PUBLIC METHODS...
 
