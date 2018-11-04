@@ -40,6 +40,10 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 //Connect the renderer to the canvas.
 document.body.appendChild(renderer.domElement);
 
+var stats = new Stats();
+stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+document.body.appendChild( stats.dom );
+
 //CREATE OBJECTS...
 
 //[sun] The sun is the object that all other planets orbit around.
@@ -67,10 +71,18 @@ for(i = 0; i < planets.length; i++)
 //[incrementor] Used to track the planets orbit.
 var incrementor = 0;
 
+//Timing variables...
+//[frameTime] The amount of time taken to compute and render a frame of animation.
+var frameTime = 0;
+//[previousTime] The amount of time taken to compute and render the previous frame.
+var previousTime = 0;
+//[currentTime] Stores the current time.
+var currentTime = 0;
+
 //ANIMATION FUNCTION...
 function animate()
 {
-    requestAnimationFrame(animate);
+    stats.begin();
 
     controls.update();
 
@@ -78,14 +90,21 @@ function animate()
     //Update all the planets.
     for(i = 0; i < planets.length; i++)
     {
-        //PAUSED TEMPORARILY
         planets[i].update(sun, incrementor); 
     }
 
     incrementor += 0.01;
 
+    stats.end();
+
     //Render the scene.
+    requestAnimationFrame(animate);
     renderer.render(scene, camera);
+
+    //Update timing variables.
+    currentTime = performance.now();
+    frameTime = currentTime - previousTime;
+    previousTime = currentTime;
 }
 
 //Run the animation loop.
