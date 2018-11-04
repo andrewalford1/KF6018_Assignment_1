@@ -4,13 +4,15 @@
  */
 class OrbitingObject extends AssignmentObject
 {
-    constructor(initialPosition, orbitSpeed)
+    constructor(initialPosition, orbitSpeed, orbitingObject)
     {
         //Construct the superclass.
         super(initialPosition);
 
         //[m_orbitSpeed] Member variable to determine how quickly this object will orbit other objects.
         var m_orbitSpeed = orbitSpeed;
+
+        const M_DISTANCE_TO_ORBITING_OBJECT = Math.round(orbitingObject.getPosition().distanceTo(this.getPosition()));
 
         /**
          * Allows the orbit speed to be set.
@@ -30,21 +32,16 @@ class OrbitingObject extends AssignmentObject
         }
 
          /**
-          * Updates the planet.
-          * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
-          * @param {number} increment - How far to increment the planet along it's orbiting path.
+          * Moves the object along it's orbiting path.
+          * @param {number} increment - How far to increment the object along it's orbiting path.
           */
-        this.moveAlongOrbitingPath = function(orbitingObject, increment)
+        this.moveAlongOrbitingPath = function(increment)
         {
-            //Add in orbit speed.
-            //[distanceBetweenObjects] Work out the distance between the planet and the object it is orbiting.
-            var distanceBetweenObjects =  orbitingObject.getPosition().distanceTo(this.getPosition());
-
             //Calculate the new position of the planets orbit.
             this.setPosition(new THREE.Vector3(
-                orbitingObject.getXPosition() + distanceBetweenObjects * Math.sin(Math.PI + (increment * m_orbitSpeed)),
+                orbitingObject.getXPosition() + M_DISTANCE_TO_ORBITING_OBJECT * Math.sin(Math.PI + (increment * m_orbitSpeed)),
                 0,
-                orbitingObject.getYPosition() + distanceBetweenObjects * Math.cos(Math.PI + (increment * m_orbitSpeed))
+                orbitingObject.getZPosition() + M_DISTANCE_TO_ORBITING_OBJECT * Math.cos(Math.PI + (increment * m_orbitSpeed))
             ));
         }
     }

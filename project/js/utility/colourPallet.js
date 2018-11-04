@@ -14,5 +14,5 @@ const colours = {
     YELLOW:     0xFFFF00,
     CORAL:      0xFF7F50,
     SIENNA:     0x8B4513,
-    MAROON:     0x800000
+    BROWN:     0x3F2A14
 };

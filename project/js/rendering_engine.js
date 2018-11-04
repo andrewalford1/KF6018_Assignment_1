@@ -22,7 +22,7 @@ var camera = new THREE.PerspectiveCamera(
 var controls = new THREE.OrbitControls(camera);
 
 //Set the initial position of the camera.
-camera.position.set(0, 0, 25);
+camera.position.set(0, 0, 100);
 controls.update();
 
 var renderer = new THREE.WebGLRenderer();
@@ -51,16 +51,19 @@ let sun = new Star(16, 2, 0.01, new THREE.Vector3(0, 0, 0));
 
 //[planets] An array to hold all the planets in the solar system.
 var planets = [
-    new Planet(3, 2, colours.BLUE, 0.01, new THREE.Vector3(32, 0, 0), 0.5),
-    new NaturePlanet(0.01, new THREE.Vector3(48, 0, 0), 0.52),
-    new CityPlanet(0.01, new THREE.Vector3(64, 0, 0), 0.54),
-    new Planet(9, 2, colours.MAGENTA, 0.01, new THREE.Vector3(92, 0, 0), 0.56)
+    new Planet(3, 2, colours.BLUE, 0.01, new THREE.Vector3(32, 0, 0), 0.5, sun),
+    new NaturePlanet(0.01, new THREE.Vector3(48, 0, 0), 0.52, sun),
+    new CityPlanet(0.01, new THREE.Vector3(64, 0, 0), 0.54, sun),
+    new Planet(9, 2, colours.MAGENTA, 0.01, new THREE.Vector3(92, 0, 0), 0.56, sun)
 ];
+
+let asteroid = new Asteroid(new THREE.Vector3(36, 0, 0), 1, planets[0]);
 
 //ADD OBJECTS TO THE SCENE...
 
 //Add the sun to the scene.
 sun.addToScene(scene);
+asteroid.addToScene(scene);
 
 //Add the planets to the scene.
 for(i = 0; i < planets.length; i++)
@@ -90,8 +93,10 @@ function animate()
     //Update all the planets.
     for(i = 0; i < planets.length; i++)
     {
-        planets[i].update(sun, incrementor); 
+        planets[i].update(incrementor); 
     }
+
+    asteroid.update(incrementor);
 
     incrementor += 0.01;
 

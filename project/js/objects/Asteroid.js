@@ -1,26 +1,32 @@
+/**
+ * Class representing an asteroid.
+ * @
+ */
 class Asteroid extends OrbitingObject
 {
-    constructor(initialPosition, orbitSpeed)
+    constructor(initialPosition, orbitSpeed, orbitingObject)
     {
         //Construct the superclass.
-        super(initialPosition, orbitSpeed);
+        super(initialPosition, orbitSpeed, orbitingObject);
 
-        //Create the asteroid.
-        var geometry = new THREE.BoxGeometry( 6, 6, 6 );
-        var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-        var cube = new THREE.Mesh( geometry, material );
+        //Create the asteroids surface.
+        var asteroidGeometry = new THREE.OctahedronGeometry(1, 1);  
+        var surfaceMaterial = new THREE.MeshStandardMaterial( 
+            {color: colours.BROWN, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} 
+        );
+        var asteroid = new THREE.Mesh(asteroidGeometry, surfaceMaterial);
 
-        this.addObjectToGroup(cube);
-
+        //Add the asteroid to the group.
+        this.addObjectToGroup(asteroid);
+        
          /**
           * Updates the planet.
-          * @param {AssignmentObject} objectToOrbit - This is the object that the planet is orbiting.
           * @param {number} increment - How far to increment the planet along it's orbiting path.
           */
-        this.update = function(objectToOrbit, increment)
+        this.update = function(increment)
         {
             //Move the planet along it's orbiting path.
-            this.moveAlongOrbitingPath(objectToOrbit, increment);
+            this.moveAlongOrbitingPath(increment);
         }
     }
 }

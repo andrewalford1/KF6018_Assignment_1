@@ -11,10 +11,10 @@ class NaturePlanet extends Planet
      * @param {Vector3} initialPosition - The initial position of the planet.
      * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
      */
-    constructor(rotationSpeed, initialPosition, orbitSpeed)
+    constructor(rotationSpeed, initialPosition, orbitSpeed, obj)
     {
         //Construct the superclass.
-        super(2, 2, colours.GREEN, rotationSpeed, initialPosition, orbitSpeed);
+        super(2, 2, colours.GREEN, rotationSpeed, initialPosition, orbitSpeed, obj);
 
         //Create pine trees....
         //Create the pine tree similar to any other object,
