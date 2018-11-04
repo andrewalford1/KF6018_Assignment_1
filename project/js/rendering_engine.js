@@ -57,7 +57,7 @@ var planets = [
     new Planet(9, 2, colours.MAGENTA, 0.01, new THREE.Vector3(92, 0, 0), 0.56, sun)
 ];
 
-let asteroid = new Asteroid(new THREE.Vector3(36, 0, 0), 1, planets[0]);
+let asteroid = new AsteroidB612(new THREE.Vector3(planets[1].getXPosition() + 4, 0, 0), 3, planets[1]);
 
 //ADD OBJECTS TO THE SCENE...
 
