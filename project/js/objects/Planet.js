@@ -2,7 +2,7 @@
  * Class representing a planet.
  * @extends AssignmentObject
  */
-class Planet extends AssignmentObject
+class Planet extends OrbitingObject
 {
     /**
      * Create a planet.
@@ -16,10 +16,7 @@ class Planet extends AssignmentObject
     constructor(radius, smoothness, colour, rotationSpeed, initialPosition, orbitSpeed)
     {
         //Construct the superclass.
-        super(initialPosition);
-
-        //[m_orbitSpeed] How quickly the planet orbits other objects.
-        var m_orbitSpeed = orbitSpeed;
+        super(initialPosition, orbitSpeed);
 
         //Create the planet's surface.
         const PLANET_GEOMETRY = new THREE.OctahedronGeometry(radius, smoothness);
@@ -59,23 +56,16 @@ class Planet extends AssignmentObject
 
          /**
           * Updates the planet.
-          * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
+          * @param {AssignmentObject} objectToOrbit - This is the object that the planet is orbiting.
           * @param {number} increment - How far to increment the planet along it's orbiting path.
           */
-        this.update = function(orbitingObject, increment)
+        this.update = function(objectToOrbit, increment)
         {
             //Spin the planet on its axis.
             this.getObject().rotation.y += rotationSpeed;
 
-            //[distanceBetweenObjects] Work out the distance between the planet and the object it is orbiting.
-            var distanceBetweenObjects =  orbitingObject.getPosition().distanceTo(this.getPosition());
-
-            //Calculate the new position of the planets orbit.
-            this.setPosition(new THREE.Vector3(
-                orbitingObject.getXPosition() + distanceBetweenObjects * Math.sin(Math.PI + (increment * m_orbitSpeed)),
-                0,
-                orbitingObject.getXPosition() + distanceBetweenObjects * Math.cos(Math.PI + (increment * m_orbitSpeed))
-            ));
+            //Move the planet along it's orbiting path.
+            this.moveAlongOrbitingPath(objectToOrbit, increment);
         }
     }
 }
