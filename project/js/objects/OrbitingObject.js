@@ -44,7 +44,7 @@ class OrbitingObject extends AssignmentObject
             this.setPosition(new THREE.Vector3(
                 orbitingObject.getXPosition() + distanceBetweenObjects * Math.sin(Math.PI + (increment * m_orbitSpeed)),
                 0,
-                orbitingObject.getXPosition() + distanceBetweenObjects * Math.cos(Math.PI + (increment * m_orbitSpeed))
+                orbitingObject.getYPosition() + distanceBetweenObjects * Math.cos(Math.PI + (increment * m_orbitSpeed))
             ));
         }
     }

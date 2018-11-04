@@ -68,6 +68,9 @@ for(i = 0; i < planets.length; i++)
     planets[i].addToScene(scene);
 }
 
+//let asteroid = new Asteroid(new THREE.Vector3(42, 0, 0), 0.58)
+//asteroid.addToScene(scene);
+
 //[incrementor] Used to track the planets orbit.
 var incrementor = 0;
 
@@ -78,6 +81,8 @@ var frameTime = 0;
 var previousTime = 0;
 //[currentTime] Stores the current time.
 var currentTime = 0;
+
+//sun.setPosition(new THREE.Vector3(-50, 0, 0));
 
 //ANIMATION FUNCTION...
 function animate()
@@ -90,8 +95,10 @@ function animate()
     //Update all the planets.
     for(i = 0; i < planets.length; i++)
     {
-        planets[i].update(sun, incrementor); 
+        //planets[i].update(sun, incrementor); 
     }
+
+    //asteroid.update(planets[0], incrementor);
 
     incrementor += 0.01;
 

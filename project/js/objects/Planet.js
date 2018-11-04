@@ -66,6 +66,11 @@ class Planet extends OrbitingObject
 
             //Move the planet along it's orbiting path.
             this.moveAlongOrbitingPath(objectToOrbit, increment);
+
+//             for(i = 0; i < objectsInOrbit.length; i++)
+//             {
+//                 objectsInOrbit[i].update(this, incrementor); 
+//             }
         }
     }
 }
