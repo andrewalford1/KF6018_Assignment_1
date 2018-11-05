@@ -15,17 +15,65 @@ class NaturePlanet extends Planet
     {
         //Construct the superclass.
         super(2, 2, colours.GREEN, rotationSpeed, initialPosition, orbitSpeed, obj);
+        
+        //Create the asteroids surface.
+        var crownMaterial = new THREE.MeshPhysicalMaterial( {color: colours.DARK_GREEN, flatShading: THREE.FlatShading, metalness: 0.3, roughness: 0.6, reflectivity: 0.5});
+        var trunkMaterial = new THREE.MeshPhysicalMaterial( {color: colours.BROWN, flatShading: THREE.FlatShading, metalness: 0.3, roughness: 1, reflectivity: 0.5});
 
         //Create pine trees....
         //Create the pine tree similar to any other object,
         //Set their position (relative to the planet).
-        //then use the function below to add them to the planet.
-        //this.addObjectToGroup(pineTree_A);
-        //this.addObjectToGroup(pineTree_B);
-        //this.addObjectToGroup(pineTree_C);
+       
+        //PineTree A
+        //pine tree crown
+        var geometry2 = new THREE.ConeGeometry( 0.3, 0.6, 10 );
+        var pineTreeCrown = new THREE.Mesh( geometry2, crownMaterial );
+        //position
+        pineTreeCrown.position.set(0.0, 1.4, 0.0);
+        //pine tree trunk
+        var geometry2trunk = new THREE.CylinderGeometry( 0.06, 0.1, 0.2, 10 );
+        var pineTreeTrunk = new THREE.Mesh( geometry2trunk, trunkMaterial );
+        //position
+        pineTreeTrunk.position.set(0.0, 1.05, 0.0);
+
+        //tree A group
+        var treeA = new THREE.Group();
+        treeA.add(pineTreeCrown);
+        treeA.add(pineTreeTrunk);
+        //position
+        treeA.position.set(0.0, -1.0, 0.0);
+        //rotate the buildings
+        treeA.rotation.set(-1.4, 0.0, 0.0);
+
+        //Tree B
+        //tree crown
+        var geometry3 = new THREE.TetrahedronGeometry( 0.2, 2 );
+        var treeCrown = new THREE.Mesh( geometry3, crownMaterial );
+        //position
+        treeCrown.position.set(0.0, 2.4, 0.0);
+        //tree trunk
+        var geometry3trunk = new THREE.CylinderGeometry( 0.03, 0.06, 0.6, 10 );
+        var treeTrunk = new THREE.Mesh( geometry3trunk, trunkMaterial );
+        treeTrunk.position.set(0.0, 2.0, 0.0);
+
+        //tree B group
+        var treeB = new THREE.Group();
+        treeB.add(treeCrown);
+        treeB.add(treeTrunk);
+        //position
+        treeA.position.set(0.0, 0.0, 0.0);
+        //rotate the buildings
+        treeA.rotation.set(0.4, 0.0, 0.0);
+
+        //Tree C truffula
 
         //Create lake...
 
         //Create mountians...
+
+         //then use the function below to add them to the planet.
+        this.addObjectToGroup(treeA);
+        this.addObjectToGroup(treeB);
+        //this.addObjectToGroup(pineTree_C);
     }
 }
