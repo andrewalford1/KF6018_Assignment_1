@@ -102,7 +102,7 @@ function animate()
     renderer.render(scene, camera);
 
     //Update timing variables.
-    currentTimeMs = Date.now();
+    currentTimeMs = performance.now();
     frameTimeMs = currentTimeMs - previousTimeMs;
     previousTimeMs = currentTimeMs;
 }
