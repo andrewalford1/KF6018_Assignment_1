@@ -1,21 +1,3 @@
-//CHECK DEPENDANCIES...
-if(typeof Star === 'undefined' || Star === null)
-{
-    throw new Error("Error: Object of type 'Star' has not been declared.");
-}
-else if(typeof NaturePlanet === 'undefined' || NaturePlanet === null)
-{
-    throw new Error("Error: Object of type 'NaturePlanet' has not been declared.");
-}
-else if(typeof CityPlanet === 'undefined' || CityPlanet === null)
-{
-    throw new Error("Error: Object of type 'CityPlanet' has not been declared.");
-}
-else if(typeof AsteroidB612 === 'undefined' || AsteroidB612 === null)
-{
-    throw new Error("Error: Object of type 'AsteroidB612' has not been declared.");
-}
-
 //CREATE OBJECTS...
 
 //Stars:
