@@ -4,12 +4,19 @@
  */
 class AsteroidB612 extends OrbitingObject
 {
-    constructor(initialPosition, orbitSpeed, orbitingObject)
+    /**
+     * Create AsteroidB612.
+     * @param {Vector3} initialPosition - The initial position of the planet.
+     * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
+     * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
+     * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
+     */
+    constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
         //Construct the superclass.
-        super(initialPosition, orbitSpeed, orbitingObject);
+        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
 
-        //Create the asteroids surface.
+//Create the asteroids surface.
         var asteroidGeometry = new THREE.OctahedronGeometry(0.8, 1);  
         var surfaceMaterial = new THREE.MeshStandardMaterial( 
             {color: colours.DARK_GREEN, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} 

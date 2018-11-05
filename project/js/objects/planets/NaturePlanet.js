@@ -10,13 +10,15 @@ class NaturePlanet extends Planet
      * @param {number} rotationSpeed - How quickly the planet rotates.
      * @param {Vector3} initialPosition - The initial position of the planet.
      * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
+     * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
+     * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
      */
-    constructor(rotationSpeed, initialPosition, orbitSpeed, obj)
+    constructor(rotationSpeed, initialPosition, orbitSpeed, AssignmentObject, fullOrbitMs)
     {
         //Construct the superclass.
-        super(2, 2, colours.GREEN, rotationSpeed, initialPosition, orbitSpeed, obj);
-        
-        //Create the asteroids surface.
+        super(2, 2, colours.GREEN, rotationSpeed, initialPosition, orbitSpeed, AssignmentObject, fullOrbitMs);
+
+//Create the asteroids surface.
         var crownMaterial = new THREE.MeshPhysicalMaterial( {color: colours.DARK_GREEN, flatShading: THREE.FlatShading, metalness: 0.3, roughness: 0.6, reflectivity: 0.5});
         var trunkMaterial = new THREE.MeshPhysicalMaterial( {color: colours.BROWN, flatShading: THREE.FlatShading, metalness: 0.3, roughness: 1, reflectivity: 0.5});
 

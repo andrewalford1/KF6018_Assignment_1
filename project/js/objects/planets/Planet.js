@@ -13,11 +13,12 @@ class Planet extends OrbitingObject
      * @param {Vector3} initialPosition - The initial position of the planet.
      * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
      * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
+     * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
      */
-    constructor(radius, smoothness, colour, rotationSpeed, initialPosition, orbitSpeed, orbitingObject)
+    constructor(radius, smoothness, colour, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
         //Construct the superclass.
-        super(initialPosition, orbitSpeed, orbitingObject);
+        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
 
         //Create the planet's surface.
         const PLANET_GEOMETRY = new THREE.OctahedronGeometry(radius, smoothness);

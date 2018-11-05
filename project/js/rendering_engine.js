@@ -51,13 +51,13 @@ let sun = new Star(16, 2, 0.01, new THREE.Vector3(0, 0, 0));
 
 //[planets] An array to hold all the planets in the solar system.
 var planets = [
-    new Planet(3, 2, colours.BLUE, 0.01, new THREE.Vector3(32, 0, 0), 0.5, sun),
-    new NaturePlanet(0.01, new THREE.Vector3(48, 0, 0), 0.52, sun),
-    new CityPlanet(0.01, new THREE.Vector3(64, 0, 0), 0.54, sun),
-    new Planet(9, 2, colours.MAGENTA, 0.01, new THREE.Vector3(92, 0, 0), 0.56, sun)
+    new Planet(3, 2, colours.BLUE, 0.01, new THREE.Vector3(32, 0, 0), 0.5, sun, 18500),
+    new NaturePlanet(0.01, new THREE.Vector3(48, 0, 0), 0.52, sun, 12000),
+    new CityPlanet(0.01, new THREE.Vector3(64, 0, 0), 0.54, sun, 25400),
+    new Planet(9, 2, colours.MAGENTA, 0.01, new THREE.Vector3(92, 0, 0), 0.56, sun, 36500)
 ];
 
-let asteroid = new AsteroidB612(new THREE.Vector3(planets[1].getXPosition() + 4, 0, 0), 3, planets[1]);
+let asteroid = new AsteroidB612(new THREE.Vector3(planets[1].getXPosition() + 4, 0, 0), 3, planets[1], 3650);
 
 //ADD OBJECTS TO THE SCENE...
 
@@ -71,16 +71,13 @@ for(i = 0; i < planets.length; i++)
     planets[i].addToScene(scene);
 }
 
-//[incrementor] Used to track the planets orbit.
-var incrementor = 0;
-
 //Timing variables...
-//[frameTime] The amount of time taken to compute and render a frame of animation.
-var frameTime = 0;
-//[previousTime] The amount of time taken to compute and render the previous frame.
-var previousTime = 0;
-//[currentTime] Stores the current time.
-var currentTime = 0;
+//[frameTime] The amount of time taken to compute and render a frame of animation in milliseconds.
+var frameTimeMs = 0;
+//[previousTime] The amount of time taken to compute and render the previous frame in milliseconds.
+var previousTimeMs = 0;
+//[currentTime] Stores the current time in milliseconds.
+var currentTimeMs = 0;
 
 //ANIMATION FUNCTION...
 function animate()
@@ -93,12 +90,10 @@ function animate()
     //Update all the planets.
     for(i = 0; i < planets.length; i++)
     {
-        planets[i].update(incrementor); 
+        planets[i].update(frameTimeMs); 
     }
 
-    asteroid.update(incrementor);
-
-    incrementor += 0.01;
+    asteroid.update(frameTimeMs);
 
     stats.end();
 
@@ -107,9 +102,9 @@ function animate()
     renderer.render(scene, camera);
 
     //Update timing variables.
-    currentTime = performance.now();
-    frameTime = currentTime - previousTime;
-    previousTime = currentTime;
+    currentTimeMs = Date.now();
+    frameTimeMs = currentTimeMs - previousTimeMs;
+    previousTimeMs = currentTimeMs;
 }
 
 //Run the animation loop.

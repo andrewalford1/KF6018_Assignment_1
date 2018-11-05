@@ -11,11 +11,12 @@ class CityPlanet extends Planet
      * @param {Vector3} initialPosition - The initial position of the planet.
      * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
      * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
+     * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
      */
-    constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject)
+    constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
         //Construct the superclass.
-        super(2, 2, colours.GREY, rotationSpeed, initialPosition, orbitSpeed, orbitingObject);
+        super(2, 2, colours.GREY, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
 
         //[stoneBuildingMaterial] A material for all the buildings that are made out of stone.
         var stoneBuildingMaterial = new THREE.MeshStandardMaterial( 

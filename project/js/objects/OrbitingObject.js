@@ -4,7 +4,14 @@
  */
 class OrbitingObject extends AssignmentObject
 {
-    constructor(initialPosition, orbitSpeed, orbitingObject)
+    /**
+     * Create an orbiting object.
+     * @param {Vector3} initialPosition - The initial position of the planet.
+     * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
+     * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
+     * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
+     */
+    constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
         //Construct the superclass.
         super(initialPosition);
@@ -12,6 +19,15 @@ class OrbitingObject extends AssignmentObject
         //[m_orbitSpeed] Member variable to determine how quickly this object will orbit other objects.
         var m_orbitSpeed = orbitSpeed;
 
+        //[m_fullOrbitMs] Member variable to determine how long it takes the object to do a full 
+        //cycle around the object it is orbiting (milliseconds).
+        var m_fullOrbitMs = fullOrbitMs;
+
+        //[m_elaspedTimeMs] Member variable to track how long an object is along it's orbit cycle (milliseconds).
+        var m_elaspedTimeMs = 0;
+
+        //[M_DISTANCE_TO_ORBITING_OBJECT] Member variable to determine the distance between this object
+        //and the object that it is rendering.
         const M_DISTANCE_TO_ORBITING_OBJECT = Math.round(orbitingObject.getPosition().distanceTo(this.getPosition()));
 
         /**
@@ -33,15 +49,26 @@ class OrbitingObject extends AssignmentObject
 
          /**
           * Moves the object along it's orbiting path.
-          * @param {number} increment - How far to increment the object along it's orbiting path.
+          * @param {number} frameTimeMS - The time in milliseconds it took to compute the previous rendered frame.
           */
-        this.moveAlongOrbitingPath = function(increment)
+        this.moveAlongOrbitingPath = function(frameTimeMS)
         {
-            //Calculate the new position of the planets orbit.
+            //Increment the elasped time.
+            m_elaspedTimeMs += frameTimeMS;
+
+            //Check if a full orbit has occured.
+            if(m_elaspedTimeMs > m_fullOrbitMs)
+            {
+                m_elaspedTimeMs = 0;
+            }
+
+            //[increment] How far to increment the planet along it's orbiting path.
+            var increment = (Math.PI * 2) / (m_fullOrbitMs / m_elaspedTimeMs);
+            
             this.setPosition(new THREE.Vector3(
-                orbitingObject.getXPosition() + M_DISTANCE_TO_ORBITING_OBJECT * Math.sin(Math.PI + (increment * m_orbitSpeed)),
+                orbitingObject.getXPosition() + M_DISTANCE_TO_ORBITING_OBJECT * Math.sin(increment),
                 0,
-                orbitingObject.getZPosition() + M_DISTANCE_TO_ORBITING_OBJECT * Math.cos(Math.PI + (increment * m_orbitSpeed))
+                orbitingObject.getZPosition() + M_DISTANCE_TO_ORBITING_OBJECT * Math.cos(increment)
             ));
         }
     }
