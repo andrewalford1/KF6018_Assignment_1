@@ -1,8 +1,8 @@
 /**
  * Class representing a star.
- * @extends AssignmentObject
+ * @extends UpdateableObject
  */
-class Star extends AssignmentObject
+class Star extends UpdateableObject
 {
     /**
      * Create a star.
@@ -19,13 +19,25 @@ class Star extends AssignmentObject
         //Create the planet's surface.
         const M_GEOMETRY = new THREE.OctahedronGeometry(radius, smoothness);
         const M_MATERIAL = new THREE.MeshStandardMaterial( {color: colours.YELLOW, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} );
-        const sun = new THREE.Mesh(M_GEOMETRY, M_MATERIAL);
+        const SUN = new THREE.Mesh(M_GEOMETRY, M_MATERIAL);
 
         //Set up shadows for the planet's surface.
         //Define shadow traits.
-        sun.castShadow = false;
-        sun.receiveShadow = false;
+        SUN.castShadow = false;
+        SUN.receiveShadow = false;
 
-        this.addObjectToGroup(sun);
+        this.addObjectToGroup(SUN);
+
+        //PUBLIC METHODS...
+
+        /**
+         * Implementation of abstract method in superclass UpdateableObject.
+         * Updates the star.
+         * @param {number} frameTimeMs - The time in milliseconds it took to compute the previous rendered frame.
+         */
+        this.update = function(frameTimeMs)
+        {
+            SUN.rotation.y += rotationSpeed;
+        }
     }
 }

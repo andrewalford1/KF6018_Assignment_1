@@ -1,8 +1,8 @@
 /**
  * Class representing an object that can orbit any other AssignmentObject.
- * @extends AssignmentObject
+ * @extends UpdateableObject
  */
-class OrbitingObject extends AssignmentObject
+class OrbitingObject extends UpdateableObject
 {
     /**
      * Create an orbiting object.
@@ -49,12 +49,12 @@ class OrbitingObject extends AssignmentObject
 
          /**
           * Moves the object along it's orbiting path.
-          * @param {number} frameTimeMS - The time in milliseconds it took to compute the previous rendered frame.
+          * @param {number} frameTimeMs - The time in milliseconds it took to compute the previous rendered frame.
           */
-        this.moveAlongOrbitingPath = function(frameTimeMS)
+        this.moveAlongOrbitingPath = function(frameTimeMs)
         {
             //Increment the elasped time.
-            m_elaspedTimeMs += frameTimeMS;
+            m_elaspedTimeMs += frameTimeMs;
 
             //Check if a full orbit has occured.
             if(m_elaspedTimeMs > m_fullOrbitMs)

@@ -58,15 +58,15 @@ class Planet extends OrbitingObject
 
          /**
           * Updates the planet.
-          * @param {number} increment - How far to increment the planet along it's orbiting path.
-          */
-        this.update = function(increment)
+         * @param {number} frameTimeMs - The time in milliseconds it took to compute the previous rendered frame.
+         */
+        this.update = function(frameTimeMs)
         {
             //Spin the planet on its axis.
             this.getObject().rotation.y += rotationSpeed;
 
             //Move the planet along it's orbiting path.
-            this.moveAlongOrbitingPath(increment);
+            this.moveAlongOrbitingPath(frameTimeMs);
         }
     }
 }

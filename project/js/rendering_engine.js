@@ -95,6 +95,7 @@ function animate()
 
     asteroid.update(frameTimeMs);
 
+    sun.update(frameTimeMs);
     stats.end();
 
     //Render the scene.

@@ -16,7 +16,7 @@ class AsteroidB612 extends OrbitingObject
         //Construct the superclass.
         super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
 
-//Create the asteroids surface.
+        //Create the asteroids surface.
         var asteroidGeometry = new THREE.OctahedronGeometry(0.8, 1);  
         var surfaceMaterial = new THREE.MeshStandardMaterial( 
             {color: colours.DARK_GREEN, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} 
@@ -89,13 +89,13 @@ class AsteroidB612 extends OrbitingObject
         this.addObjectToGroup(glassBell);
 
          /**
-          * Updates the planet.
-          * @param {number} increment - How far to increment the planet along it's orbiting path.
-          */
-        this.update = function(increment)
+          * Updates the asteroid.
+         * @param {number} frameTimeMs - The time in milliseconds it took to compute the previous rendered frame.
+         */
+        this.update = function(frameTimeMs)
         {
-            //Move the planet along it's orbiting path.
-            this.moveAlongOrbitingPath(increment);
+            //Move the asteroid along it's orbiting path.
+            this.moveAlongOrbitingPath(frameTimeMs);
         }
     }
 }
