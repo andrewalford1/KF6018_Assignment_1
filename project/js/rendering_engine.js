@@ -1,3 +1,9 @@
+//CHECK DEPENDANCIES...
+if(typeof updateableObjects === 'undefined' || updateableObjects === null)
+{
+    throw new Error("Error: Updateable objects have not been declared.");
+}
+
 //MAIN CODE...
 var scene = new THREE.Scene();
 
@@ -43,24 +49,6 @@ document.body.appendChild(renderer.domElement);
 var stats = new Stats();
 stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild( stats.dom );
-
-//CREATE OBJECTS...
-var stars = [
-    new Star(16, 2, 0.01, new THREE.Vector3(0, 0, 0))
-];
-
-var planets = [
-    new Planet(3, 2, colours.BLUE, 0.01, new THREE.Vector3(32, 0, 0), 0.5, stars[0], 18500),
-    new NaturePlanet(0.01, new THREE.Vector3(48, 0, 0), 0.52, stars[0], 12000),
-    new CityPlanet(0.01, new THREE.Vector3(64, 0, 0), 0.54, stars[0], 25400),
-    new Planet(9, 2, colours.MAGENTA, 0.01, new THREE.Vector3(92, 0, 0), 0.56, stars[0], 36500)
-];
-
-var asteroids = [
-    new AsteroidB612(new THREE.Vector3(planets[1].getXPosition() + 4, 0, 0), 3, planets[1], 3650)
-];
-
-var updateableObjects = stars.concat(planets, asteroids);
 
 //ADD OBJECTS TO THE SCENE...
 for(i = 0; i < updateableObjects.length; i++)
