@@ -45,30 +45,27 @@ stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild( stats.dom );
 
 //CREATE OBJECTS...
-
-//[sun] The sun is the object that all other planets orbit around.
-let sun = new Star(16, 2, 0.01, new THREE.Vector3(0, 0, 0));
-
-//[planets] An array to hold all the planets in the solar system.
-var planets = [
-    new Planet(3, 2, colours.BLUE, 0.01, new THREE.Vector3(32, 0, 0), 0.5, sun, 18500),
-    new NaturePlanet(0.01, new THREE.Vector3(48, 0, 0), 0.52, sun, 12000),
-    new CityPlanet(0.01, new THREE.Vector3(64, 0, 0), 0.54, sun, 25400),
-    new Planet(9, 2, colours.MAGENTA, 0.01, new THREE.Vector3(92, 0, 0), 0.56, sun, 36500)
+var stars = [
+    new Star(16, 2, 0.01, new THREE.Vector3(0, 0, 0))
 ];
 
-let asteroid = new AsteroidB612(new THREE.Vector3(planets[1].getXPosition() + 4, 0, 0), 3, planets[1], 3650);
+var planets = [
+    new Planet(3, 2, colours.BLUE, 0.01, new THREE.Vector3(32, 0, 0), 0.5, stars[0], 18500),
+    new NaturePlanet(0.01, new THREE.Vector3(48, 0, 0), 0.52, stars[0], 12000),
+    new CityPlanet(0.01, new THREE.Vector3(64, 0, 0), 0.54, stars[0], 25400),
+    new Planet(9, 2, colours.MAGENTA, 0.01, new THREE.Vector3(92, 0, 0), 0.56, stars[0], 36500)
+];
+
+var asteroids = [
+    new AsteroidB612(new THREE.Vector3(planets[1].getXPosition() + 4, 0, 0), 3, planets[1], 3650)
+];
+
+var updateableObjects = stars.concat(planets, asteroids);
 
 //ADD OBJECTS TO THE SCENE...
-
-//Add the sun to the scene.
-sun.addToScene(scene);
-asteroid.addToScene(scene);
-
-//Add the planets to the scene.
-for(i = 0; i < planets.length; i++)
+for(i = 0; i < updateableObjects.length; i++)
 {
-    planets[i].addToScene(scene);
+    updateableObjects[i].addToScene(scene);
 }
 
 //Timing variables...
@@ -87,15 +84,12 @@ function animate()
     controls.update();
 
     //Animation code...
-    //Update all the planets.
-    for(i = 0; i < planets.length; i++)
+    //Update all the updateable objects on the canvas.
+    for(i = 0; i < updateableObjects.length; i++)
     {
-        planets[i].update(frameTimeMs); 
+        updateableObjects[i].update(frameTimeMs); 
     }
 
-    asteroid.update(frameTimeMs);
-
-    sun.update(frameTimeMs);
     stats.end();
 
     //Render the scene.
