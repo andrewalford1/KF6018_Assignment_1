@@ -1,9 +1,3 @@
-//CHECK DEPENDANCIES...
-if(typeof updateableObjects === 'undefined' || updateableObjects === null)
-{
-    throw new Error("Error: Updateable objects have not been declared.");
-}
-
 //MAIN CODE...
 var scene = new THREE.Scene();
 
