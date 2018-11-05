@@ -9,6 +9,13 @@ class AssignmentObject
      */
     constructor(initialPosition)
     {
+        
+        //Define this class as abstract.
+        if (this.constructor === AssignmentObject) 
+        {
+            throw new Error("Can't instantiate abstract class!");
+        }
+
         //[OBJECT] This is the object the class encases.
         const OBJECT = new THREE.Group();
         OBJECT.position.copy(initialPosition);

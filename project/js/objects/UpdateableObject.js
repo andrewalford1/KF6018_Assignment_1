@@ -13,6 +13,12 @@ class UpdateableObject extends AssignmentObject
         //Construct the superclass.
         super(initialPosition);
 
+        //Define this class as abstract.
+        if (this.constructor === UpdateableObject) 
+        {
+            throw new Error("Can't instantiate abstract class!");
+        }
+
         /**
          * Abstract method to be implemented in the subclass.
          * Will update the inheriting object.

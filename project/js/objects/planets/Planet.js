@@ -21,7 +21,8 @@ class Planet extends OrbitingObject
         super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
 
         //Define this class as abstract.
-        if (this.constructor === Planet) {
+        if (this.constructor === Planet) 
+        {
             throw new Error("Can't instantiate abstract class!");
         }
 

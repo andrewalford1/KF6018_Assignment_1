@@ -16,6 +16,12 @@ class OrbitingObject extends UpdateableObject
         //Construct the superclass.
         super(initialPosition);
 
+        //Define this class as abstract.
+        if (this.constructor === OrbitingObject) 
+        {
+            throw new Error("Can't instantiate abstract class!");
+        }
+
         //[m_orbitSpeed] Member variable to determine how quickly this object will orbit other objects.
         var m_orbitSpeed = orbitSpeed;
 
