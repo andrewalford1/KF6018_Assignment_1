@@ -20,6 +20,11 @@ class Planet extends OrbitingObject
         //Construct the superclass.
         super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
 
+        //Define this class as abstract.
+        if (this.constructor === Planet) {
+            throw new Error("Can't instantiate abstract class!");
+        }
+
         //Create the planet's surface.
         const PLANET_GEOMETRY = new THREE.OctahedronGeometry(radius, smoothness);
         const PLANET_MATERIAL = new THREE.MeshStandardMaterial(
