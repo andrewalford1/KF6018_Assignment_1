@@ -45,9 +45,9 @@ stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild( stats.dom );
 
 //ADD OBJECTS TO THE SCENE...
-for(let i = 0; i < updateableObjects.length; i++)
+for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
 {
-    updateableObjects[i].addToScene(scene);
+    UPDATEABLE_OBJECTS[i].addToScene(scene);
 }
 
 //Timing variables...
@@ -67,9 +67,9 @@ function animate()
 
     //Animation code...
     //Update all the updateable objects on the canvas.
-    for(let i = 0; i < updateableObjects.length; i++)
+    for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
     {
-        updateableObjects[i].update(frameTimeMs); 
+        UPDATEABLE_OBJECTS[i].update(frameTimeMs); 
     }
 
     stats.end();
