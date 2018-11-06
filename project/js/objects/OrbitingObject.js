@@ -23,14 +23,14 @@ class OrbitingObject extends UpdateableObject
         }
 
         //[m_orbitSpeed] Member variable to determine how quickly this object will orbit other objects.
-        var m_orbitSpeed = orbitSpeed;
+        let m_orbitSpeed = orbitSpeed;
 
         //[m_fullOrbitMs] Member variable to determine how long it takes the object to do a full 
         //cycle around the object it is orbiting (milliseconds).
-        var m_fullOrbitMs = fullOrbitMs;
+        let m_fullOrbitMs = fullOrbitMs;
 
         //[m_elaspedTimeMs] Member variable to track how long an object is along it's orbit cycle (milliseconds).
-        var m_elaspedTimeMs = 0;
+        let m_elaspedTimeMs = 0;
 
         //[M_DISTANCE_TO_ORBITING_OBJECT] Member variable to determine the distance between this object
         //and the object that it is rendering.
@@ -69,7 +69,7 @@ class OrbitingObject extends UpdateableObject
             }
 
             //[increment] How far to increment the planet along it's orbiting path.
-            var increment = (Math.PI * 2) / (m_fullOrbitMs / m_elaspedTimeMs);
+            let increment = (Math.PI * 2) / (m_fullOrbitMs / m_elaspedTimeMs);
             
             this.setPosition(new THREE.Vector3(
                 orbitingObject.getXPosition() + M_DISTANCE_TO_ORBITING_OBJECT * Math.sin(increment),

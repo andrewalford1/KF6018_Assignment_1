@@ -22,6 +22,8 @@ class UpdateableObject extends AssignmentObject
         //[m_active] If true then the object is currently active.
         let m_active = false;
 
+        //PUBLIC METHODS...
+        
         /**
          * @return Tells you if this object is active or not.
          */
