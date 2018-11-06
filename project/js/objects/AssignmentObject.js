@@ -21,6 +21,16 @@ class AssignmentObject
         OBJECT.position.copy(initialPosition);
 
         /**
+         * Allows the visibility of the object to be set.
+         * @param {boolean} visible - If true then the object will be visible.
+         *                            (Otherwise invisible).
+         */
+        this.setVisibility = function(visible)
+        {
+            OBJECT.visible = visible;
+        }
+
+        /**
          * Allows the full position of the object to be set.
          * @param {Vector3} position - A vector3 containing the new 'X', 'Y', and 'Z'
          *                             coordinates for the object.

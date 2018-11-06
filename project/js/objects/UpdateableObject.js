@@ -20,7 +20,7 @@ class UpdateableObject extends AssignmentObject
         }
 
         //[m_active] If true then the object is currently active.
-        var m_active = false;
+        let m_active = false;
 
         /**
          * @return Tells you if this object is active or not.
