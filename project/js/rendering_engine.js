@@ -40,6 +40,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 //Connect the renderer to the canvas.
 document.body.appendChild(renderer.domElement);
 
+//STATS HERE FOR DEBUGGING, REMOVE FROM FINAL PROJECT!
 let stats = new Stats();
 stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild( stats.dom );
@@ -50,13 +51,8 @@ for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
     UPDATEABLE_OBJECTS[i].addToScene(scene);
 }
 
-//Timing variables...
-//[frameTime] The amount of time taken to compute and render a frame of animation in milliseconds.
-let frameTimeMs = 0;
-//[previousTime] The amount of time taken to compute and render the previous frame in milliseconds.
-let previousTimeMs = 0;
-//[currentTime] Stores the current time in milliseconds.
-let currentTimeMs = 0;
+//[TIMER] used for timing the program.
+const TIMER = new Timer();
 
 //ANIMATION FUNCTION...
 function animate()
@@ -69,7 +65,7 @@ function animate()
     //Update all the updateable objects on the canvas.
     for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
     {
-        UPDATEABLE_OBJECTS[i].update(frameTimeMs); 
+        UPDATEABLE_OBJECTS[i].update(TIMER.getFrameTimeMs()); 
     }
 
     stats.end();
@@ -79,9 +75,7 @@ function animate()
     renderer.render(scene, camera);
 
     //Update timing variables.
-    currentTimeMs = performance.now();
-    frameTimeMs = currentTimeMs - previousTimeMs;
-    previousTimeMs = currentTimeMs;
+    TIMER.update();
 }
 
 //Run the animation loop.
