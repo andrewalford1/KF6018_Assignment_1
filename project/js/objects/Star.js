@@ -37,7 +37,11 @@ class Star extends UpdateableObject
          */
         this.update = function(frameTimeMs)
         {
-            SUN.rotation.y += rotationSpeed;
+            //Check if the star is active.
+            if(this.isActive())
+            {
+                SUN.rotation.y += rotationSpeed;
+            }
         }
     }
 }

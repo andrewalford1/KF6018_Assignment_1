@@ -29,3 +29,11 @@ const UPDATEABLE_OBJECTS = [
     //Asteroids:
     ASTEROID_B612
 ];
+
+//SET-UP CODE...
+
+//Make objects active.
+for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
+{
+    UPDATEABLE_OBJECTS[i].setActive(true); 
+}

@@ -94,8 +94,12 @@ class AsteroidB612 extends OrbitingObject
          */
         this.update = function(frameTimeMs)
         {
-            //Move the asteroid along it's orbiting path.
-            this.moveAlongOrbitingPath(frameTimeMs);
+            //Check if the object is active.
+            if(this.isActive())
+            {
+                //Move the asteroid along it's orbiting path.
+                this.moveAlongOrbitingPath(frameTimeMs);
+            }
         }
     }
 }

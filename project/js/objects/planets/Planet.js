@@ -68,11 +68,15 @@ class Planet extends OrbitingObject
          */
         this.update = function(frameTimeMs)
         {
-            //Spin the planet on its axis.
-            this.getObject().rotation.y += rotationSpeed;
+            //Check if the planet is active.
+            if(this.isActive())
+            {
+                //Spin the planet on its axis.
+                this.getObject().rotation.y += rotationSpeed;
 
-            //Move the planet along it's orbiting path.
-            this.moveAlongOrbitingPath(frameTimeMs);
+                //Move the planet along it's orbiting path.
+                this.moveAlongOrbitingPath(frameTimeMs); 
+            }
         }
     }
 }

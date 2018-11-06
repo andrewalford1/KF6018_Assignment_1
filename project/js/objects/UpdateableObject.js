@@ -19,6 +19,26 @@ class UpdateableObject extends AssignmentObject
             throw new Error("Can't instantiate abstract class!");
         }
 
+        //[m_active] If true then the object is currently active.
+        var m_active = false;
+
+        /**
+         * @return Tells you if this object is active or not.
+         */
+        this.isActive = function()
+        {
+            return this.m_active;
+        }        
+
+        /**
+         * Set whether or not the object is active.
+         * @param {boolean} active - If true then the object will become active.
+         */
+        this.setActive = function(active)
+        {
+            this.m_active = active;
+        }
+
         /**
          * Abstract method to be implemented in the subclass.
          * Will update the inheriting object.
