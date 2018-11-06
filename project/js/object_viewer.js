@@ -36,6 +36,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 //Connect the renderer to the canvas.
 document.body.appendChild(renderer.domElement);
 
+//Shows the program stats.
 let stats = new Stats();
 stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild( stats.dom );
