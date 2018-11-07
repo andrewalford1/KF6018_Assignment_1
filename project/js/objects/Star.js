@@ -19,14 +19,14 @@ class Star extends UpdateableObject
         //Create the planet's surface.
         const M_GEOMETRY = new THREE.OctahedronGeometry(radius, smoothness);
         const M_MATERIAL = new THREE.MeshStandardMaterial( {color: colours.YELLOW, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} );
-        const SUN = new THREE.Mesh(M_GEOMETRY, M_MATERIAL);
+        const STAR = new THREE.Mesh(M_GEOMETRY, M_MATERIAL);
 
         //Set up shadows for the planet's surface.
         //Define shadow traits.
-        SUN.castShadow = false;
-        SUN.receiveShadow = false;
+        STAR.castShadow = false;
+        STAR.receiveShadow = false;
 
-        this.addObjectToGroup(SUN);
+        this.addObjectToGroup(STAR);
 
         //PUBLIC METHODS...
 
@@ -40,7 +40,7 @@ class Star extends UpdateableObject
             //Check if the star is active.
             if(this.isActive())
             {
-                SUN.rotation.y += rotationSpeed;
+                STAR.rotation.y += rotationSpeed;
             }
         }
     }

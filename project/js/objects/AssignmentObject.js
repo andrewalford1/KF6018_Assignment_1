@@ -20,6 +20,26 @@ class AssignmentObject
         const OBJECT = new THREE.Group();
         OBJECT.position.copy(initialPosition);
 
+        //[m_inFocus] If true then the object is currently being focused on.
+        let m_inFocus = false;
+
+        /**
+         * @Return Returns 'true' if the object is in focus. (Otherwise 'false' is returned).
+         */
+        this.isInFocus = function()
+        {
+            return m_inFocus;
+        }
+
+        /**
+         * Allows the object to be set in focus.
+         * @param {boolean} inFocus - If true then the object will be being focused on.
+         */
+        this.setInFocus = function(inFocus)
+        {
+            m_inFocus = inFocus;
+        }
+
         /**
          * Allows the visibility of the object to be set.
          * @param {boolean} visible - If true then the object will be visible.
