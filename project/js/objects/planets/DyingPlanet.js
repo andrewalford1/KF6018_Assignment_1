@@ -15,6 +15,7 @@ class DyingPlanet extends Planet
     constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
         //Construct the superclass.
-        super(10, 2, colours.BROWN, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
+        super(10, 2, colours.BROWN, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
+        "Description of the dying planet.");
     }
 }

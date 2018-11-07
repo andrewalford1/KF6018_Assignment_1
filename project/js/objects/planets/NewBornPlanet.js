@@ -15,6 +15,7 @@ class NewBornPlanet extends Planet
     constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
         //Construct the superclass.
-        super(3, 2, colours.BLUE, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
+        super(3, 2, colours.BLUE, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
+        "Description of the new born planet.");
     }
 }

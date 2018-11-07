@@ -16,7 +16,8 @@ class CityPlanet extends Planet
     constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
         //Construct the superclass.
-        super(2, 2, colours.GREY, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
+        super(2, 2, colours.GREY, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
+        "Description of the city planet");
 
         //[stoneBuildingMaterial] A material for all the buildings that are made out of stone.
         var stoneBuildingMaterial = new THREE.MeshStandardMaterial( 
