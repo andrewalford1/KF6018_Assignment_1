@@ -37,3 +37,5 @@ for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
 {
     UPDATEABLE_OBJECTS[i].setActive(true); 
 }
+
+UPDATEABLE_OBJECTS[0].setInFocus(true);
