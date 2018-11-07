@@ -40,6 +40,16 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 //Connect the renderer to the canvas.
 document.body.appendChild(renderer.domElement);
 
+//Event listener to allow the scene to resize when the widn
+window.addEventListener('resize', function()
+{
+   const WIDTH = window.innerWidth;
+   const HEIGHT = window.innerHeight;
+   renderer.setSize(WIDTH, HEIGHT); 
+   camera.aspect = WIDTH / HEIGHT;
+   camera.updateProjectionMatrix();
+});
+
 //STATS HERE FOR DEBUGGING, REMOVE FROM FINAL PROJECT!
 let stats = new Stats();
 stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
