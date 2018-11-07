@@ -19,7 +19,7 @@ class NaturePlanet extends Planet
         super(2, 2, colours.GREEN, rotationSpeed, initialPosition, orbitSpeed, AssignmentObject, fullOrbitMs,
         "Description of the nature planet.");
 
-//Create the asteroids surface.
+        //Create the asteroids surface.
         var crownMaterial = new THREE.MeshPhysicalMaterial( {color: colours.DARK_GREEN, flatShading: THREE.FlatShading, metalness: 0.3, roughness: 0.6, reflectivity: 0.5});
         var trunkMaterial = new THREE.MeshPhysicalMaterial( {color: colours.BROWN, flatShading: THREE.FlatShading, metalness: 0.3, roughness: 1, reflectivity: 0.5});
 

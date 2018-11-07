@@ -61,8 +61,7 @@ for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
     UPDATEABLE_OBJECTS[i].addToScene(scene);
 }
 
-let text = document.getElementById('object_info');
-text.style.visibility = 'hidden';
+//let text = document.getElementById('object_info');
 
 //[TIMER] used for timing the program.
 const TIMER = new Timer();
@@ -81,23 +80,23 @@ function animate()
         UPDATEABLE_OBJECTS[i].update(TIMER.getFrameTimeMs()); 
     }
 
-    //TEMP CODE - checks if the camera is looking at a specific object. (could be used for lens-flare).
-    camera.updateMatrix();
-    camera.updateMatrixWorld();
-    var frustum = new THREE.Frustum();
-    frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));  
+//     //TEMP CODE - checks if the camera is looking at a specific object. (could be used for lens-flare).
+//     camera.updateMatrix();
+//     camera.updateMatrixWorld();
+//     var frustum = new THREE.Frustum();
+//     frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));  
 
-    // Your 3d point to check
-    var pos = UPDATEABLE_OBJECTS[5].getPosition();
-    if (frustum.containsPoint(pos)) {
-        // Do something with the position...
-        text.style.visibility = 'visible';
-        text.textContent = UPDATEABLE_OBJECTS[5].getDescription();
-    }
-    else
-    {
-        text.style.visibility = 'hidden';
-    }
+//     // Your 3d point to check
+//     var pos = UPDATEABLE_OBJECTS[5].getPosition();
+//     if (frustum.containsPoint(pos)) {
+//         // Do something with the position...
+//         htmlAccessor.OBJECT_INFORMATION.style.visibility = 'visible';
+//         htmlAccessor.OBJECT_INFORMATION.textContent = UPDATEABLE_OBJECTS[5].getDescription();
+//     }
+//     else
+//     {
+//         htmlAccessor.OBJECT_INFORMATION.style.visibility = 'hidden';
+//     }
 
     //END OF TEMP CODE.
 

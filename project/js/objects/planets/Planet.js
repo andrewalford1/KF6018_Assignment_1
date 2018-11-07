@@ -71,7 +71,7 @@ class Planet extends OrbitingObject
         {
             //Check if the planet is active.
             if(this.isActive())
-            {
+            {                
                 //Spin the planet on its axis.
                 this.getObject().rotation.y += rotationSpeed;
 

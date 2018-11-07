@@ -59,6 +59,20 @@ class AssignmentObject
         this.setInFocus = function(inFocus)
         {
             m_inFocus = inFocus;
+
+            //Check if the object is in focus.
+            if(m_inFocus)
+            {
+                //Display it's description.
+                htmlAccessor.OBJECT_INFORMATION.style.visibility = 'visible';
+                htmlAccessor.OBJECT_INFORMATION.textContent = this.getDescription();
+            }
+            else
+            {
+                //Hide the object's description if it is no longer in focus.
+                htmlAccessor.OBJECT_INFORMATION.style.visibility = 'hidden';
+            }
+
         }
 
         /**
