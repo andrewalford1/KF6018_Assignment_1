@@ -61,6 +61,9 @@ for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
     UPDATEABLE_OBJECTS[i].addToScene(scene);
 }
 
+let text = document.getElementById('object_info');
+text.style.visibility = 'hidden';
+
 //[TIMER] used for timing the program.
 const TIMER = new Timer();
 
@@ -77,6 +80,26 @@ function animate()
     {
         UPDATEABLE_OBJECTS[i].update(TIMER.getFrameTimeMs()); 
     }
+
+    //TEMP CODE - checks if the camera is looking at the sun. (could be used for lens-flare).
+    camera.updateMatrix();
+    camera.updateMatrixWorld();
+    var frustum = new THREE.Frustum();
+    frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));  
+
+    // Your 3d point to check
+    var pos = UPDATEABLE_OBJECTS[0].getPosition();
+    if (frustum.containsPoint(pos)) {
+        // Do something with the position...
+        text.style.visibility = 'visible';
+        text.textContent = "This is a sun.";
+    }
+    else
+    {
+        text.textContent = "This is not a sun";
+    }
+
+    //END OF TEMP CODE.
 
     stats.end();
 
