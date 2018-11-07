@@ -32,8 +32,8 @@ class AssignmentObject
 
         /**
          * Allows the full position of the object to be set.
-         * @param {Vector3} position - A vector3 containing the new 'X', 'Y', and 'Z'
-         *                             coordinates for the object.
+         * @param {THREE.Vector3} position - A vector3 containing the new 'X', 'Y', and 'Z'
+         *                                   coordinates for the object.
          */
         this.setPosition = function(position)
         {
@@ -50,7 +50,7 @@ class AssignmentObject
         }
 
         /**
-         * Allows the 'Y' coordinate of the planet to be set.
+         * Allows the 'Y' coordinate of the object to be set.
          * @param {number} y - This is the new 'Y' coordinate for the object.
          */
         this.setYPosition = function(y)
@@ -59,7 +59,7 @@ class AssignmentObject
         }
 
         /**
-         * Allows the 'Z' coordinate of the planet to be set.
+         * Allows the 'Z' coordinate of the object to be set.
          * @param {number} z - This is the new 'Z' coordinate for the object.
          */
         this.setZPosition = function(z)
@@ -68,7 +68,7 @@ class AssignmentObject
         }
 
         /**
-         * @return Returns the planets position as a Vector3.
+         * @return Returns the object's position as a Vector3.
          */
         this.getPosition = function()
         {
@@ -76,7 +76,7 @@ class AssignmentObject
         }
 
         /**
-         * @return Returns the planet's 'X' coordinate.
+         * @return Returns the object's 'X' coordinate.
          */
         this.getXPosition = function()
         {
@@ -84,7 +84,7 @@ class AssignmentObject
         }
 
         /**
-         * @return Returns the planet's 'Y' coordinate.
+         * @return Returns the object's 'Y' coordinate.
          */
         this.getYPosition = function()
         {
@@ -92,11 +92,28 @@ class AssignmentObject
         }
 
         /**
-         * @return Returns the planet's 'Z' coordinate.
+         * @return Returns the object's 'Z' coordinate.
          */
         this.getZPosition = function()
         {
             return OBJECT.position.z;
+        }
+
+        /**
+         * Allows the object to be scaled.
+         * @param {THREE.Vector3} scale - How much to scale the object by.
+         */
+        this.setScale = function(scale)
+        {
+            OBJECT.scale.copy(scale);
+        }
+
+        /**
+         * @return Returns the scale of the object.
+         */
+        this.getScale = function()
+        {
+            return OBJECT.scale;
         }
 
         /**
