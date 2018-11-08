@@ -10,12 +10,13 @@ class AsteroidB612 extends OrbitingObject
      * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
      * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
      * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
+     * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
+    constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
     {
         //Construct the superclass.
         super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
-        "A description of AsteroidB612.");
+        "A description of AsteroidB612.", orbitsClockwise);
 
         //Create the asteroids surface.
         var asteroidGeometry = new THREE.OctahedronGeometry(0.8, 1);  

@@ -34,7 +34,22 @@ class Star extends UpdateableObject
 
         //PUBLIC METHODS...
 
+        /**
+         * @return Returns whether or not the star is spinning clockwise.
+         */
+        this.getSpinsClockwise = function()
+        {
+            return m_spinsClockwise;
+        }
 
+        /**
+         * Allows the spin direction of the star to be set.
+         * @param {boolean} spinsClockwise - If true then the star will spin clockwise.
+         */
+        this.setSpinsClockwise = function(spinsClockwise)
+        {
+            m_spinsClockwise = spinsClockwise;
+        }
 
         /**
          * Implementation of abstract method in superclass UpdateableObject.

@@ -15,11 +15,12 @@ class Planet extends OrbitingObject
      * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
      * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
      * @param {string} objectDescription - A description of the object.
+     * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(radius, smoothness, colour, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, objectDescription)
+    constructor(radius, smoothness, colour, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, objectDescription, orbitsClockwise)
     {
         //Construct the superclass.
-        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, objectDescription);
+        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, objectDescription, orbitsClockwise);
 
         //Define this class as abstract.
         if (this.constructor === Planet) 
@@ -71,9 +72,16 @@ class Planet extends OrbitingObject
         {
             //Check if the planet is active.
             if(this.isActive())
-            {                
-                //Spin the planet on its axis.
-                this.getObject().rotation.y += rotationSpeed;
+            {
+                //Check which direction the planet is moving in, then spin the planet on it's axis.
+                if(this.getOrbitsClockwise())
+                {
+                     this.getObject().rotation.y += rotationSpeed;
+                }                
+                else
+                {
+                     this.getObject().rotation.y -= rotationSpeed;
+                }
 
                 //Move the planet along it's orbiting path.
                 this.moveAlongOrbitingPath(frameTimeMs); 

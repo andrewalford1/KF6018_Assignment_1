@@ -11,11 +11,12 @@ class NewBornPlanet extends Planet
      * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
      * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
      * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
+     * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
+    constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
     {
         //Construct the superclass.
         super(3, 2, colours.BLUE, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
-        "Description of the new born planet.");
+        "Description of the new born planet.", orbitsClockwise);
     }
 }

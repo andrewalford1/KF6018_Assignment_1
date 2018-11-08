@@ -11,8 +11,9 @@ class OrbitingObject extends UpdateableObject
      * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
      * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
      * @param {string} objectDescription - A description of the object.
+     * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, objectDescription)
+    constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, objectDescription, orbitsClockwise)
     {
         //Construct the superclass.
         super(initialPosition, objectDescription);
@@ -22,6 +23,9 @@ class OrbitingObject extends UpdateableObject
         {
             throw new Error("Can't instantiate abstract class!");
         }
+
+        //[orbitsClockwise] If true then the object orbits the other object clockwise.
+        let m_orbitsClockwise = orbitsClockwise;
 
         //[m_orbitSpeed] Member variable to determine how quickly this object will orbit other objects.
         let m_orbitSpeed = orbitSpeed;
@@ -54,6 +58,25 @@ class OrbitingObject extends UpdateableObject
             return m_orbitSpeed;
         }
 
+        /**
+         * @return Returns the direction that the object is orbiting in. 
+         *         (Will return 'true' if clockwise - otherwise 'false' is returned).
+         */
+        this.getOrbitsClockwise = function()
+        {
+            return m_orbitsClockwise;
+        }
+
+        /**
+         * Allows the orbiting direction of the object to be set.
+         * @param {boolean} orbitsClockwise - If true then the object will start orbiting the
+         *                                    other object clockwise.
+         */
+        this.setOrbitsClockwise = function(orbitsClockwise)
+        {
+            m_orbitsClockwise = orbitsClockwise;
+        }
+
          /**
           * Moves the object along it's orbiting path.
           * @param {number} frameTimeMs - The time in milliseconds it took to compute the previous rendered frame.
@@ -72,6 +95,11 @@ class OrbitingObject extends UpdateableObject
             //[increment] How far to increment the planet along it's orbiting path.
             let increment = (Math.PI * 2) / (m_fullOrbitMs / m_elaspedTimeMs);
             
+            if(m_orbitsClockwise)
+            {
+                increment *= -1;
+            }
+
             this.setPosition(new THREE.Vector3(
                 orbitingObject.getXPosition() + M_DISTANCE_TO_ORBITING_OBJECT * Math.sin(increment),
                 0,
