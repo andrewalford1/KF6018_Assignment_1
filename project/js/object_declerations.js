@@ -1,7 +1,7 @@
 //CREATE OBJECTS...
 
 //Stars:
-const SUN = new Star(32, 2, 0.01, new THREE.Vector3(0, 0, 0), "The sun is mass of incandescent gas, a gigantic nuclear furnace. \n Where hydrogen is built into helium at a temperature of millions of degrees");
+const SUN = new Star(32, 2, 0.01, new THREE.Vector3(0, 0, 0), "The sun is mass of incandescent gas, a gigantic nuclear furnace. \n Where hydrogen is built into helium at a temperature of millions of degrees", true);
 
 //Planets:
 const NEW_BORN_PLANET = new NewBornPlanet(0.01, new THREE.Vector3(62, 0, 0), 0.5, SUN, 18500);

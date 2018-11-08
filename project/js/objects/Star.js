@@ -11,8 +11,9 @@ class Star extends UpdateableObject
      * @param {number} rotationSpeed - How quickly the planet rotates.
      * @param {Vector3} initialPosition - The initial position of the planet.
      * @param {string} objectDescription - A description of the object.
+     * @param {boolean} spinsClockwise - If true then the star rotates clockwise.
      */
-    constructor(radius, smoothness, rotationSpeed, initialPosition, objectDescription)
+    constructor(radius, smoothness, rotationSpeed, initialPosition, objectDescription, spinsClockwise)
     {
         //Construct the superclass.
         super(initialPosition, objectDescription);
@@ -29,7 +30,11 @@ class Star extends UpdateableObject
 
         this.addObjectToGroup(STAR);
 
+        let m_spinsClockwise = spinsClockwise;
+
         //PUBLIC METHODS...
+
+
 
         /**
          * Implementation of abstract method in superclass UpdateableObject.
@@ -41,7 +46,14 @@ class Star extends UpdateableObject
             //Check if the star is active.
             if(this.isActive())
             {
-                STAR.rotation.y += rotationSpeed;
+                if(m_spinsClockwise)
+                {
+                    STAR.rotation.y -= rotationSpeed;
+                }
+                else
+                {
+                    STAR.rotation.y += rotationSpeed;
+                }
             }
         }
     }
