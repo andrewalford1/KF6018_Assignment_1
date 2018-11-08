@@ -61,8 +61,6 @@ for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
     UPDATEABLE_OBJECTS[i].addToScene(scene);
 }
 
-//let text = document.getElementById('object_info');
-
 //[TIMER] used for timing the program.
 const TIMER = new Timer();
 
