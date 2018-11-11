@@ -11,11 +11,17 @@ class Timer
         //[currentTime] Stores the current time in milliseconds.
         let m_currentTimeMs = 0;
 
+        /**
+         * @return Returns the time it took to render a frame in milliseconds.
+         */
         this.getFrameTimeMs = function()
         {
             return m_frameTimeMs;
         }
 
+        /**
+         * Updates the timer.
+         */
         this.update = function()
         {
             //Update timing variables.
