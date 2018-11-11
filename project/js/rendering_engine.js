@@ -38,7 +38,7 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 //[VR_ENABLED] If true then the renderer will render the scene in VR.
-const VR_ENABLED = true;
+const VR_ENABLED = false;
 
 //[vr_effect] Will contain the virtual reality effect.
 let vr_effect;
@@ -48,7 +48,7 @@ if(VR_ENABLED)
 {
     vr_effect = new THREE.StereoEffect(renderer);
     vr_effect.setSize(window.innerWidth, window.innerHeight);
-} 
+}
 
 //Connect the renderer to the canvas.
 document.body.appendChild(renderer.domElement);
@@ -58,7 +58,7 @@ window.addEventListener('resize', function()
 {
    const WIDTH = window.innerWidth;
    const HEIGHT = window.innerHeight;
-   renderer.setSize(WIDTH, HEIGHT); 
+   renderer.setSize(WIDTH, HEIGHT);
    camera.aspect = WIDTH / HEIGHT;
    camera.updateProjectionMatrix();
 });
@@ -88,14 +88,14 @@ function animate()
     //Update all the updateable objects on the canvas.
     for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
     {
-        UPDATEABLE_OBJECTS[i].update(TIMER.getFrameTimeMs()); 
+        UPDATEABLE_OBJECTS[i].update(TIMER.getFrameTimeMs());
     }
 
 //     //TEMP CODE - checks if the camera is looking at a specific object. (could be used for lens-flare).
 //     camera.updateMatrix();
 //     camera.updateMatrixWorld();
 //     var frustum = new THREE.Frustum();
-//     frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));  
+//     frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
 
 //     // Your 3d point to check
 //     var pos = UPDATEABLE_OBJECTS[5].getPosition();
@@ -118,7 +118,7 @@ function animate()
     if(VR_ENABLED)
     {
         //Render the scene in virtual reality.
-        vr_effect.render( scene, camera );   
+        vr_effect.render( scene, camera );
     }
     else
     {
@@ -135,4 +135,3 @@ function animate()
 
 //Run the animation loop.
 animate();
-
