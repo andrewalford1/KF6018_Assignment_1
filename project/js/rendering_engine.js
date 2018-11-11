@@ -37,6 +37,19 @@ renderer.setClearColor(colours.BLACK);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
+//[VR_ENABLED] If true then the renderer will render the scene in VR.
+const VR_ENABLED = true;
+
+//[vr_effect] Will contain the virtual reality effect.
+let vr_effect;
+
+//Set up the renderer for VR (if it is enabled).
+if(VR_ENABLED)
+{
+    vr_effect = new THREE.StereoEffect(renderer);
+    vr_effect.setSize(window.innerWidth, window.innerHeight);
+} 
+
 //Connect the renderer to the canvas.
 document.body.appendChild(renderer.domElement);
 
@@ -98,11 +111,23 @@ function animate()
 
     //END OF TEMP CODE.
 
-    stats.end();
-
     //Render the scene.
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+
+    //If virtual reality is enabled.
+    if(VR_ENABLED)
+    {
+        //Render the scene in virtual reality.
+        vr_effect.render( scene, camera );   
+    }
+    else
+    {
+        //Render the scene as normal.
+        renderer.render(scene, camera);
+    }
+
+    //Stop recording stats.
+    stats.end();
 
     //Update timing variables.
     TIMER.update();
