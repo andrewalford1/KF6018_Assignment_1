@@ -15,6 +15,7 @@ const ASTEROID_B612 = new AsteroidB612(
 );
 
 //Misc...
+/* Removed until it's working.
 const SKYBOX = new SkyBox([
     "res/skybox/right.png", 
     "res/skybox/left.png", 
@@ -22,7 +23,7 @@ const SKYBOX = new SkyBox([
     "res/skybox/bottom.png", 
     "res/skybox/front.png", 
     "res/skybox/back.png"
-], 1000);
+], 1000); */
 
 //GROUP OBJECTS TOGETHER...
 

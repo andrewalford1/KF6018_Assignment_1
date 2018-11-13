@@ -75,7 +75,7 @@ for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
     UPDATEABLE_OBJECTS[i].addToScene(scene);
 }
 //Add other objects to the scene.
-SKYBOX.addToScene(scene);
+//SKYBOX.addToScene(scene); //Removed until it is working.
 
 //[TIMER] used for timing the program.
 const TIMER = new Timer();
