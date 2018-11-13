@@ -69,10 +69,13 @@ stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild( stats.dom );
 
 //ADD OBJECTS TO THE SCENE...
+//Add updatable objects to the scene.
 for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
 {
     UPDATEABLE_OBJECTS[i].addToScene(scene);
 }
+//Add other objects to the scene.
+SKYBOX.addToScene(scene);
 
 //[TIMER] used for timing the program.
 const TIMER = new Timer();

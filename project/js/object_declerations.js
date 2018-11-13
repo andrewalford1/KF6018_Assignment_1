@@ -14,6 +14,15 @@ const ASTEROID_B612 = new AsteroidB612(
     new THREE.Vector3(NATURE_PLANET.getXPosition() + 4, 0, 0), 3, NATURE_PLANET, 3650, !(NATURE_PLANET.getOrbitsClockwise())
 );
 
+//Misc...
+const SKYBOX = new SkyBox([
+    "res/skybox/right.png", 
+    "res/skybox/left.png", 
+    "res/skybox/top.png", 
+    "res/skybox/bottom.png", 
+    "res/skybox/front.png", 
+    "res/skybox/back.png"
+], 1000);
 
 //GROUP OBJECTS TOGETHER...
 
@@ -27,15 +36,13 @@ const UPDATEABLE_OBJECTS = [
     CITY_PLANET,
     DYING_PLANET,
     //Asteroids:
-    ASTEROID_B612
+    ASTEROID_B612,
 ];
 
 //SET-UP CODE...
 
-//Make objects active.
+//Make updateable objects active.
 for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
 {
     UPDATEABLE_OBJECTS[i].setActive(true); 
 }
-
-//UPDATEABLE_OBJECTS[0].setInFocus(true);
