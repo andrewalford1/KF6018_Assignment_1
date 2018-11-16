@@ -20,11 +20,21 @@ class NaturePlanet extends Planet
         "Description of the nature planet.");
 
         //The material for tree crowns and trunks
-        var crownMaterial = new THREE.MeshPhysicalMaterial( {color: colours.DARK_GREEN, flatShading: THREE.FlatShading, metalness: 0.0, roughness: 0.6, reflectivity: 0.5});
-        var trunkMaterial = new THREE.MeshPhysicalMaterial( {color: colours.BROWN, flatShading: THREE.FlatShading, metalness: 0.0, roughness: 1, reflectivity: 0.5});
-        var truffulaTreeCrownPinkMaterial = new THREE.MeshPhysicalMaterial( {color: colours.PINK, flatShading: THREE.FlatShading, metalness: 0.0, roughness: 0.8, reflectivity: 0.5});
-        var truffulaTreeCrownOrangeMaterial = new THREE.MeshPhysicalMaterial( {color: colours.ORANGE, flatShading: THREE.FlatShading, metalness: 0.0, roughness: 0.8, reflectivity: 0.5});
-        var truffulaTreeTrunkMaterial = new THREE.MeshPhysicalMaterial( {color: colours.BLACK, flatShading: THREE.FlatShading, metalness: 0.0, roughness: 1, reflectivity: 0.5});
+        var crownMaterial = new THREE.MeshPhysicalMaterial( 
+                            {color: colours.DARK_GREEN, flatShading: THREE.FlatShading, 
+                            metalness: 0.0, roughness: 0.6, reflectivity: 0.5});
+        var trunkMaterial = new THREE.MeshPhysicalMaterial( 
+                            {color: colours.BROWN, flatShading: THREE.FlatShading, 
+                            metalness: 0.0, roughness: 1, reflectivity: 0.5});
+        var truffulaTreeCrownPinkMaterial = new THREE.MeshPhysicalMaterial( 
+                            {color: colours.PINK, flatShading: THREE.FlatShading, 
+                            metalness: 0.0, roughness: 0.8, reflectivity: 0.5});
+        var truffulaTreeCrownOrangeMaterial = new THREE.MeshPhysicalMaterial( 
+                            {color: colours.ORANGE, flatShading: THREE.FlatShading, 
+                            metalness: 0.0, roughness: 0.8, reflectivity: 0.5});
+        var truffulaTreeTrunkMaterial = new THREE.MeshPhysicalMaterial( 
+                            {color: colours.BLACK, flatShading: THREE.FlatShading, 
+                            metalness: 0.0, roughness: 1, reflectivity: 0.5});
 
         //Tree Crowns Geometry
         var pineTreeCrownGeometry = new THREE.ConeGeometry( 0.3, 0.6, 10 );
@@ -39,13 +49,20 @@ class NaturePlanet extends Planet
         var lakeBaseGeometry = new THREE.CylinderGeometry( 1.1, 1.4, 0.6, 18, true ,0, 6.3);
         var lakeWaterGeometry = new THREE.CylinderGeometry( 1.11, 1, 0.01, 18);
         //Lake materials
-        var lakeBaseMaterial =new THREE.MeshPhysicalMaterial( {color: colours.GREEN, flatShading: THREE.FlatShading, metalness: 0.3, roughness: 2, side: THREE.DoubleSide} );
-        var lakeWaterMaterial = new THREE.MeshPhysicalMaterial( { color: colours.LIGHT_BLUE, flatShading: THREE.FlatShading, metalness: 0.3, roughness: 0.8, reflectivity: 0.5, transparent: true, opacity: 0.9});
+        var lakeBaseMaterial =new THREE.MeshPhysicalMaterial( 
+                              {color: colours.GREEN, flatShading: THREE.FlatShading,
+                              metalness: 0.3, roughness: 2, side: THREE.DoubleSide} );
+        var lakeWaterMaterial = new THREE.MeshPhysicalMaterial( 
+                                { color: colours.LIGHT_BLUE, flatShading: THREE.FlatShading, 
+                                metalness: 0.3, roughness: 0.8, reflectivity: 0.5, transparent: true, 
+                                opacity: 0.9});
         
         //Mountain Geometry
         var mountainGeometry = new THREE.TetrahedronGeometry(1,1);
         //Mountain Material
-        var mountainMaterial = new THREE.MeshPhysicalMaterial({color: colours.GREY, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} );
+        var mountainMaterial = new THREE.MeshPhysicalMaterial(
+                               {color: colours.GREY, flatShading: THREE.FlatShading, 
+                               metalness: 0, roughness: 1} );
 
         
 //------------------------------------------------------------------------------------------------------
