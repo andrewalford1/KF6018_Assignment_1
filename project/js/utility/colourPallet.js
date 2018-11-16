@@ -7,6 +7,7 @@ const colours = {
     DARK_RED:   0xB50000,
     GREEN:      0x3CCE7B,
     DARK_GREEN: 0x186A3B,
+    LIGHT_BLUE: 0x64E8FE,
     BLUE:       0x0000FF,
     DARK_BLUE:  0x000080, 
     MAGENTA:    0xFF00FF,
@@ -14,5 +15,7 @@ const colours = {
     YELLOW:     0xFFFF00,
     CORAL:      0xFF7F50,
     SIENNA:     0x8B4513,
-    BROWN:     0x3F2A14
+    BROWN:      0x3F2A14,
+    PINK:       0xFF3361,
+    ORANGE:     0xFF963A
 };
