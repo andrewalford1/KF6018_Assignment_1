@@ -12,16 +12,15 @@ class CityPlanet extends Planet
      * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
      * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
      * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
-     * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
+    constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
         //Construct the superclass.
         super(2, 2, colours.GREY, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
-        "Description of the city planet", orbitsClockwise);
+        "Description of the city planet");
 
         //[stoneBuildingMaterial] A material for all the buildings that are made out of stone.
-        var stoneBuildingMaterial = new THREE.MeshStandardMaterial( 
+        var stoneBuildingMaterial = new THREE.MeshPhysicalMaterial( 
             {color: colours.GREY, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} );
 
         //[glassMaterial] A material for all buildings that are made out of glass.
@@ -33,33 +32,47 @@ class CityPlanet extends Planet
         //Create building 'A'.
         var buildingAGeometry = new THREE.BoxGeometry(0.3, 0.8, 0.3);
         var buildingA = new THREE.Mesh(buildingAGeometry, stoneBuildingMaterial);
+        buildingA.castShadow = true;
+        buildingA.receiveShadow = true;
         buildingA.position.set(0.0, 0.0, 0.0);
 
         //Create building 'B'.
         var buildingBGeometry = new THREE.BoxGeometry(0.3, 0.6, 0.2);
         var buildingB = new THREE.Mesh(buildingBGeometry, stoneBuildingMaterial);
+        buildingB.castShadow = true;
+        buildingB.receiveShadow = true;
         buildingB.position.set(-0.23, -0.1, -0.2);
 
         //Create building 'C'.
         var buildingCGeometry = new THREE.BoxGeometry(0.3, 0.4, 0.2);
         var buildingC = new THREE.Mesh(buildingCGeometry, stoneBuildingMaterial);
+        buildingC.castShadow = true;
+        buildingC.receiveShadow = true;
         buildingC.position.set(0.32, -0.2, 0.0);
-
+        
+//-----------------------------------------------------------------------------------------------------
         //Create building 'D'.
         var buildingDGeometry = new THREE.BoxGeometry(0.3, 0.7, 0.3);
         var buildingD = new THREE.Mesh(buildingDGeometry, stoneBuildingMaterial);
+        buildingD.castShadow = true;
+        buildingD.receiveShadow = true;
         buildingD.position.set(0.0, 2.85, 0.0);
 
         //Create building 'E'.
-        var buildingEGeometry = new THREE.BoxGeometry(0.6, 0.14, 0.3);
-        var buildingE = new THREE.Mesh(buildingEGeometry, glassMaterial);
-        buildingE.position.set(0.45, 3.06, 0.0);
+        var glassBridgeGeometry = new THREE.BoxGeometry(0.6, 0.14, 0.3);
+        var glassBridge = new THREE.Mesh(glassBridgeGeometry, glassMaterial);
+        glassBridge.castShadow = true;
+        glassBridge.receiveShadow = true;
+        glassBridge.position.set(0.45, 3.06, 0.0);
 
         //Create building 'F'.
         var buildingFGeometry = new THREE.BoxGeometry(0.3, 0.35, 0.3);
         var buildingF = new THREE.Mesh(buildingFGeometry, stoneBuildingMaterial);
+        buildingF.castShadow = true;
+        buildingF.receiveShadow = true;
         buildingF.position.set(0.6, 2.82, 0.0);
 
+//-------------------------------------------------------------------------------------------------------------
         //Group together buildings 'A', 'B', and 'C'.
         var firstGroupOfBuildings = new THREE.Group();
         firstGroupOfBuildings.add(buildingA);
@@ -72,12 +85,13 @@ class CityPlanet extends Planet
         //Group together buildings 'D', 'E', and 'F'.
         var secondGroupOfBuildings = new THREE.Group();
         secondGroupOfBuildings.add(buildingD);
-        secondGroupOfBuildings.add(buildingE);
+        secondGroupOfBuildings.add(glassBridge);
         secondGroupOfBuildings.add(buildingF);
         //Set the position and rotation of the block of buildings.
         secondGroupOfBuildings.position.set(0.0, 0.9, 0.0);
         secondGroupOfBuildings.rotation.set(0.0, 0.0, 3.75);
 
+//-----------------------------------------------------------------------------------------------------------------
         //Create the museum...
 
         //All the details to the planet.
