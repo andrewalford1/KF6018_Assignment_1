@@ -17,11 +17,11 @@ const ASTEROID_B612 = new AsteroidB612(
 //Misc...
 /* Removed until it's working.
 const SKYBOX = new SkyBox([
-    "res/skybox/right.png", 
-    "res/skybox/left.png", 
-    "res/skybox/top.png", 
-    "res/skybox/bottom.png", 
-    "res/skybox/front.png", 
+    "res/skybox/right.png",
+    "res/skybox/left.png",
+    "res/skybox/top.png",
+    "res/skybox/bottom.png",
+    "res/skybox/front.png",
     "res/skybox/back.png"
 ], 1000); */
 
@@ -45,5 +45,5 @@ const UPDATEABLE_OBJECTS = [
 //Make updateable objects active.
 for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
 {
-    UPDATEABLE_OBJECTS[i].setActive(true); 
+    UPDATEABLE_OBJECTS[i].setActive(true);
 }
