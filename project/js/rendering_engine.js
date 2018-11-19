@@ -73,12 +73,12 @@ let skyBox = new SkyBox(
     scene, 
     'res/skybox/',
     [
-        'right.png',
-        'left.png',
-        'top.png',
-        'bottom.png',
-        'front.png',
-        'back.png'
+        'stars.png',
+        'stars.png',
+        'stars.png',
+        'stars.png',
+        'stars.png',
+        'stars.png'
     ]
 );
 
