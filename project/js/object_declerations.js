@@ -14,17 +14,6 @@ const ASTEROID_B612 = new AsteroidB612(
     new THREE.Vector3(NATURE_PLANET.getXPosition() + 4, 0, 0), 3, NATURE_PLANET, 3650, !(NATURE_PLANET.getOrbitsClockwise())
 );
 
-//Misc...
-/* Removed until it's working.
-const SKYBOX = new SkyBox([
-    "res/skybox/right.png",
-    "res/skybox/left.png",
-    "res/skybox/top.png",
-    "res/skybox/bottom.png",
-    "res/skybox/front.png",
-    "res/skybox/back.png"
-], 1000); */
-
 //GROUP OBJECTS TOGETHER...
 
 //[UPDATEABLE_OBJECTS] An array to declare all the updateable objects in the program.

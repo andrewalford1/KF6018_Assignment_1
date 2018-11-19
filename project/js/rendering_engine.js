@@ -68,14 +68,26 @@ let stats = new Stats();
 stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild( stats.dom );
 
+//SET UP THE SKYBOX FOR THE SCENE...
+let skyBox = new SkyBox(
+    scene, 
+    'res/skybox/',
+    [
+        'right.png',
+        'left.png',
+        'top.png',
+        'bottom.png',
+        'front.png',
+        'back.png'
+    ]
+);
+
 //ADD OBJECTS TO THE SCENE...
 //Add updatable objects to the scene.
 for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
 {
     UPDATEABLE_OBJECTS[i].addToScene(scene);
 }
-//Add other objects to the scene.
-//SKYBOX.addToScene(scene); //Removed until it is working.
 
 //[TIMER] used for timing the program.
 const TIMER = new Timer();
