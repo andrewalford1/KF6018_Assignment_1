@@ -29,6 +29,18 @@ class CityPlanet extends Planet
             roughness: 0.5, reflectivity: 1, transparent: true, opacity: 0.5}
         );
 
+        //Create protection shield 
+        var protectionShieldGeometry = new THREE.IcosahedronGeometry(3,1);
+        var protectionShieldWireFrameMaterial = new THREE.MeshPhysicalMaterial(
+            {color: colours.LIGHT_BLUE, flatShading: THREE.FlatShading, metalness: 0, roughness: 1, 
+            roughness: 0.5, reflectivity: 1, wireframe: true} );
+        var protectionShieldMaterial = new THREE.MeshPhysicalMaterial(
+            {color: 0xA3FDFF, flatShading: THREE.FlatShading, metalness: 0, roughness: 1,
+            roughness: 0.5, reflectivity: 1, transparent: true, opacity: 0.5} );
+        var protectionWireShield = new THREE.Mesh(protectionShieldGeometry, protectionShieldWireFrameMaterial);
+        var protectionShield = new THREE.Mesh(protectionShieldGeometry,protectionShieldMaterial); 
+        
+//-------------------------------------------------------------------------------------------------
         //Create building 'A'.
         var buildingAGeometry = new THREE.BoxGeometry(0.3, 0.8, 0.3);
         var buildingA = new THREE.Mesh(buildingAGeometry, stoneBuildingMaterial);
@@ -60,7 +72,7 @@ class CityPlanet extends Planet
 
         //Create building 'E'.
         var glassBridgeGeometry = new THREE.BoxGeometry(0.6, 0.14, 0.3);
-        var glassBridge = new THREE.Mesh(glassBridgeGeometry, glassMaterial);
+        var glassBridge = new THREE.Mesh(glassBridgeGeometry, stoneBuildingMaterial);//glassMaterial
         glassBridge.castShadow = true;
         glassBridge.receiveShadow = true;
         glassBridge.position.set(0.45, 3.06, 0.0);
@@ -93,9 +105,48 @@ class CityPlanet extends Planet
 
 //-----------------------------------------------------------------------------------------------------------------
         //Create the museum...
+        var museumGeometry =  new THREE.BoxGeometry( 0.3,0.35, 1.0 );
+        //Part 'A' of the museum
+        var museumPartA = new THREE.Mesh( museumGeometry, stoneBuildingMaterial );
+        museumPartA.castShadow = true;
+        museumPartA.receiveShadow = true;
+        museumPartA.position.set(0.0, 0.0, 0.0);
+        museumPartA.rotation.set(0.0, 0.0, 0.0);
+        //Part 'B' of the museum
+        var museumPartB = new THREE.Mesh( museumGeometry, stoneBuildingMaterial );
+        museumPartB.castShadow = true;
+        museumPartB.receiveShadow = true;
+        museumPartB.position.set(0.4, 0.0, 0.34);
+        museumPartB.rotation.set(0.0, 1.6, 0.0);
+        //Part 'C' of the museum
+        var museumPartC = new THREE.Mesh( museumGeometry, stoneBuildingMaterial );
+        museumPartC.castShadow = true;
+        museumPartC.receiveShadow = true;
+        museumPartC.position.set(0.4, 0.0, -0.355);
+        museumPartC.rotation.set(0.0, 1.6, 0.0);
+        //Part 'D' of the museum
+        var museumPartD = new THREE.Mesh( museumGeometry, stoneBuildingMaterial );
+        museumPartD.castShadow = true;
+        museumPartD.receiveShadow = true;
+        museumPartD.position.set(0.5, 0.0, -0.37);
+        museumPartD.rotation.set(0.0, 0.0, 0.0);
+        //Part 'E' of the museum
+
+        var museumGroup = new THREE.Group();
+        museumGroup.add(museumPartA);
+        museumGroup.add(museumPartB);
+        museumGroup.add(museumPartC);
+        museumGroup.add(museumPartD);
+        //museumGroup.add(museumPartE);
+        museumGroup.position.set(1.5, 1.2, 0.0);
+        museumGroup.rotation.set(0.0, 0.0, -1.1);
+//---------------------------------------------------------------------------------------------------
 
         //All the details to the planet.
         this.addObjectToGroup(firstGroupOfBuildings);
         this.addObjectToGroup(secondGroupOfBuildings);
+        this.addObjectToGroup(protectionWireShield);
+        this.addObjectToGroup(protectionShield);
+        this.addObjectToGroup(museumGroup);
     }
 }
