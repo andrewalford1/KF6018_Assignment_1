@@ -92,13 +92,6 @@ for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
 //[TIMER] used for timing the program.
 const TIMER = new Timer();
 
-// Instantiate a loader
-var loader = new THREE.GLTFLoader();
-
-let model = new ModelLoader('monkey', 'monkey.gltf').getModelInstance();
-model.scale.set(50, 50, 50);
-scene.add(model);
-
 //ANIMATION FUNCTION...
 function animate()
 {
@@ -112,9 +105,6 @@ function animate()
     {
         UPDATEABLE_OBJECTS[i].update(TIMER.getFrameTimeMs());
     }
-
-    model.rotation.y -= 0.01;
-
 //     //TEMP CODE - checks if the camera is looking at a specific object. (could be used for lens-flare).
 //     camera.updateMatrix();
 //     camera.updateMatrixWorld();

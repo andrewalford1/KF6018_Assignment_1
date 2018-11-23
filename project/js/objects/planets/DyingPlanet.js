@@ -2,7 +2,7 @@
  * Class describing a dying planet.
  * @extends Planet
  */
-class DyingPlanet extends Planet
+class DyingPlanet extends PlanetComplex
 {
     /**
      * Create the dying planet.
@@ -13,10 +13,10 @@ class DyingPlanet extends Planet
      * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
      * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
+    constructor(model, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
     {
         //Construct the superclass.
-        super(10, 2, colours.BROWN, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
+        super(model, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
         "Description of the dying planet.", orbitsClockwise);
     }
 }
