@@ -56,13 +56,13 @@ class AsteroidB612 extends OrbitingObject
         stemB.rotation.set(0.0, 0.0, 0.2);
 
         //Create the rose.
-        var roseGeometry = new THREE.SphereGeometry( 0.05, 5, 5 );
+        var roseGeometry = new THREE.TorusKnotBufferGeometry(0.007, 0.06, 33, 3, 2, 17);
         var roseMaterial = new THREE.MeshStandardMaterial(
             {color: colours.RED, flatShading: THREE.FlatShading, metalness: 0, roughness: 1}
         );
         var rose = new THREE.Mesh(roseGeometry, roseMaterial);
         rose.position.set(0.2, 0.42, 0.21);
-        rose.rotation.set(0.0, 0.0, 0.4);
+        rose.rotation.set(-0.5, 0.4, 0.4);//0.0, 0.0, 0.4
 
         //Create a group for rose
         var groupRose = new THREE.Group();
