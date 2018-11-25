@@ -16,10 +16,8 @@ class NaturePlanet extends Planet
     constructor(rotationSpeed, initialPosition, orbitSpeed, AssignmentObject, fullOrbitMs)
     {
         //Construct the superclass.
-        super(rotationSpeed, initialPosition, orbitSpeed, AssignmentObject, fullOrbitMs);
-
-        //Add the planets base.
-        this.addObjectToGroup(this.createGenericPlanetBase(2, 2, colours.GREEN));
+        super(2, 2, colours.GREEN, rotationSpeed, initialPosition, orbitSpeed, AssignmentObject, fullOrbitMs,
+        "Description of the nature planet.");
 
         //The material for tree crowns and trunks
         var crownMaterial = new THREE.MeshPhysicalMaterial( 
@@ -116,6 +114,25 @@ class NaturePlanet extends Planet
         //rotate the pine tree
         //pineTree2Group.rotation.set(0.4, 0.0, 0.0);
 
+        //Create pine tree 3
+        //Pine tree crown 
+        var pineTree3Crown = new THREE.Mesh( pineTreeCrownGeometry, crownMaterial );
+        pineTree3Crown.castShadow = true;
+        pineTree3Crown.receiveShadow = true;
+        pineTree3Crown.position.set(0.0, 0.4, 0.0);
+        //Pine tree trunk
+        var pineTree3Trunk = new THREE.Mesh( pineTreeTrunkGeometry, trunkMaterial );
+        pineTree3Trunk.castShadow = true;
+        pineTree3Trunk.receiveShadow = true;
+        pineTree3Trunk.position.set(0.0, 0.05, 0.0);
+
+        //Create pine tree 1 group
+        var pineTree3Group = new THREE.Group();
+        pineTree3Group.add(pineTree3Crown);
+        pineTree3Group.add(pineTree3Trunk);
+        pineTree3Group.position.set(-0.75, -0.3, -1.8); //set position of the tree
+        pineTree3Group.rotation.set(0.0, -0.9, 1.7);//set rotation of the tree
+
 //-------------------------------------------------------------------------------------------------
         //Create regular tree 1 
         //tree crown
@@ -134,9 +151,9 @@ class NaturePlanet extends Planet
         regularTree1Group.add(regularTree1Crown);
         regularTree1Group.add(regularTree1Trunk);
         //position
-        regularTree1Group.position.set(-1.5, 1.5, 0.0);
+        regularTree1Group.position.set(-2.0, 0.7, -0.5);
         //rotate the buildings
-        regularTree1Group.rotation.set(0.0, 0.1, 0.6);
+        regularTree1Group.rotation.set(0.0, -0.2, 1.2);
 
         //Create regular tree 2 
         //tree crown
@@ -155,13 +172,13 @@ class NaturePlanet extends Planet
         regularTree2Group.add(regularTree2Crown);
         regularTree2Group.add(regularTree2Trunk);
         //position
-        regularTree2Group.position.set(-1.6, 1.4, 0.4);
+        regularTree2Group.position.set(-1.5, 0.4, -1.5);
         //rotate tree
-        regularTree2Group.rotation.set(0.3, 0.1, 0.6);
+        regularTree2Group.rotation.set(-0.6, 0.0, 1.0);
 
         //Create regular tree 3 
         //tree crown
-        var regularTree3Crown = new THREE.Mesh( regularTreeCrownGeometry, crownMaterial );
+         var regularTree3Crown = new THREE.Mesh( regularTreeCrownGeometry, crownMaterial );
         regularTree3Crown.castShadow = true;
         regularTree3Crown.receiveShadow = true;
         regularTree3Crown.position.set(0.0, 0.4, 0.0);//position
@@ -176,9 +193,9 @@ class NaturePlanet extends Planet
         regularTree3Group.add(regularTree3Crown);
         regularTree3Group.add(regularTree3Trunk);
         //position
-        regularTree3Group.position.set(-1.9, 1.0, 0.4);
+        regularTree3Group.position.set(-2.1, 0.5, 0.1);
         //rotate tree
-        regularTree3Group.rotation.set(0.1, 0.3, 0.8);
+        regularTree3Group.rotation.set(-0.1, 0.0, 1.0);
 
         //Create regular tree 4 
         //tree crown
@@ -197,9 +214,9 @@ class NaturePlanet extends Planet
         regularTree4Group.add(regularTree4Crown);
         regularTree4Group.add(regularTree4Trunk);
         //position
-        regularTree4Group.position.set(-2.1, 0.5, 0.15);
+        regularTree4Group.position.set(-2.2, -0.1, -0.4);
         //rotate tree
-        regularTree4Group.rotation.set(0.0, 0.0, 1.2);
+        regularTree4Group.rotation.set(0.0, -0.1, 1.4);
 
 
 //--------------------------------------------------------------------------------------------
@@ -207,43 +224,43 @@ class NaturePlanet extends Planet
         var truffulaTree1Crown = new THREE.Mesh( truffulaTreeCrownGeometry, truffulaTreeCrownPinkMaterial );
         truffulaTree1Crown.castShadow = true;
         truffulaTree1Crown.receiveShadow = true;
-        truffulaTree1Crown.position.set(1.0, 2.3, 0.0); //position
+        truffulaTree1Crown.position.set(1.0, 0.4, 0.0); //position
         //truffulaTree1Crown.rotation.set(0.0, 0.0, 0.0);//rotation of the truffula tree crown
         //tree trunk
         var truffulaTree1Trunk = new THREE.Mesh( truffulaTreeTrunkGeometry, truffulaTreeTrunkMaterial );
         truffulaTree1Trunk.castShadow = true;
         truffulaTree1Trunk.receiveShadow = true;
-        truffulaTree1Trunk.position.set(1.0, 1.9, 0.0);//poition of the truffula tree trunk
+        truffulaTree1Trunk.position.set(1.0, 0.0, 0.0);//poition of the truffula tree trunk
 
         //Create truffula tree 1 group
         var truffulaTree1Group = new THREE.Group();
         truffulaTree1Group.add(truffulaTree1Crown);
         truffulaTree1Group.add(truffulaTree1Trunk);
         //positin of the truffula tree 1 group
-        truffulaTree1Group.position.set(0.0, 0.0, 0.0);
+        truffulaTree1Group.position.set(-2.4, -0.6, -0.8);
         //rotation of the truffula tree 1 group
-        truffulaTree1Group.rotation.set(0.4, 0.4, 0.4);
+        truffulaTree1Group.rotation.set(0.4, -0.3, 1.3);
 
         //Create truffula tree 2
         var truffulaTree2Crown = new THREE.Mesh( truffulaTreeCrownGeometry, truffulaTreeCrownOrangeMaterial );
         truffulaTree2Crown.castShadow = true;
         truffulaTree2Crown.receiveShadow = true;
-        truffulaTree2Crown.position.set(1.0, 2.3, 0.0); //position
+        truffulaTree2Crown.position.set(1.0, 0.4, 0.0); //position
         //truffulaTree1Crown.rotation.set(0.0, 0.0, 0.0);//rotation of the truffula tree crown
         //tree trunk
         var truffulaTree2Trunk = new THREE.Mesh( truffulaTreeTrunkGeometry, truffulaTreeTrunkMaterial );
         truffulaTree2Trunk.castShadow = true;
         truffulaTree2Trunk.receiveShadow = true;
-        truffulaTree2Trunk.position.set(1.0, 1.9, 0.0);//poition of the truffula tree trunk
+        truffulaTree2Trunk.position.set(1.0, 0.0, 0.0);//poition of the truffula tree trunk
 
         //Create truffula tree 2 group
         var truffulaTree2Group = new THREE.Group();
         truffulaTree2Group.add(truffulaTree2Crown);
         truffulaTree2Group.add(truffulaTree2Trunk);
         //positin of the truffula tree 1 group
-        truffulaTree2Group.position.set(0.5, 0.0, 0.1);
+        truffulaTree2Group.position.set(-2.1, -0.6, -1.1);
         //rotation of the truffula tree 1 group
-        truffulaTree2Group.rotation.set(0.4, 0.4, 0.4);
+        truffulaTree2Group.rotation.set(0.0, -0.4, 1.4);
 //----------------------------------------------------------------------
         //Create a lake
         //Lake Base
@@ -316,6 +333,7 @@ class NaturePlanet extends Planet
         //then use the function below to add them to the planet.
         this.addObjectToGroup(pineTree1Group);
         this.addObjectToGroup(pineTree2Group);
+        this.addObjectToGroup(pineTree3Group);
         this.addObjectToGroup(regularTree1Group);
         this.addObjectToGroup(regularTree2Group);
         this.addObjectToGroup(regularTree3Group);
