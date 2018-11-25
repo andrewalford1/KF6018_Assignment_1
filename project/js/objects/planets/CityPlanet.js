@@ -16,9 +16,11 @@ class CityPlanet extends Planet
     constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
         //Construct the superclass.
-        super(2, 2, colours.GREY, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
-        "Description of the city planet");
+        super(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
 
+        //Add the planets base.
+        this.addObjectToGroup(this.createGenericPlanetBase(2, 2, colours.GREY));
+        
         //[stoneBuildingMaterial] A material for all the buildings that are made out of stone.
         var stoneBuildingMaterial = new THREE.MeshPhysicalMaterial( 
             {color: colours.GREY, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} );
@@ -169,7 +171,7 @@ class CityPlanet extends Planet
         //Create a metal pine tree
         //tree crown
         var pineTreeGeometry = new THREE.ConeGeometry( 0.3, 0.6, 10 );
-        var pineTreeMaterial = new THREE.MeshPhysicalMaterial( {color: colours.GRAY, flatShading: THREE.FlatShading, metalness: 1, roughness: 0.5, reflectivity: 1});
+        var pineTreeMaterial = new THREE.MeshPhysicalMaterial( {color: colours.GREY, flatShading: THREE.FlatShading, metalness: 1, roughness: 0.5, reflectivity: 1});
         var pineTreeCrown = new THREE.Mesh( pineTreeGeometry, pineTreeMaterial );
         pineTreeCrown.castShadow = true;
         pineTreeCrown.receiveShadow = true;
