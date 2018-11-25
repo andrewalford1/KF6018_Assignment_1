@@ -16,10 +16,8 @@ class CityPlanet extends Planet
     constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
         //Construct the superclass.
-        super(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
-
-        //Add the planet's base.
-        this.addObjectToGroup(this.createGenericPlanetBase(2, 2, colours.GREY));
+        super(2, 2, colours.GREY, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
+        "Description of the city planet");
 
         //[stoneBuildingMaterial] A material for all the buildings that are made out of stone.
         var stoneBuildingMaterial = new THREE.MeshPhysicalMaterial( 
@@ -27,9 +25,9 @@ class CityPlanet extends Planet
 
         //[glassMaterial] A material for all buildings that are made out of glass.
         var glassMaterial = new THREE.MeshPhysicalMaterial(
-            {color: colours.GREY, flatShading: THREE.FlatShading, metalness: 1,
-            roughness: 0.5, reflectivity: 1, transparent: true, opacity: 0.8}
-        );
+            {color: colours.GREY, flatShading: THREE.FlatShading, metalness: 0.8, 
+            roughness: 0.3, reflectivity: 1.0});
+            //metalness: 1,roughness: 0.5, reflectivity: 1, transparent: true, opacity: 0.8
 
         //Create protection shield 
         //Geometry for the shield
@@ -39,7 +37,7 @@ class CityPlanet extends Planet
             {color: colours.LIGHT_BLUE, flatShading: THREE.FlatShading, metalness: 0, roughness: 1, 
             roughness: 0.5, reflectivity: 1, wireframe: true} );//Wireframe of the shield
         var protectionShieldMaterial = new THREE.MeshPhysicalMaterial(
-            {color: 0xA3FDFF, flatShading: THREE.FlatShading, metalness: 0, roughness: 1,
+            {color: colours.LIGHT_BLUE, flatShading: THREE.FlatShading, metalness: 0, roughness: 1,
             roughness: 0.5, reflectivity: 1, transparent: true, opacity: 0.5} );
         //Meshes for the shield
         var protectionWireShield = new THREE.Mesh(protectionShieldGeometry, protectionShieldWireFrameMaterial);
@@ -84,12 +82,12 @@ class CityPlanet extends Planet
         buildingD.receiveShadow = true;
         buildingD.position.set(0.0, 2.85, 0.0);
 
-        //Create building 'E'.
-        var glassBridgeGeometry = new THREE.BoxGeometry(0.6, 0.14, 0.3);
-        var glassBridge = new THREE.Mesh(glassBridgeGeometry, stoneBuildingMaterial);//glassMaterial
+        //Create glass bridge
+        var glassBridgeGeometry = new THREE.BoxGeometry(0.6, 0.15, 0.3);
+        var glassBridge = new THREE.Mesh(glassBridgeGeometry, glassMaterial);//glassMaterial
         glassBridge.castShadow = true;
         glassBridge.receiveShadow = true;
-        glassBridge.position.set(0.45, 3.06, 0.0);
+        glassBridge.position.set(0.45, 3.07, 0.0);
 
         //Create building 'F'.
         var buildingFGeometry = new THREE.BoxGeometry(0.3, 0.35, 0.3);
@@ -171,7 +169,7 @@ class CityPlanet extends Planet
         //Create a metal pine tree
         //tree crown
         var pineTreeGeometry = new THREE.ConeGeometry( 0.3, 0.6, 10 );
-        var pineTreeMaterial = new THREE.MeshPhysicalMaterial( {color: colours.GREY, flatShading: THREE.FlatShading, metalness: 1, roughness: 0.5, reflectivity: 1});
+        var pineTreeMaterial = new THREE.MeshPhysicalMaterial( {color: colours.GRAY, flatShading: THREE.FlatShading, metalness: 1, roughness: 0.5, reflectivity: 1});
         var pineTreeCrown = new THREE.Mesh( pineTreeGeometry, pineTreeMaterial );
         pineTreeCrown.castShadow = true;
         pineTreeCrown.receiveShadow = true;
@@ -194,7 +192,29 @@ class CityPlanet extends Planet
         pineTreeGroup.rotation.set(-1.4, 0.0, 0.0);
 
 //--------------------------------------------------------------------------------
+        //Create Teen Titans Tower 
+        //T Tower part 'A' |
+        var towerTGeometryA = new THREE.BoxGeometry( 0.3, 0.8, 0.35 );
+        var teenTitansTowerPartA = new THREE.Mesh(towerTGeometryA, stoneBuildingMaterial);
+        teenTitansTowerPartA.castShadow = true;
+        teenTitansTowerPartA.receiveShadow = true;
+        teenTitansTowerPartA.position.set(0.0, 0.8, 0.0);
+        teenTitansTowerPartA.rotation.set(0.0, 0.0, 0.0);
+        //T Tower part 'B' -----
+        var towerTGeometryB = new THREE.BoxGeometry( 0.3, 0.3, 0.8 );
+        var teenTitansTowerPartB = new THREE.Mesh(towerTGeometryB, stoneBuildingMaterial);
+        teenTitansTowerPartB.castShadow = true;
+        teenTitansTowerPartB.receiveShadow = true;
+        teenTitansTowerPartB.position.set(0.0, 1.2, 0.0);
+        teenTitansTowerPartB.rotation.set(0.0, 0.0, 0.0);
 
+        var towerTGroup = new THREE.Group();
+        towerTGroup.add(teenTitansTowerPartA);
+        towerTGroup.add(teenTitansTowerPartB);
+        towerTGroup.position.set(-0.8, 0.8, -0.8);
+        towerTGroup.rotation.set(0.0, -0.7, 0.9);
+
+//----------------------------------------------------------------------------------
         //All the details to the planet.
         this.addObjectToGroup(firstGroupOfBuildings);
         this.addObjectToGroup(secondGroupOfBuildings);
@@ -203,5 +223,6 @@ class CityPlanet extends Planet
         this.addObjectToGroup(protectionShield);
         this.addObjectToGroup(museumGroup);
         this.addObjectToGroup(pineTreeGroup);
+        this.addObjectToGroup(towerTGroup);
     }
 }
