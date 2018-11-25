@@ -63,11 +63,11 @@ class Planet extends OrbitingObject
                 //Check which direction the planet is moving in, then spin the planet on it's axis.
                 if(this.getOrbitsClockwise())
                 {
-                     this.getObject().rotation.y += rotationSpeed;
+                    this.getObject().rotation.y += rotationSpeed;
                 }                
                 else
                 {
-                     this.getObject().rotation.y -= rotationSpeed;
+                    this.getObject().rotation.y -= rotationSpeed;
                 }
 
                 //Move the planet along it's orbiting path.
