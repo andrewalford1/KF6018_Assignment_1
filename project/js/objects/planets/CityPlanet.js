@@ -19,6 +19,9 @@ class CityPlanet extends Planet
         super(2, 2, colours.GREY, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
         "Description of the city planet");
 
+        //Add the planet's base.
+        this.addObjectToGroup(this.createGenericPlanetBase(2, 2, colours.GREY));
+
         //[stoneBuildingMaterial] A material for all the buildings that are made out of stone.
         var stoneBuildingMaterial = new THREE.MeshPhysicalMaterial( 
             {color: colours.GREY, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} );

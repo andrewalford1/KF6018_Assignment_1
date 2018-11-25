@@ -19,6 +19,9 @@ class NaturePlanet extends Planet
         super(2, 2, colours.GREEN, rotationSpeed, initialPosition, orbitSpeed, AssignmentObject, fullOrbitMs,
         "Description of the nature planet.");
 
+        //Add the planets base.
+        this.addObjectToGroup(this.createGenericPlanetBase(2, 2, colours.GREEN));
+
         //The material for tree crowns and trunks
         var crownMaterial = new THREE.MeshPhysicalMaterial( 
                             {color: colours.DARK_GREEN, flatShading: THREE.FlatShading, 
