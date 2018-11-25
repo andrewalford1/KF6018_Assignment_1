@@ -10,13 +10,12 @@ class OrbitingObject extends UpdateableObject
      * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
      * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
      * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
-     * @param {string} objectDescription - A description of the object.
      * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, objectDescription, orbitsClockwise)
+    constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
     {
         //Construct the superclass.
-        super(initialPosition, objectDescription);
+        super(initialPosition);
 
         //Define this class as abstract.
         if (this.constructor === OrbitingObject) 

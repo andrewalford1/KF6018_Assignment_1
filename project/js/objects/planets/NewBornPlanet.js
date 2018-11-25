@@ -16,9 +16,9 @@ class NewBornPlanet extends Planet
     constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
     {
         //Construct the superclass.
-        super(3, 2, colours.BLUE, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
-        "Description of the new born planet.", orbitsClockwise);
+        super(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise);
 
+        //Load the dying planet's model and add it to the group.
         this.addObjectToGroup(this.createGenericPlanetBase(3, 2, colours.BLUE));
     }
 }

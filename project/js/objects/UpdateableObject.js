@@ -7,12 +7,11 @@ class UpdateableObject extends AssignmentObject
     /**
      * Create an updateable object.
      * @param {Vector3} initialPosition - The initial position of the planet.
-     * @param {string} objectDescription - A description of the object.
      */
-    constructor(initialPosition, objectDescription)
+    constructor(initialPosition)
     {
         //Construct the superclass.
-        super(initialPosition, objectDescription);
+        super(initialPosition);
 
         //Define this class as abstract.
         if (this.constructor === UpdateableObject) 

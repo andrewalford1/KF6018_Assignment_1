@@ -16,8 +16,7 @@ class CityPlanet extends Planet
     constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
         //Construct the superclass.
-        super(2, 2, colours.GREY, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
-        "Description of the city planet");
+        super(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
 
         //Add the planet's base.
         this.addObjectToGroup(this.createGenericPlanetBase(2, 2, colours.GREY));

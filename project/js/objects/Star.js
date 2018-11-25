@@ -10,13 +10,12 @@ class Star extends UpdateableObject
      * @param {number} smoothness - How smooth the surface of the planet will be.
      * @param {number} rotationSpeed - How quickly the planet rotates.
      * @param {Vector3} initialPosition - The initial position of the planet.
-     * @param {string} objectDescription - A description of the object.
      * @param {boolean} spinsClockwise - If true then the star rotates clockwise.
      */
-    constructor(radius, smoothness, rotationSpeed, initialPosition, objectDescription, spinsClockwise)
+    constructor(radius, smoothness, rotationSpeed, initialPosition, spinsClockwise)
     {
         //Construct the superclass.
-        super(initialPosition, objectDescription);
+        super(initialPosition);
 
         //Create the planet's surface.
         const M_GEOMETRY = new THREE.OctahedronGeometry(radius, smoothness);

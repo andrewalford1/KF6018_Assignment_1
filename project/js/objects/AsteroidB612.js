@@ -15,8 +15,7 @@ class AsteroidB612 extends OrbitingObject
     constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
     {
         //Construct the superclass.
-        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
-        "A description of AsteroidB612.", orbitsClockwise);
+        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise);
 
         //Create the asteroids surface.
         var asteroidGeometry = new THREE.OctahedronGeometry(0.8, 1);  

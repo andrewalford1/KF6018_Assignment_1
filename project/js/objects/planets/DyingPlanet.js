@@ -2,7 +2,7 @@
  * Class describing a dying planet.
  * @extends Planet
  */
-class DyingPlanet extends PlanetComplex
+class DyingPlanet extends Planet
 {
     /**
      * Create the dying planet.
@@ -13,10 +13,12 @@ class DyingPlanet extends PlanetComplex
      * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
      * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(model, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
+    constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
     {
         //Construct the superclass.
-        super(model, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
-        "Description of the dying planet.", orbitsClockwise);
+        super(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise);
+
+        //Load the planet's model.
+        this.addObjectToGroup(new ModelLoader('monkey', 'monkey.gltf').getModelInstance());
     }
 }

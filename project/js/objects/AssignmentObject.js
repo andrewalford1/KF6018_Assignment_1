@@ -6,9 +6,8 @@ class AssignmentObject
     /**
      * Creates an assignment object.
      * @param {Vector3} initialPosition - This is the initial position of the assignment object.
-     * @param {string} objectDescription - A description of the object.
      */
-    constructor(initialPosition, objectDescription)
+    constructor(initialPosition)
     {
         
         //Define this class as abstract.
@@ -23,26 +22,6 @@ class AssignmentObject
 
         //[m_inFocus] If true then the object is currently being focused on.
         let m_inFocus = false;
-
-        //[m_objectDescription] Contains a description of an object.
-        let m_objectDescription = objectDescription;
-
-        /**
-         * @return Returns the object's description.
-         */
-        this.getDescription = function()
-        {
-            return objectDescription;
-        }
-
-        /**
-         * Allows the object's description to be set.
-         * @param {string} objectDescription - This is the new description for the object.
-         */
-        this.setDescription = function(objectDescription)
-        {
-            m_objectDescription = objectDescription;
-        }
 
         /**
          * @Return Returns 'true' if the object is in focus. (Otherwise 'false' is returned).

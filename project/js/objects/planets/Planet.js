@@ -6,21 +6,17 @@ class Planet extends OrbitingObject
 {
     /**
      * Create a planet.
-     * @param {number} radius - The radius of the planet.
-     * @param {number} smoothness - How smooth the surface of the planet will be.
-     * @param {colour} colour - The colour that the planet will be.
      * @param {number} rotationSpeed - How quickly the planet rotates.
      * @param {Vector3} initialPosition - The initial position of the planet.
      * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
      * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
      * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
-     * @param {string} objectDescription - A description of the object.
      * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(radius, smoothness, colour, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, objectDescription, orbitsClockwise)
+    constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, objectDescription, orbitsClockwise)
     {
         //Construct the superclass.
-        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, objectDescription, orbitsClockwise);
+        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise);
 
         //Define this class as abstract.
         if (this.constructor === Planet) 
@@ -53,16 +49,6 @@ class Planet extends OrbitingObject
             planetBase.receiveShadow = true;
 
             return planetBase;
-        }
-
-         /**
-          * Sets the visibility of the planet's pole.
-          * @param {boolean} visible - If true then the planer's pole will be visible,
-          *                            otherwise the pole will be invisible.
-          */
-        this.showPole = function(visible)
-        {
-            POLE.visible = visible;
         }
 
          /**
