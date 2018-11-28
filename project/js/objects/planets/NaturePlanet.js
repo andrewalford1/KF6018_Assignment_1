@@ -68,201 +68,259 @@ class NaturePlanet extends Planet
 
         
 //------------------------------------------------------------------------------------------------------
-        //Create pine tree 1
-        //pine tree crown
-        var pineTree1Crown = new THREE.Mesh( pineTreeCrownGeometry, crownMaterial );
-        pineTree1Crown.castShadow = true;
-        pineTree1Crown.position.set(0.0, 0.4, 0.0);//set position of the pine tree crown
+         //Initialize pine trees variables
+        var pineTreeCrownGeo = [];
+        var pineTreeCrownMat = [];
+        var pineTreeCrown = [];
+        var pineTrunkGeo = [];
+        var pineTrunkMat = [];
+        var pineTreeTrunk = [];
+        var pineTreeNumber = 10;
+        //Create the pine trees
+        for (var i = 0; i < pineTreeNumber; i++)
+        {
+        //pine tree crown       
+        pineTreeCrownGeo.push( pineTreeCrownGeometry );
+        pineTreeCrownMat.push( crownMaterial );
+        pineTreeCrown.push( new THREE.Mesh(pineTreeCrownGeo[i], pineTreeCrownMat[i]));
+        pineTreeCrown[i].position.set(0.0, 0.4, 0.0);
+        pineTreeCrown[i].castShadow = true;
+        pineTreeCrown[i].receiveShadow = true;
         //pine tree trunk
-        var pineTree1Trunk = new THREE.Mesh( pineTreeTrunkGeometry, trunkMaterial );
-        pineTree1Trunk.castShadow = true;
-        pineTree1Trunk.position.set(0.0, 0.05, 0.0);//set position of the pine tree trunk
-        pineTree1Trunk.receiveShadow = true;
+        pineTrunkGeo.push( pineTreeTrunkGeometry );
+        pineTrunkMat.push( trunkMaterial );
+        pineTreeTrunk.push( new THREE.Mesh(pineTrunkGeo[i], pineTrunkMat[i]));
+        pineTreeTrunk[i].position.set(0.0, 0.05, 0.0);
+        pineTreeTrunk[i].castShadow = true;
+        pineTreeTrunk[i].receiveShadow = true;
+        }
 
-        //Create pine tree 1 group
-        var pineTree1Group = new THREE.Group();
-        pineTree1Group.add(pineTree1Crown);
-        pineTree1Group.add(pineTree1Trunk);
-        pineTree1Group.position.set(0.0, 0.0, -2.0); //set position of the tree
-        //pineTree1Group.position.set(0.0, 1.0, 0.0);
-        pineTree1Group.rotation.set(-1.4, 0.0, 0.0);//set rotation of the tree
+        //Create pine tree 0 group
+        var pineTreeGroup = new THREE.Group();
+        pineTreeGroup.add(pineTreeCrown[0]);
+        pineTreeGroup.add(pineTreeTrunk[0]);
+        pineTreeGroup.position.set(0.0, 0.0, -2.0); //set position of the tree
+        pineTreeGroup.rotation.set(-1.4, 0.0, 0.0);//set rotation of the tree
 
-        //Create pine tree 2
-        //star
+        //Create star
         //var starGeometry = new THREE.SphereGeometry( 0.05, 8, 8 );
         var starGeometry = new THREE.SphereGeometry( 0.06, 8, 2, 0, 6.3 ,3, 3.3 );
         var star = new THREE.Mesh( starGeometry , truffulaTreeCrownPinkMaterial );
         star.castShadow = true;
         star.position.set(0.0, 0.76, 0.0);//set position of the pine tree crown (0.0, 0.72, 0.0
         //star.rotation.set(2.0, 0.0, 0.0);
-        //pineTree.setPineTreeCrown(0.3, 0.6, 10);
-        var pineTree2Crown = new THREE.Mesh( pineTreeCrownGeometry, crownMaterial );
-        pineTree2Crown.castShadow = true;
-        pineTree2Crown.receiveShadow = true;
-        pineTree2Crown.position.set(0.0, 0.4, 0.0);
-        //pineTree.setPineTreeTrunk(0.06, 0.1, 0.2, 10 );
-        var pineTree2Trunk = new THREE.Mesh( pineTreeTrunkGeometry, trunkMaterial );
-        pineTree2Trunk.castShadow = true;
-        pineTree2Trunk.receiveShadow = true;
-        pineTree2Trunk.position.set(0.0, 0.05, 0.0);
         
+        //Create pine tree 1 group
+        var pineTreeGroup1 = new THREE.Group();
+        pineTreeGroup1.add(star);
+        pineTreeGroup1.add(pineTreeCrown[1]);
+        pineTreeGroup1.add(pineTreeTrunk[1]);
+        pineTreeGroup1.position.set(0.0, 2.0, 0.0); //set position of the tree
+        //pineTreeGroup1.rotation.set(0.4, 0.0, 0.0);//set rotation of the tree
 
         //Create pine tree 2 group
-        var pineTree2Group = new THREE.Group();
-        pineTree2Group.add(star);
-        pineTree2Group.add(pineTree2Crown);//add tree crown
-        pineTree2Group.add(pineTree2Trunk);//add tree trunk
-        pineTree2Group.position.set(0.0, 2.0, 0.0);//position
-        //rotate the pine tree
-        //pineTree2Group.rotation.set(0.4, 0.0, 0.0);
-
-        //Create pine tree 3
-        //Pine tree crown 
-        var pineTree3Crown = new THREE.Mesh( pineTreeCrownGeometry, crownMaterial );
-        pineTree3Crown.castShadow = true;
-        pineTree3Crown.receiveShadow = true;
-        pineTree3Crown.position.set(0.0, 0.4, 0.0);
-        //Pine tree trunk
-        var pineTree3Trunk = new THREE.Mesh( pineTreeTrunkGeometry, trunkMaterial );
-        pineTree3Trunk.castShadow = true;
-        pineTree3Trunk.receiveShadow = true;
-        pineTree3Trunk.position.set(0.0, 0.05, 0.0);
-
-        //Create pine tree 1 group
-        var pineTree3Group = new THREE.Group();
-        pineTree3Group.add(pineTree3Crown);
-        pineTree3Group.add(pineTree3Trunk);
-        pineTree3Group.position.set(-0.75, -0.3, -1.8); //set position of the tree
-        pineTree3Group.rotation.set(0.0, -0.9, 1.7);//set rotation of the tree
+        var pineTreeGroup2 = new THREE.Group();
+        pineTreeGroup2.add(pineTreeCrown[2]);
+        pineTreeGroup2.add(pineTreeTrunk[2]);
+        pineTreeGroup2.position.set(-0.75, -0.3, -1.8); //set position of the tree
+        pineTreeGroup2.rotation.set(0.0, -0.9, 1.7);//set rotation of the tree
+        
+        //Create pine tree 3 group
+        var pineTreeGroup3 = new THREE.Group();
+        pineTreeGroup3.add(pineTreeCrown[3]);
+        pineTreeGroup3.add(pineTreeTrunk[3]);
+        pineTreeGroup3.position.set(-1.0, -0.3, 1.67); //set position of the tree
+        pineTreeGroup3.rotation.set(1.8, 0.0, 0.5);//set rotation of the tree
 
 //-------------------------------------------------------------------------------------------------
-        //Create regular tree 1 
-        //tree crown
-        var regularTree1Crown = new THREE.Mesh( regularTreeCrownGeometry, crownMaterial );
-        regularTree1Crown.castShadow = true;
-        regularTree1Crown.receiveShadow = true;
-        regularTree1Crown.position.set(0.0, 0.4, 0.0);//position
-        //tree trunk
-        var regularTree1Trunk = new THREE.Mesh( regularTreeTrunkGeometry, trunkMaterial );
-        regularTree1Trunk.castShadow = true;
-        regularTree1Trunk.receiveShadow = true;
-        regularTree1Trunk.position.set(0.0, 0.0, 0.0);//position
+       //Initialize regular trees variables
+        var regularTreeCrownGeo = [];
+        var regularTreeCrownMat = [];
+        var regularTreeCrown = [];
+        var regularTrunkGeo = [];
+        var regularTrunkMat = [];
+        var regularTreeTrunk = [];
+        var regularTreeNumber = 10;
+        //Create the regular trees
+        for (var i = 0; i < regularTreeNumber; i++)
+        {
+        //regular tree crown       
+        regularTreeCrownGeo.push( regularTreeCrownGeometry );
+        regularTreeCrownMat.push( crownMaterial );
+        regularTreeCrown.push( new THREE.Mesh(regularTreeCrownGeo[i], regularTreeCrownMat[i]));
+        regularTreeCrown[i].position.set(0.0, 0.4, 0.0);
+        regularTreeCrown[i].castShadow = true;
+        regularTreeCrown[i].receiveShadow = true;
+        //regular tree trunk
+        regularTrunkGeo.push( regularTreeTrunkGeometry );
+        regularTrunkMat.push( trunkMaterial );
+        regularTreeTrunk.push( new THREE.Mesh(regularTrunkGeo[i], regularTrunkMat[i]));
+        regularTreeTrunk[i].position.set(0.0, 0.0, 0.0);
+        regularTreeTrunk[i].castShadow = true;
+        regularTreeTrunk[i].receiveShadow = true;
+        }
+
+        //Create regular tree 0 group
+        var regularTreeGroup = new THREE.Group();
+        regularTreeGroup.add(regularTreeCrown[0]);
+        regularTreeGroup.add(regularTreeTrunk[0]);
+        regularTreeGroup.position.set(-2.0, 0.7, -0.5); //set position of the tree
+        regularTreeGroup.rotation.set(0.0, -0.2, 1.2);//set rotation of the tree
 
         //Create regular tree 1 group
-        var regularTree1Group = new THREE.Group();
-        regularTree1Group.add(regularTree1Crown);
-        regularTree1Group.add(regularTree1Trunk);
-        //position
-        regularTree1Group.position.set(-2.0, 0.7, -0.5);
-        //rotate the buildings
-        regularTree1Group.rotation.set(0.0, -0.2, 1.2);
-
-        //Create regular tree 2 
-        //tree crown
-        var regularTree2Crown = new THREE.Mesh( regularTreeCrownGeometry, crownMaterial );
-        regularTree2Crown.castShadow = true;
-        regularTree2Crown.receiveShadow = true;
-        regularTree2Crown.position.set(0.0, 0.4, 0.0);//position
-        //tree trunk
-        var regularTree2Trunk = new THREE.Mesh( regularTreeTrunkGeometry, trunkMaterial );
-        regularTree2Trunk.castShadow = true;
-        regularTree2Trunk.receiveShadow = true;
-        regularTree2Trunk.position.set(0.0, 0.0, 0.0);//position
-
+        var regularTreeGroup1 = new THREE.Group();
+        regularTreeGroup1.add(regularTreeCrown[1]);
+        regularTreeGroup1.add(regularTreeTrunk[1]);
+        regularTreeGroup1.position.set(-1.5, 0.4, -1.5); //set position of the tree
+        regularTreeGroup1.rotation.set(-0.6, 0.0, 1.0);//set rotation of the tree
+        
         //Create regular tree 2 group
-        var regularTree2Group = new THREE.Group();
-        regularTree2Group.add(regularTree2Crown);
-        regularTree2Group.add(regularTree2Trunk);
-        //position
-        regularTree2Group.position.set(-1.5, 0.4, -1.5);
-        //rotate tree
-        regularTree2Group.rotation.set(-0.6, 0.0, 1.0);
-
-        //Create regular tree 3 
-        //tree crown
-         var regularTree3Crown = new THREE.Mesh( regularTreeCrownGeometry, crownMaterial );
-        regularTree3Crown.castShadow = true;
-        regularTree3Crown.receiveShadow = true;
-        regularTree3Crown.position.set(0.0, 0.4, 0.0);//position
-        //tree trunk
-        var regularTree3Trunk = new THREE.Mesh( regularTreeTrunkGeometry, trunkMaterial );
-        regularTree3Trunk.castShadow = true;
-        regularTree3Trunk.receiveShadow = true;
-        regularTree3Trunk.position.set(0.0, 0.0, 0.0);//position
+        var regularTreeGroup2 = new THREE.Group();
+        regularTreeGroup2.add(regularTreeCrown[2]);
+        regularTreeGroup2.add(regularTreeTrunk[2]);
+        regularTreeGroup2.position.set(-2.1, 0.5, 0.1); //set position of the tree
+        regularTreeGroup2.rotation.set(-0.1, 0.0, 1.0);//set rotation of the tree
 
         //Create regular tree 3 group
-        var regularTree3Group = new THREE.Group();
-        regularTree3Group.add(regularTree3Crown);
-        regularTree3Group.add(regularTree3Trunk);
-        //position
-        regularTree3Group.position.set(-2.1, 0.5, 0.1);
-        //rotate tree
-        regularTree3Group.rotation.set(-0.1, 0.0, 1.0);
-
-        //Create regular tree 4 
-        //tree crown
-        var regularTree4Crown = new THREE.Mesh( regularTreeCrownGeometry, crownMaterial );
-        regularTree4Crown.castShadow = true;
-        regularTree4Crown.receiveShadow = true;
-        regularTree4Crown.position.set(0.0, 0.4, 0.0);//position
-        //tree trunk
-        var regularTree4Trunk = new THREE.Mesh( regularTreeTrunkGeometry, trunkMaterial );
-        regularTree4Trunk.castShadow = true;
-        regularTree4Trunk.receiveShadow = true;
-        regularTree4Trunk.position.set(0.0, 0.0, 0.0);//position
-
-        //Create regular tree 4 group
-        var regularTree4Group = new THREE.Group();
-        regularTree4Group.add(regularTree4Crown);
-        regularTree4Group.add(regularTree4Trunk);
-        //position
-        regularTree4Group.position.set(-2.2, -0.1, -0.4);
-        //rotate tree
-        regularTree4Group.rotation.set(0.0, -0.1, 1.4);
+        var regularTreeGroup3 = new THREE.Group();
+        regularTreeGroup3.add(regularTreeCrown[3]);
+        regularTreeGroup3.add(regularTreeTrunk[3]);
+        regularTreeGroup3.position.set(-2.2, -0.1, -0.4); //set position of the tree
+        regularTreeGroup3.rotation.set(0.0, -0.1, 1.4);//set rotation of the tree
 
 
 //--------------------------------------------------------------------------------------------
-        //Create truffula tree 1
-        var truffulaTree1Crown = new THREE.Mesh( truffulaTreeCrownGeometry, truffulaTreeCrownPinkMaterial );
-        truffulaTree1Crown.castShadow = true;
-        truffulaTree1Crown.receiveShadow = true;
-        truffulaTree1Crown.position.set(1.0, 0.4, 0.0); //position
-        //truffulaTree1Crown.rotation.set(0.0, 0.0, 0.0);//rotation of the truffula tree crown
-        //tree trunk
-        var truffulaTree1Trunk = new THREE.Mesh( truffulaTreeTrunkGeometry, truffulaTreeTrunkMaterial );
-        truffulaTree1Trunk.castShadow = true;
-        truffulaTree1Trunk.receiveShadow = true;
-        truffulaTree1Trunk.position.set(1.0, 0.0, 0.0);//poition of the truffula tree trunk
+        //Initialize orange truffula trees variables
+        //truffula tree crown
+        var orangeTruffulaCrownGeometry = [];
+        var orangeTruffulaCrownMaterial = [];
+        var truffulaTreeOrangeCrown = [];
+        //truffula tree trunk
+        var orangeTruffulaTrunkGeometry = [];
+        var orangeTruffulaTrunkMaterial = [];
+        var truffulaTreeOrangeTrunk = [];
+        var orangeTruffulaNumber = 10;
+        //Create the truffula trees
+        for (var i = 0; i < orangeTruffulaNumber; i++)
+        {
+        //truffula tree crown       
+        orangeTruffulaCrownGeometry.push( truffulaTreeCrownGeometry );
+        orangeTruffulaCrownMaterial.push( truffulaTreeCrownOrangeMaterial );
+        truffulaTreeOrangeCrown.push( new THREE.Mesh(orangeTruffulaCrownGeometry[i], orangeTruffulaCrownMaterial[i]));
+        truffulaTreeOrangeCrown[i].position.set(0.0, 0.4, 0.0);
+        truffulaTreeOrangeCrown[i].castShadow = true;
+        truffulaTreeOrangeCrown[i].receiveShadow = true;
+        //truffula tree trunk
+        orangeTruffulaTrunkGeometry.push( truffulaTreeTrunkGeometry );
+        orangeTruffulaTrunkMaterial.push( truffulaTreeTrunkMaterial );
+        truffulaTreeOrangeTrunk.push( new THREE.Mesh(orangeTruffulaTrunkGeometry[i], orangeTruffulaTrunkMaterial[i]));
+        truffulaTreeOrangeTrunk[i].position.set(0.0, 0.0, 0.0);
+        truffulaTreeOrangeTrunk[i].castShadow = true;
+        truffulaTreeOrangeTrunk[i].receiveShadow = true;
+        }
 
-        //Create truffula tree 1 group
-        var truffulaTree1Group = new THREE.Group();
-        truffulaTree1Group.add(truffulaTree1Crown);
-        truffulaTree1Group.add(truffulaTree1Trunk);
-        //positin of the truffula tree 1 group
-        truffulaTree1Group.position.set(-2.4, -0.6, -0.8);
-        //rotation of the truffula tree 1 group
-        truffulaTree1Group.rotation.set(0.4, -0.3, 1.3);
+        //Create orange truffula tree group 0
+        var orangeTruffulaTreeGroup = new THREE.Group();
+        orangeTruffulaTreeGroup.add(truffulaTreeOrangeCrown[0]);
+        orangeTruffulaTreeGroup.add(truffulaTreeOrangeTrunk[0]);
+        orangeTruffulaTreeGroup.position.set(-1.5, 0.6, 1.5);
+        orangeTruffulaTreeGroup.rotation.set(1.3, 0.0, 0.7);
 
-        //Create truffula tree 2
-        var truffulaTree2Crown = new THREE.Mesh( truffulaTreeCrownGeometry, truffulaTreeCrownOrangeMaterial );
-        truffulaTree2Crown.castShadow = true;
-        truffulaTree2Crown.receiveShadow = true;
-        truffulaTree2Crown.position.set(1.0, 0.4, 0.0); //position
-        //truffulaTree1Crown.rotation.set(0.0, 0.0, 0.0);//rotation of the truffula tree crown
-        //tree trunk
-        var truffulaTree2Trunk = new THREE.Mesh( truffulaTreeTrunkGeometry, truffulaTreeTrunkMaterial );
-        truffulaTree2Trunk.castShadow = true;
-        truffulaTree2Trunk.receiveShadow = true;
-        truffulaTree2Trunk.position.set(1.0, 0.0, 0.0);//poition of the truffula tree trunk
+        //Create orange truffula tree group 1
+        var orangeTruffulaTreeGroup1 = new THREE.Group();
+        orangeTruffulaTreeGroup1.add(truffulaTreeOrangeCrown[1]);
+        orangeTruffulaTreeGroup1.add(truffulaTreeOrangeTrunk[1]);
+        orangeTruffulaTreeGroup1.position.set(-1.6, 0.2, 1.6);
+        orangeTruffulaTreeGroup1.rotation.set(1.3, 0.0, 0.7);
 
-        //Create truffula tree 2 group
-        var truffulaTree2Group = new THREE.Group();
-        truffulaTree2Group.add(truffulaTree2Crown);
-        truffulaTree2Group.add(truffulaTree2Trunk);
-        //positin of the truffula tree 1 group
-        truffulaTree2Group.position.set(-2.1, -0.6, -1.1);
-        //rotation of the truffula tree 1 group
-        truffulaTree2Group.rotation.set(0.0, -0.4, 1.4);
+        //Create orange truffula tree group 2
+        var orangeTruffulaTreeGroup2 = new THREE.Group();
+        orangeTruffulaTreeGroup2.add(truffulaTreeOrangeCrown[2]);
+        orangeTruffulaTreeGroup2.add(truffulaTreeOrangeTrunk[2]);
+        orangeTruffulaTreeGroup2.position.set(-1.9, 0.2, 1.1);
+        orangeTruffulaTreeGroup2.rotation.set(1.4, 0.0, 0.9);
+
+        //Create orange truffula tree group 3
+        var orangeTruffulaTreeGroup3 = new THREE.Group();
+        orangeTruffulaTreeGroup3.add(truffulaTreeOrangeCrown[3]);
+        orangeTruffulaTreeGroup3.add(truffulaTreeOrangeTrunk[3]);
+        orangeTruffulaTreeGroup3.position.set(1.55, 1.2, 1.0);
+        orangeTruffulaTreeGroup3.rotation.set(0.6, 0.0, -0.6);
+
+        //Create orange truffula tree group 4
+        var orangeTruffulaTreeGroup4 = new THREE.Group();
+        orangeTruffulaTreeGroup4.add(truffulaTreeOrangeCrown[4]);
+        orangeTruffulaTreeGroup4.add(truffulaTreeOrangeTrunk[4]);
+        orangeTruffulaTreeGroup4.position.set(-1.8, -0.2, -1.3);
+        orangeTruffulaTreeGroup4.rotation.set(-0.5, -0.4, 1.4);
+
+             
+//-----------------------------------------------------------------------------------
+        //Initialize pink truffula trees variables
+        //truffula tree crown
+        var pinkTruffulaCrownGeometry = [];
+        var pinkTruffulaCrownMaterial = [];
+        var truffulaTreePinkCrown = [];
+        //truffula tree trunk
+        var pinkTruffulaTrunkGeometry = [];
+        var pinkTruffulaTrunkMaterial = [];
+        var truffulaTreePinkTrunk = [];
+        var pinkTruffulaNumber = 10;
+        //Create the truffula trees
+        for (var i = 0; i < pinkTruffulaNumber; i++)
+        {
+        //truffula tree crown       
+        pinkTruffulaCrownGeometry.push( truffulaTreeCrownGeometry );
+        pinkTruffulaCrownMaterial.push( truffulaTreeCrownPinkMaterial );
+        truffulaTreePinkCrown.push( new THREE.Mesh(pinkTruffulaCrownGeometry[i], pinkTruffulaCrownMaterial[i]));
+        truffulaTreePinkCrown[i].position.set(0.0, 0.4, 0.0);
+        truffulaTreePinkCrown[i].castShadow = true;
+        truffulaTreePinkCrown[i].receiveShadow = true;
+        //truffula tree trunk
+        pinkTruffulaTrunkGeometry.push( truffulaTreeTrunkGeometry );
+        pinkTruffulaTrunkMaterial.push( truffulaTreeTrunkMaterial );
+        truffulaTreePinkTrunk.push( new THREE.Mesh(pinkTruffulaTrunkGeometry[i], pinkTruffulaTrunkMaterial[i]));
+        truffulaTreePinkTrunk[i].position.set(0.0, 0.0, 0.0);
+        truffulaTreePinkTrunk[i].castShadow = true;
+        truffulaTreePinkTrunk[i].receiveShadow = true;
+        }
+
+        //Create pink truffula tree group 0
+        var pinkTruffulaTreeGroup = new THREE.Group();
+        pinkTruffulaTreeGroup.add(truffulaTreePinkCrown[0]);
+        pinkTruffulaTreeGroup.add(truffulaTreePinkTrunk[0]);
+        pinkTruffulaTreeGroup.position.set(-1.9, 0.8, 0.6);
+        pinkTruffulaTreeGroup.rotation.set(0.8, 0.0, 0.9);
+
+        //Create pink truffula tree group 1
+        var pinkTruffulaTreeGroup1 = new THREE.Group();
+        pinkTruffulaTreeGroup1.add(truffulaTreePinkCrown[1]);
+        pinkTruffulaTreeGroup1.add(truffulaTreePinkTrunk[1]);
+        pinkTruffulaTreeGroup1.position.set(-2.0, 0.3, -0.8);
+        pinkTruffulaTreeGroup1.rotation.set(0.4, -0.3, 1.3);
+
+        //Create pink truffula tree group 2
+        var pinkTruffulaTreeGroup2 = new THREE.Group();
+        pinkTruffulaTreeGroup2.add(truffulaTreePinkCrown[2]);
+        pinkTruffulaTreeGroup2.add(truffulaTreePinkTrunk[2]);
+        pinkTruffulaTreeGroup2.position.set(-0.95, 0.5, -1.95);
+        pinkTruffulaTreeGroup2.rotation.set(-1.3, 0.0, 0.4);
+//----------------------------------------------------------------------
+        //Create a lake
+        //Lake Base
+        var lakeBase = new THREE.Mesh( lakeBaseGeometry, lakeBaseMaterial );
+        lakeBase.receiveShadow = true;
+        //lakeBase.castShadow = true;
+        lakeBase.position.set(0.0, 0.0, 0.0);//position
+        //Lake Top
+        var lakeWater = new THREE.Mesh(lakeWaterGeometry, lakeWaterMaterial);
+        lakeWater.receiveShadow = true;
+        lakeWater.position.set(0.0, 0.295, 0.0);//position
+
+        var lakeGroup = new THREE.Group();
+        lakeGroup.add(lakeBase);
+        lakeGroup.add(lakeWater);
+        lakeGroup.position.set(0.0, 1.6, 0.0);//position 1.6, 0.0, 0.0
 //----------------------------------------------------------------------
         //Create a lake
         //Lake Base
@@ -333,15 +391,22 @@ class NaturePlanet extends Planet
         
          //renderer.shadowMapEnabled = true;
         //then use the function below to add them to the planet.
-        this.addObjectToGroup(pineTree1Group);
-        this.addObjectToGroup(pineTree2Group);
-        this.addObjectToGroup(pineTree3Group);
-        this.addObjectToGroup(regularTree1Group);
-        this.addObjectToGroup(regularTree2Group);
-        this.addObjectToGroup(regularTree3Group);
-        this.addObjectToGroup(regularTree4Group);
-        this.addObjectToGroup(truffulaTree1Group);
-        this.addObjectToGroup(truffulaTree2Group);
+        this.addObjectToGroup(pineTreeGroup);
+        this.addObjectToGroup(pineTreeGroup1);
+        this.addObjectToGroup(pineTreeGroup2);
+        this.addObjectToGroup(pineTreeGroup3);
+        this.addObjectToGroup(regularTreeGroup);
+        this.addObjectToGroup(regularTreeGroup1);
+        this.addObjectToGroup(regularTreeGroup2);
+        this.addObjectToGroup(regularTreeGroup3);
+        this.addObjectToGroup(orangeTruffulaTreeGroup);
+        this.addObjectToGroup(orangeTruffulaTreeGroup1);
+        this.addObjectToGroup(orangeTruffulaTreeGroup2);
+        this.addObjectToGroup(orangeTruffulaTreeGroup3);
+        this.addObjectToGroup(orangeTruffulaTreeGroup4);
+        this.addObjectToGroup(pinkTruffulaTreeGroup);
+        this.addObjectToGroup(pinkTruffulaTreeGroup1);
+        this.addObjectToGroup(pinkTruffulaTreeGroup2);
         this.addObjectToGroup(lakeGroup);
         this.addObjectToGroup(mountainGroup);
     }
