@@ -1,52 +1,69 @@
 
 /**
- * Utility class used to load glTF models into the scene.
+ * Utility class used to load OBJ models into the scene.
  */
 class ModelLoader
 {
     /**
-     * Loads a model.
-     * @param {string} modelFolder - This is the name of the folder where the model can be found.
-     *                               (Assumes model is located in 'res/models/').
-     * @param {string} modelFile - This is the name of the model to be loaded 
-     *                             (must include the '.gltf' extension).
+     * Constructor for the model loader.
+     * @param {string} filePath - This is the file path to the location where 
+     *                            models are stored.
      */
-    constructor(modelFolder, modelFile)
+    constructor(filePath)
     {
-        //[model] Will br used to contain the model.
-        let model = new THREE.Object3D();
-        
-        //Load the glTF model
+        //INITIALISE MEMBER VARIABLES...
 
-        new THREE.GLTFLoader()
-        .setPath('res/models/' + modelFolder + '/')
-        .load
-        (
-            //model URL
-            modelFile,
-            //Called when the resource is loaded
-            function (gltf) 
-            {
-                //Add the model to the pre-defined object.
-                model.add(gltf.scene);
-            },
-            //Called while loading is progressing
-            function (xhr) 
-            {
-                console.log(( xhr.loaded / xhr.total * 100 ) + '% loaded');
-            },
-            //Called if errors occur when loading the model.
-            function (error) 
-            {
-                console.log('An error has occured when loading model: ' + modelFile);
-            }
-        );
+        //[M_LOADER] This is the tool used to load models.
+        const M_LOADER = new THREE.OBJLoader();
+        M_LOADER.setPath(filePath);
+        //[M_MAT_LOADER] This is the tool used to load materials.
+        const M_MAT_LOADER = new THREE.MTLLoader();
+        M_MAT_LOADER.setPath(filePath);
+        
+        //PUBLIC FUNCTIONS...
 
         /**
-         * @return Returns a THREE.Object3D object of the model for use in your program.
+         * Loads OBJ models.
+         * @param {string} fileName - This is the name of the file to be loaded.
          */
-        this.getModelInstance = function()
+        this.load = function(fileName)
         {
+            //[model] Will hold the model being loaded.
+            var model = new THREE.Object3D();
+
+            //Load the material.
+            M_MAT_LOADER.load
+            (
+                fileName + '/' + fileName + '.mtl',
+                //Called when the material has loaded.
+                function(materials)
+                {
+                    //Preload the materials and pass them to the object loader.
+                    materials.preload();
+                    M_LOADER.setMaterials(materials);
+                }
+            );
+
+            //Load the model.
+            M_LOADER.load(
+                fileName + '/' + fileName + '.obj',
+                //Called when the model has loaded.
+                function(object)
+                {
+                    model.add(object);
+                },
+                //Called while loading is in progress.
+                function (xhr) 
+                {
+                    console.log(( xhr.loaded / xhr.total * 100 ) + '% loaded');
+                },
+                //Called if errors occur when loading the model.
+                function (error) 
+                {
+                    console.log('An error has occured when loading model: ' + fileName);
+                }
+            );
+
             return model;
         }
     }

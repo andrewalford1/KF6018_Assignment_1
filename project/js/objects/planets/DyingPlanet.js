@@ -6,6 +6,7 @@ class DyingPlanet extends Planet
 {
     /**
      * Create the dying planet.
+     * @param {THREE.Object3D} model - This is the model to be used for the base planet.
      * @param {number} rotationSpeed - How quickly the planet rotates.
      * @param {Vector3} initialPosition - The initial position of the planet.
      * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
@@ -13,14 +14,13 @@ class DyingPlanet extends Planet
      * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
      * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
+    constructor(model, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
     {
         //Construct the superclass.
         super(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise);
 
-        //Load the planet's model.
-        this.addObjectToGroup(new ModelLoader('dying_planet', 'dying_planet.gltf').getModelInstance());
-
+        //Add the planet's base model.
+        this.addObjectToGroup(model);
 
         //Make the planet bigger.
         this.getObject().scale.set(3, 3, 3);
