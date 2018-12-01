@@ -2,7 +2,7 @@
 let scene = new THREE.Scene();
 
 //Add a skybox to the scene.
-TEXTURE_LOADER.loadSkybox('skybox', '.jpg', scene);
+TEXTURE_LOADER.loadSkybox('skybox', '.JPEG', scene);
 
 // Ambient light
 let lightAmbient = new THREE.AmbientLight(colours.WHITE, 0.2); // soft white light

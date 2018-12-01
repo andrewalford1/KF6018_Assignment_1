@@ -29,16 +29,16 @@ class TextureLoader
         {
             //[textures] Holds the file locations of the textures
             //to be loaded.
-            let textures = 
-            [
-                fileName + '/' + fileName + '_px' + fileType,
-                fileName + '/' + fileName + '_nx' + fileType,
-                fileName + '/' + fileName + '_py' + fileType,
-                fileName + '/' + fileName + '_ny' + fileType,
-                fileName + '/' + fileName + '_pz' + fileType,
-                fileName + '/' + fileName + '_nz' + fileType
-            ];
-
+             let textures = 
+             [
+                 fileName + '/' + fileName + '_px' + fileType,
+                 fileName + '/' + fileName + '_nx' + fileType,
+                 fileName + '/' + fileName + '_py' + fileType,
+                 fileName + '/' + fileName + '_ny' + fileType,
+                 fileName + '/' + fileName + '_pz' + fileType,
+                 fileName + '/' + fileName + '_nz' + fileType
+             ];
+            
             //Load the skybox.
             M_SKYBOX_LOADER.load(
                 textures,
