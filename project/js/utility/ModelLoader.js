@@ -1,6 +1,7 @@
 
 /**
  * Utility class used to load OBJ models into the scene.
+ * @author Andrew Alford (w16006135)
  */
 class ModelLoader
 {
@@ -20,7 +21,7 @@ class ModelLoader
         const M_MAT_LOADER = new THREE.MTLLoader();
         M_MAT_LOADER.setPath(filePath);
         
-        //PUBLIC FUNCTIONS...
+        //PUBLIC METHODS...
 
         /**
          * Loads OBJ models.
@@ -41,6 +42,16 @@ class ModelLoader
                     //Preload the materials and pass them to the object loader.
                     materials.preload();
                     M_LOADER.setMaterials(materials);
+                },
+                //Called while loading is in progress.
+                function (xhr) 
+                {
+                    console.log(fileName + ' materials: ' + ( xhr.loaded / xhr.total * 100 ) + '% loaded');
+                },
+                //Called if errors occur when loading the model.
+                function (error) 
+                {
+                    console.log('An error has occured when loading model: ' + fileName + ' materials.');
                 }
             );
 
@@ -55,12 +66,12 @@ class ModelLoader
                 //Called while loading is in progress.
                 function (xhr) 
                 {
-                    console.log(( xhr.loaded / xhr.total * 100 ) + '% loaded');
+                    console.log(fileName + ' model: ' + ( xhr.loaded / xhr.total * 100 ) + '% loaded');
                 },
                 //Called if errors occur when loading the model.
                 function (error) 
                 {
-                    console.log('An error has occured when loading model: ' + fileName);
+                    console.log('An error has occured when loading model: ' + fileName + ' model.');
                 }
             );
 

@@ -1,6 +1,9 @@
 //MAIN CODE...
 let scene = new THREE.Scene();
 
+//Add a skybox to the scene.
+TEXTURE_LOADER.loadSkybox('skybox', '.jpg', scene);
+
 // Ambient light
 let lightAmbient = new THREE.AmbientLight(colours.WHITE, 0.2); // soft white light
 scene.add(lightAmbient);
@@ -67,20 +70,6 @@ window.addEventListener('resize', function()
 let stats = new Stats();
 stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild( stats.dom );
-
-//SET UP THE SKYBOX FOR THE SCENE...
-let skyBox = new SkyBox(
-    scene, 
-    'res/skybox/',
-    [
-        'stars.png',
-        'stars.png',
-        'stars.png',
-        'stars.png',
-        'stars.png',
-        'stars.png'
-    ]
-);
 
 //ADD OBJECTS TO THE SCENE...
 //Add updatable objects to the scene.
