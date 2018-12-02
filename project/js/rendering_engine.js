@@ -16,54 +16,14 @@ pointLight.shadow.mapSize.width = 1024;
 pointLight.shadow.mapSize.height = 1024;
 scene.add(pointLight);
 
-//Perspective projection parameters.
-let camera = new THREE.PerspectiveCamera(
-    75, window.innerWidth / window.innerHeight, 0.1, 1000
-);
+//[camera] This is the camera to view the scene through.
+let camera = new Camera(new THREE.Vector3(0, 0, 100), false);
 
-//[controls] Used to orbit around the scene (just for debugging).
-let controls = new THREE.OrbitControls(camera);
-
-//Set the initial position of the camera.
-camera.position.set(0, 0, 100);
-controls.update();
-
-let renderer = new THREE.WebGLRenderer();
-
-//Size of the 2D projection.
-renderer.setSize(window.innerWidth, window.innerHeight);
-
-//Set the background colour.
-renderer.setClearColor(colours.BLACK);
-
-//shadows.
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-//[VR_ENABLED] If true then the renderer will render the scene in VR.
-const VR_ENABLED = false;
-
-//[vr_effect] Will contain the virtual reality effect.
-let vr_effect;
-
-//Set up the renderer for VR (if it is enabled).
-if(VR_ENABLED)
-{
-    vr_effect = new THREE.StereoEffect(renderer);
-    vr_effect.setSize(window.innerWidth, window.innerHeight);
-}
-
-//Connect the renderer to the canvas.
-document.body.appendChild(renderer.domElement);
-
-//Event listener to allow the scene to resize when the widn
+//EVENT LISTENERS...
+//Event listener to allow the scene to resize when the window is resized.
 window.addEventListener('resize', function()
 {
-   const WIDTH = window.innerWidth;
-   const HEIGHT = window.innerHeight;
-   renderer.setSize(WIDTH, HEIGHT);
-   camera.aspect = WIDTH / HEIGHT;
-   camera.updateProjectionMatrix();
+   camera.setViewPort(window.innerWidth, window.innerHeight);
 });
 
 //STATS HERE FOR DEBUGGING, REMOVE FROM FINAL PROJECT!
@@ -80,60 +40,32 @@ for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
 
 //[TIMER] used for timing the program.
 const TIMER = new Timer();
+//[frameTime] Contains the time in milliseconds it took to compute the
+//previously rendered frame.
+let frameTime = TIMER.getFrameTimeMs();
 
 //ANIMATION FUNCTION...
 function animate()
 {
+    //Start recording stats.
     stats.begin();
 
-    controls.update();
+    //Update timing variables.
+    TIMER.update();
+    frameTime = TIMER.getFrameTimeMs();
+
+    //Update the camera.
+    camera.update(scene, frameTime);
 
     //Animation code...
     //Update all the updateable objects on the canvas.
     for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
     {
-        UPDATEABLE_OBJECTS[i].update(TIMER.getFrameTimeMs());
-    }
-//     //TEMP CODE - checks if the camera is looking at a specific object. (could be used for lens-flare).
-//     camera.updateMatrix();
-//     camera.updateMatrixWorld();
-//     var frustum = new THREE.Frustum();
-//     frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
-
-//     // Your 3d point to check
-//     var pos = UPDATEABLE_OBJECTS[5].getPosition();
-//     if (frustum.containsPoint(pos)) {
-//         // Do something with the position...
-//         htmlAccessor.OBJECT_INFORMATION.style.visibility = 'visible';
-//         htmlAccessor.OBJECT_INFORMATION.textContent = UPDATEABLE_OBJECTS[5].getDescription();
-//     }
-//     else
-//     {
-//         htmlAccessor.OBJECT_INFORMATION.style.visibility = 'hidden';
-//     }
-
-    //END OF TEMP CODE.
-
-    //Render the scene.
-    requestAnimationFrame(animate);
-
-    //If virtual reality is enabled.
-    if(VR_ENABLED)
-    {
-        //Render the scene in virtual reality.
-        vr_effect.render( scene, camera );
-    }
-    else
-    {
-        //Render the scene as normal.
-        renderer.render(scene, camera);
+        UPDATEABLE_OBJECTS[i].update(frameTime);
     }
 
     //Stop recording stats.
     stats.end();
-
-    //Update timing variables.
-    TIMER.update();
 }
 
 //Run the animation loop.
