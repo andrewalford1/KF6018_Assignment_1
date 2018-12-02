@@ -11,8 +11,9 @@ class Camera
      *                                          of the camera.
      * @param {boolean} vrEnabled - If true then the scene should be rendered
      *                              in VR.
+     * @param {number} cameraSpeed - How fast the camera can move (Units Per Second).
      */
-    constructor(initialPosition, vrEnabled)
+    constructor(initialPosition, vrEnabled, cameraSpeed)
     {
         //INITIALISE MEMBER VARIABLES...
 
@@ -42,6 +43,9 @@ class Camera
         //[VR_EFFECT] Will contain the virtual reality effect.
         const VR_EFFECT = new THREE.StereoEffect(M_RENDERER);
         VR_EFFECT.setSize(window.innerWidth, window.innerHeight);
+
+        //[speed] How fast the camera can move (Units Per Second).
+        let speed = cameraSpeed;
 
         //PUBLIC METHODS...
 
@@ -94,13 +98,14 @@ class Camera
             M_CAMERA.updateMatrix();
             M_CAMERA.updateMatrixWorld();
 
+            //[frustum] Contains everything that the camera can see.
             let frustum = new THREE.Frustum();
             frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(
                 M_CAMERA.projectionMatrix,
                 M_CAMERA.matrixWorldInverse)
             );
 
-            //Check the position of the object.
+            //Check the position of the object is within the camera's frustum.
             if(frustum.containsPoint(object.getPosition()))
             {
                 return true;
@@ -124,6 +129,40 @@ class Camera
             M_CAMERA.aspect = width/height;
             //Update the camera projection matrix.
             M_CAMERA.updateProjectionMatrix();
+        }
+
+        let m_elaspedTimeMs;
+        let distance;
+        let m_timeToReach;
+        let firstTimeCalled = true;
+
+        this.moveTo = function(position, frameTimeMs)
+        {
+            if(!M_CAMERA.position.equals(position))
+            {
+                if(firstTimeCalled)
+                {
+                    m_elaspedTimeMs = 0;
+                    distance = M_CAMERA.position.distanceTo(position);
+                    m_timeToReach = distance / speed;
+
+                    firstTimeCalled = false;
+                }
+                //Increment the elasped time.
+                m_elaspedTimeMs += frameTimeMs;
+
+                //Check if the new position has been reached.
+                if(m_elaspedTimeMs > m_timeToReach)
+                {
+                    m_elaspedTimeMs = 0;
+                }
+
+                let increment = 1 / (m_timeToReach / m_elaspedTimeMs);
+
+                //console.log(increment);
+
+                M_CAMERA.position.lerp(position, increment);
+            }
         }
     }
 }

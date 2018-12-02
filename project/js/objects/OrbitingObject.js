@@ -93,7 +93,7 @@ class OrbitingObject extends UpdateableObject
 
             //[increment] How far to increment the planet along it's orbiting path.
             let increment = (Math.PI * 2) / (m_fullOrbitMs / m_elaspedTimeMs);
-            
+
             if(m_orbitsClockwise)
             {
                 increment *= -1;

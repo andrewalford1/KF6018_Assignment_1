@@ -17,7 +17,7 @@ pointLight.shadow.mapSize.height = 1024;
 scene.add(pointLight);
 
 //[camera] This is the camera to view the scene through.
-let camera = new Camera(new THREE.Vector3(0, 0, 100), false);
+let camera = new Camera(new THREE.Vector3(0, 0, 100), false, 0.001);
 
 //EVENT LISTENERS...
 //Event listener to allow the scene to resize when the window is resized.
@@ -56,6 +56,7 @@ function animate()
 
     //Update the camera.
     camera.update(scene, frameTime);
+    camera.moveTo(UPDATEABLE_OBJECTS[0].getPosition(), frameTime);
 
     //Animation code...
     //Update all the updateable objects on the canvas.
