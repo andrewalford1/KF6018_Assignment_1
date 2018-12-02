@@ -126,3 +126,4 @@ class Camera
             M_CAMERA.updateProjectionMatrix();
         }
     }
+}
