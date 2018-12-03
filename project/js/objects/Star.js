@@ -17,6 +17,9 @@ class Star extends UpdateableObject
         //Construct the superclass.
         super(initialPosition);
 
+        //Set the name for this planet.
+        this.getObject().name = 'Star';        
+
         //Create the planet's surface.
         const M_GEOMETRY = new THREE.OctahedronGeometry(radius, smoothness);
         const M_MATERIAL = new THREE.MeshStandardMaterial( {color: colours.YELLOW, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} );

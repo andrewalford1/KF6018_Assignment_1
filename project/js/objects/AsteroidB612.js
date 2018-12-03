@@ -14,8 +14,10 @@ class AsteroidB612 extends OrbitingObject
     constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
         //Construct the superclass.
-        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs,
-        "A description of AsteroidB612.");
+        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
+
+        //Set the name for this planet.
+        this.getObject().name = 'Asteroid: B612';
 
         //Create the asteroids surface.
         var asteroidGeometry = new THREE.OctahedronGeometry(0.8, 1);  

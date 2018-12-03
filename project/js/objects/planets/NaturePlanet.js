@@ -18,6 +18,9 @@ class NaturePlanet extends Planet
         //Construct the superclass.
         super(rotationSpeed, initialPosition, orbitSpeed, AssignmentObject, fullOrbitMs);
 
+        //Set the name for this planet.
+        this.getObject().name = 'Nature Planet';
+
         //Add the planets base.
         this.addObjectToGroup(this.createGenericPlanetBase(2, 2, colours.GREEN));
 

@@ -19,6 +19,9 @@ class DyingPlanet extends Planet
         //Construct the superclass.
         super(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise);
 
+        //Set the name for this planet.
+        this.getObject().name = 'Dying Planet';
+
         //Add the planet's base model.
         this.addObjectToGroup(model);
 
