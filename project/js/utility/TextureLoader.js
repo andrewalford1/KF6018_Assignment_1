@@ -17,13 +17,20 @@ class TextureLoader
         const M_SKYBOX_LOADER = new THREE.CubeTextureLoader();
         M_SKYBOX_LOADER.setPath(filePath);
 
+        //[M_TEXTURE_LOADER] Loader to load a texture for an object.
+        const M_TEXTURE_LOADER = new THREE.TextureLoader();
+        M_TEXTURE_LOADER.setPath(filePath);
+
         //PUBLIC METHODS...
 
         /**
          * Loads a skybox for the scene.
-         * @param {string} fileName - This is the name of the file to be loaded.
-         * @param {string} fileType - This is the type of file to be loaded (i.e. .jpg/.png/etc.).
-         * @param {THREE.Scene} scene - This is the scene that will use the skybox.
+         * @param {string} fileName - This is the name of the file to be 
+         *                            loaded.
+         * @param {string} fileType - This is the type of file to be 
+         *                            loaded (i.e. .jpg/.png/etc.).
+         * @param {THREE.Scene} scene - This is the scene that will use the
+         *                              skybox.
          */
         this.loadSkybox = function(fileName, fileType, scene)
         {
@@ -52,12 +59,49 @@ class TextureLoader
                 {
                     console.log(fileName + ' texture: ' + ( xhr.loaded / xhr.total * 100 ) + '% loaded');
                 },
-                //Called if errors occur when loading the model.
+                //Called if errors occur when loading the texture.
                 function (error) 
                 {
                     console.log('An error has occured when loading model: ' + fileName + ' texture.');
                 }
             );
+        }
+
+        /**
+         * Loads a texture.
+         * @param {string} fileName - This is the name of the file to be 
+         *                            loaded.
+         * @param {string} fileType - This is the type of file to be loaded.
+         *                            (i.e. .jpg/.png/etc.).
+         * @return Returns the texture as a THREE.MeshBasicMaterial().
+         */
+        this.loadTexture = function(fileName, fileType)
+        {
+            //[material] This will be the material to store the texture.
+            let material;
+
+            //Load the texture.
+            M_TEXTURE_LOADER.load(
+                fileName + '/' + fileName + fileType,
+                function(texture)
+                {
+                    material = new THREE.MeshBasicMaterial(
+                    {map: texture}
+                    );
+                },
+                //Called while loading is in progress.
+                function (xhr) 
+                {
+                    console.log(fileName + ' texture: ' + ( xhr.loaded / xhr.total * 100 ) + '% loaded');
+                },
+                //Called if errors occur when loading the texture.
+                function (error) 
+                {
+                    console.log('An error has occured when loading model: ' + fileName + ' texture.');
+                }
+            );
+
+            return material;
         }
     }
 }
