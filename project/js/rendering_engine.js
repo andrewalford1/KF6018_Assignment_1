@@ -56,7 +56,6 @@ function animate()
 
     //Update the camera.
     camera.update(scene, frameTime);
-    camera.moveTo(UPDATEABLE_OBJECTS[0].getPosition(), frameTime);
 
     //Animation code...
     //Update all the updateable objects on the canvas.
