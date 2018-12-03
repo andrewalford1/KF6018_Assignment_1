@@ -16,7 +16,7 @@ class AsteroidB612 extends OrbitingObject
         //Construct the superclass.
         super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
 
-        //Set the name for this planet.
+        //Set the name for this asteroid.
         this.getObject().name = 'Asteroid: B612';
 
         //Create the asteroids surface.
