@@ -131,6 +131,14 @@ class Camera
             M_CAMERA.updateProjectionMatrix();
         }
 
+        /**
+         * @return Returns an instance of the camera.
+         */
+        this.getInstance = function()
+        {
+            return M_CAMERA;
+        }
+
         let m_elaspedTimeMs;
         let distance;
         let m_timeToReach;

@@ -17,13 +17,13 @@ pointLight.shadow.mapSize.height = 1024;
 scene.add(pointLight);
 
 //[camera] This is the camera to view the scene through.
-let camera = new Camera(new THREE.Vector3(0, 0, 100), false, 0.001);
+//let camera = new Camera(new THREE.Vector3(0, 0, 100), false, 0.001);
 
 //EVENT LISTENERS...
 //Event listener to allow the scene to resize when the window is resized.
 window.addEventListener('resize', function()
 {
-   camera.setViewPort(window.innerWidth, window.innerHeight);
+   UPDATEABLE_OBJECTS[6].getCamera().setViewPort(window.innerWidth, window.innerHeight);
 });
 
 //STATS HERE FOR DEBUGGING, REMOVE FROM FINAL PROJECT!
@@ -55,7 +55,7 @@ function animate()
     frameTime = TIMER.getFrameTimeMs();
 
     //Update the camera.
-    camera.update(scene, frameTime);
+    //camera.update(scene, frameTime);
 
     //Animation code...
     //Update all the updateable objects on the canvas.
@@ -63,6 +63,8 @@ function animate()
     {
         UPDATEABLE_OBJECTS[i].update(frameTime);
     }
+
+    UPDATEABLE_OBJECTS[6].getCamera().update(scene, frameTime);
 
     //Stop recording stats.
     stats.end();
