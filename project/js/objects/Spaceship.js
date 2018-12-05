@@ -22,16 +22,14 @@ class Spaceship extends UpdateableObject
         //[moving] Whilst true the spaceship will be making its
         //way towards its current destination.
         let moving = false;
-
+        //[m_speed] How fast the ship is moving (World Units per Second).
+        let m_speed = 100;
         //[m_destination] Will store the destination that 
         //the spaceship is moving towards.
         let m_destination;
         //[m_distanceToDestination] Will store the distance
         //between the spaceship and its destination.
         let m_distanceToDestination;
-        //[m_speed] How fast the spaceship is travelling 
-        //(world units per second).
-        let m_speed = 10;
         //[m_timeToReach] How long it will take the ship to reach
         //a specified destination.
         let m_timeToReach = 0;
@@ -41,6 +39,14 @@ class Spaceship extends UpdateableObject
          //[m_distanceVector] Vector containing information on
          //how far the ship is away from its set destination.
         let m_distanceVector = new THREE.Vector3(0, 0, 0);
+
+        //[m_paused] How long the ship should stay stationary
+        //between movements.
+        let m_paused = 100;
+
+        //[m_destinationQueue] The queue of destinations for the 
+        //ship to travel to.
+        let m_destinationQueue = [];
 
         //CREATE SHIP COMPONENTS...
 
@@ -71,6 +77,13 @@ class Spaceship extends UpdateableObject
 
         //PUBLIC METHODS...
 
+        /**
+         * Plots a course for the spaceship to travel.
+         * (If the ship is already on a course, then this one will 
+         * be added to a queue).
+         * @param {THREE.Vector3} destination - This is where the ship is 
+         *                                      heading to.
+         */
         this.plotCourse = function(destination)
         {
             //Check that the ship is not already on a course.
@@ -93,10 +106,57 @@ class Spaceship extends UpdateableObject
                 //Start moving the spaceship.
                 moving = true;
             }
+            else
+            {
+                //If the ship is currently moving, add the new course to a queue.
+                m_destinationQueue.unshift(destination);
+                console.log(m_destinationQueue);
+            }
+        }
+
+        let elaspedWaitTime = 0;
+        let waitTime = 1000
+
+        this.shouldMove = function(frameTimeMs)
+        {
+            //If the ship is not moving, but has a destination to go to.
+            if(!moving && (m_destinationQueue.length != 0))
+            {
+                elaspedWaitTime += frameTimeMs;
+
+                //console.log('Waiting ' + elaspedWaitTime + ' out of ' + waitTime);
+
+                //Check if the ship has waited long enough.
+                if(elaspedWaitTime >= waitTime)
+                {
+                    //Reset the wait time.
+                    elaspedWaitTime = 0;
+
+                    console.log('waiting over');
+
+                    this.plotCourse(m_destinationQueue.pop());
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
+            }
         }
 
         this.move = function(frameTimeMs)
         {
+            //Don't bother doing anything if the ship shouldn't be moving.
+            if(!moving)
+            {
+                return;
+            }
+
             //Don't move the spaceship if there 
             //is no destination to move towards.
             if(m_destination == null)
@@ -113,6 +173,7 @@ class Spaceship extends UpdateableObject
                     moving = false;
                     m_destination = null;
                     console.log('Arrived at destination');
+                    console.log(this.getPosition());
 
                     //Reset timing variables.
                     m_elaspedMovementTime = 0;
@@ -123,8 +184,9 @@ class Spaceship extends UpdateableObject
                     //Incrmeent the elasped time.
                     m_elaspedMovementTime += frameTimeMs;                   
 
-                    if(m_elaspedMovementTime < m_timeToReach)
+                    if(m_elaspedMovementTime <= m_timeToReach)
                     {
+                        console.log('in movement code');
                         //[increment] How far to move the ship along its set path.
                         let increment = 1 - (Math.round((1 / (m_timeToReach / m_elaspedMovementTime)) * 10000) / 10000);
 
@@ -149,6 +211,8 @@ class Spaceship extends UpdateableObject
                             //Move the ship as normal.  
                             this.setPosition(newPosition);    
                         }
+
+                        console.log(this.getPosition());
                     }
                 }  
             }
@@ -166,7 +230,7 @@ class Spaceship extends UpdateableObject
             if(this.isActive())
             {
                 //Move the ship if it should be moved.
-                if(moving)
+                if(this.shouldMove(frameTimeMs))
                 {
                     this.move(frameTimeMs);
                 }

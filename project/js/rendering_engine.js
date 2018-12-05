@@ -47,6 +47,8 @@ const TIMER = new Timer();
 //previously rendered frame.
 let frameTime = TIMER.getFrameTimeMs();
 
+UPDATEABLE_OBJECTS[6].plotCourse(new THREE.Vector3(450, 0, 0));
+UPDATEABLE_OBJECTS[6].plotCourse(new THREE.Vector3(300, 0, 0));
 UPDATEABLE_OBJECTS[6].plotCourse(new THREE.Vector3(150, 0, 0));
 
 //ANIMATION FUNCTION...
