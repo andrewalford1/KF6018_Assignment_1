@@ -18,5 +18,6 @@ const colours = {
     EARTH:      0x5A4D41,
     BROWN:      0x25201B,
     PINK:       0xFF3361,
-    ORANGE:     0xFF963A
+    ORANGE:     0xFF963A,
+    SILVER:     0xCCCCCC
 };

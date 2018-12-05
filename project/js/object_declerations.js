@@ -19,7 +19,7 @@ const ASTEROID_B612 = new AsteroidB612(
 );
 
 //Spaceship:
-const SPACESHIP = new Spaceship(new THREE.Vector3(250, 0, 0));
+const SPACESHIP = new Spaceship(new THREE.Vector3(500, 0, 0));
 
 //GROUP OBJECTS TOGETHER...
 
