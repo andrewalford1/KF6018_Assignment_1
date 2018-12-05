@@ -20,6 +20,9 @@ class CityPlanet extends Planet
 
         //Set the name for this planet.
         this.getObject().name = 'City Planet';
+
+        //Scale the planet.
+        this.getObject().scale.set(4, 4, 4); 
         
         //Add the planets base.
         this.addObjectToGroup(this.createGenericPlanetBase(2, 2, colours.GREY));

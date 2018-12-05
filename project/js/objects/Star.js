@@ -1,6 +1,7 @@
 /**
  * Class representing a star.
  * @extends UpdateableObject
+ * @author Andrew Alford (w16006135)
  */
 class Star extends UpdateableObject
 {
@@ -18,7 +19,10 @@ class Star extends UpdateableObject
         super(initialPosition);
 
         //Set the name for this planet.
-        this.getObject().name = 'Star';        
+        this.getObject().name = 'Star';       
+
+        //Scale the star.
+        this.getObject().scale.set(3, 3, 3); 
 
         //Create the planet's surface.
         const M_GEOMETRY = new THREE.OctahedronGeometry(radius, smoothness);

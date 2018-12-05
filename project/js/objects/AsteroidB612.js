@@ -19,6 +19,9 @@ class AsteroidB612 extends OrbitingObject
         //Set the name for this asteroid.
         this.getObject().name = 'Asteroid: B612';
 
+        //Scale the asteroid.
+        this.getObject().scale.set(2, 2, 2); 
+
         //Create the asteroids surface.
         var asteroidGeometry = new THREE.OctahedronGeometry(0.8, 1);  
         var surfaceMaterial = new THREE.MeshStandardMaterial( 

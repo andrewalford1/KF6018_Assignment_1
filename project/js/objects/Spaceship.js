@@ -31,7 +31,7 @@ class Spaceship extends UpdateableObject
         let m_distanceToDestination;
         //[m_speed] How fast the spaceship is travelling 
         //(world units per second).
-        let m_speed = 100;
+        let m_speed = 10;
         //[m_timeToReach] How long it will take the ship to reach
         //a specified destination.
         let m_timeToReach = 0;
@@ -65,6 +65,9 @@ class Spaceship extends UpdateableObject
         //ADD COMPONENTS TO THE GROUP...
         this.addObjectToGroup(DOME);
         this.addObjectToGroup(BASE);
+
+        //Scale the spaceship.
+        this.getObject().scale.set(0.5, 0.5, 0.5);   
 
         //PUBLIC METHODS...
 
@@ -125,27 +128,26 @@ class Spaceship extends UpdateableObject
                         //[increment] How far to move the ship along its set path.
                         let increment = 1 - (Math.round((1 / (m_timeToReach / m_elaspedMovementTime)) * 10000) / 10000);
 
-                        //If the increment is very small, just clamp the ships
-                        //position to the destination (saves on computation).
-                        if(increment < 0.09)
+                        //[movementVector] The vector that will be applied to the ships position
+                        //in order to move it.
+                        let movementVector = m_distanceVector.clone().multiply(new THREE.Vector3(
+                            increment,
+                            increment,
+                            increment
+                        ));
+
+                        //[newPosition] Calculate the new position for the ship.
+                        let newPosition = this.getPosition().clone().lerp(movementVector, increment);
+
+                        //If the ship has passed its destination, clamp it.
+                        if(newPosition.x < m_destination.x)
                         {
-                            this.setPosition(m_destination);
+                           this.setPosition(m_destination);     
                         }
                         else
                         {
-                            //[movementVector] The vector that will be applied to the ships position
-                            //in order to move it.
-                            let movementVector = m_distanceVector.clone().multiply(new THREE.Vector3(
-                                increment,
-                                increment,
-                                increment
-                            ));
-
-                            console.log(increment);
-                            //console.log(movementVector);
-                        
-                            //Move the ship.
-                            this.getPosition().lerp(movementVector, increment);      
+                            //Move the ship as normal.  
+                            this.setPosition(newPosition);    
                         }
                     }
                 }  

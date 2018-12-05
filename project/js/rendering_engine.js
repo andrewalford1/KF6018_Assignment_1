@@ -17,7 +17,8 @@ pointLight.shadow.mapSize.height = 1024;
 scene.add(pointLight);
 
 //[camera] This is the camera to view the scene through.
-let camera = new Camera(new THREE.Vector3(0, 2.5, 0), false, 0.001);
+//let camera = new Camera(new THREE.Vector3(0, 500, 0), false, 0.001); top down view.
+let camera = new Camera(new THREE.Vector3(0, 2, 0), false, 0.001);
 //Add the camera to the spaceship.
 UPDATEABLE_OBJECTS[6].addObjectToGroup(camera.getInstance());
 
@@ -46,7 +47,7 @@ const TIMER = new Timer();
 //previously rendered frame.
 let frameTime = TIMER.getFrameTimeMs();
 
-UPDATEABLE_OBJECTS[6].plotCourse(new THREE.Vector3(50, 0, 0));
+UPDATEABLE_OBJECTS[6].plotCourse(new THREE.Vector3(150, 0, 0));
 
 //ANIMATION FUNCTION...
 function animate()

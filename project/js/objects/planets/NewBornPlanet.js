@@ -21,6 +21,9 @@ class NewBornPlanet extends Planet
         //Set the name for this planet.
         this.getObject().name = 'New Born Planet';
 
+        //Scale the planet.
+        this.getObject().scale.set(5, 5, 5); 
+
         //Load the dying planet's model and add it to the group.
         this.addObjectToGroup(this.createGenericPlanetBase(3, 2, colours.BLUE));
     }

@@ -21,6 +21,9 @@ class NaturePlanet extends Planet
         //Set the name for this planet.
         this.getObject().name = 'Nature Planet';
 
+        //Scale the planet.
+        this.getObject().scale.set(3, 3, 3); 
+
         //Add the planets base.
         this.addObjectToGroup(this.createGenericPlanetBase(2, 2, colours.GREEN));
 
