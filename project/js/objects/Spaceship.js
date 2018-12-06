@@ -18,26 +18,28 @@
         //INITIALISE MEMBER VARIABLES...
 
         //[m_speed] How fast the spaceship is travelling (World Units per Second).
-        let m_speed = 50;
+        let m_speed = 25;
 
         //[m_currentCourse] Used to point to the current
         //course in the destinations array.
         let m_currentCourse = 0;
 
         //[m_destinations] An array containing all the 
-        //destinations that the ship can travel to.
+        //destinations that the ship can travel to. //Will loop forever if the loop for ever if not (0, 0, 0).
         let m_destinations = [
-            new THREE.Vector3(0, 0, 0),
+            new THREE.Vector3(150, 0, 0),
             new THREE.Vector3(500, 0, 0)
         ];
 
         let m_distanceVectors =
         [
-            this.getPosition().clone().sub(m_destinations[0])
+            this.getPosition().clone().sub(m_destinations[0]),
+            this.getPosition().clone().sub(m_destinations[1])
         ]
 
         let m_timeToReachDestinations = [
-            (this.getPosition().distanceTo(m_destinations[0])) / (m_speed / 1000)
+            (this.getPosition().distanceTo(m_destinations[0])) / (m_speed / 1000),
+            (this.getPosition().distanceTo(m_destinations[1])) / (m_speed / 1000)
         ]
 
         //[m_elaspedMovementTime] Keeps track of how 
@@ -77,6 +79,8 @@
 
         //PUBLIC METHODS...
 
+        let loopOnce = true;
+
         /**
          * Moves the spaceship.
          * @param {number} frameTimeMs - The time in milliseconds it took to
@@ -101,9 +105,12 @@
                     m_elaspedMovementTime = 0;
                 }
 
+                //console.log(m_timeToReachDestinations[1]);
+
                 //[increment] How far along is the spaceship on its course?
                 //(0 = beginning, 1 = end).
                 let increment = 1 / (m_timeToReachDestinations[m_currentCourse] / m_elaspedMovementTime);
+               
 
                 //If the increment is very close to 1, round it up.
                 if(increment > 0.99)
@@ -113,18 +120,21 @@
                 
                 let movementVector = m_distanceVectors[m_currentCourse].clone().multiplyScalar(increment);
 
-                console.log(m_distanceVectors[m_currentCourse].clone().sub(movementVector));
-                console.log(increment);
-
-                this.setPosition(m_distanceVectors[m_currentCourse].clone().sub(movementVector));
+                //temp hack.
+                if(m_distanceVectors[m_currentCourse].clone().sub(movementVector).x < m_destinations[m_currentCourse].x)
+                {
+                    this.setPosition(m_destinations[m_currentCourse]);
+                }
+                else
+                {
+                    this.setPosition(m_distanceVectors[m_currentCourse].clone().sub(movementVector));
+                }
 
                 if(this.getPosition().equals(m_destinations[m_currentCourse]))
                 {
                     m_elaspedMovementTime = 0;
                 }
             }
-            //console.log(this.getPosition());
-            //console.log(m_destinations[m_currentCourse]);
         }
 
         /**

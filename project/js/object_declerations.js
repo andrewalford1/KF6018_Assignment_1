@@ -26,7 +26,7 @@ const ASTEROID_B612 = new AsteroidB612(
 const P_ASTEROID_B612 = objectPointer++;
 
 //Spaceship:
-const SPACESHIP = new Spaceship(new THREE.Vector3(500, 0, 0));
+const SPACESHIP = new Spaceship(new THREE.Vector3(750, 0, 0));
 const P_SPACESHIP = objectPointer++;
 
 //GROUP OBJECTS TOGETHER...
