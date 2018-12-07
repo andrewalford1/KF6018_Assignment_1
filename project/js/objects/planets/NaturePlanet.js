@@ -109,16 +109,39 @@ class NaturePlanet extends Planet
         pineTreeGroup.rotation.set(-1.4, 0.0, 0.0);//set rotation of the tree
 
         //Create star
-        //var starGeometry = new THREE.SphereGeometry( 0.05, 8, 8 );
-        var starGeometry = new THREE.SphereGeometry( 0.06, 8, 2, 0, 6.3 ,3, 3.3 );
+        var starGeometry = new THREE.SphereGeometry( 0.05, 8, 2, 0, 6.3 ,3, 3.3 );
         var star = new THREE.Mesh( starGeometry , truffulaTreeCrownPinkMaterial );
         star.castShadow = true;
-        star.position.set(0.0, 0.76, 0.0);//set position of the pine tree crown (0.0, 0.72, 0.0
-        //star.rotation.set(2.0, 0.0, 0.0);
+        star.position.set(0.0, 0.75, 0.0);
+
+        //Create tinsels for the X-mas Tree
+         var tinselSmallGeometry = new THREE.TorusGeometry( 0.1, 0.015, 10, 10 );
+         var tinselA = new THREE.Mesh( tinselSmallGeometry , truffulaTreeCrownOrangeMaterial );
+         tinselA.castShadow = true;
+         tinselA.receiveShadow = true;
+         tinselA.position.set(0.0, 0.55, 0.0);
+         tinselA.rotation.set(1.6, 0.0 ,0.0);
         
+         var tinselMediumGeometry = new THREE.TorusGeometry( 0.16, 0.02, 10, 10 );
+         var tinselB = new THREE.Mesh( tinselMediumGeometry , truffulaTreeCrownOrangeMaterial );
+         tinselB.castShadow = true;
+         tinselB.receiveShadow = true;
+         tinselB.position.set(0.0, 0.4, 0.0);
+         tinselB.rotation.set(1.6, 0.0 ,0.0);
+
+         var tinselLargeGeometry = new THREE.TorusGeometry( 0.25, 0.025, 10, 10 );
+         var tinselC = new THREE.Mesh( tinselLargeGeometry , truffulaTreeCrownOrangeMaterial );
+         tinselC.castShadow = true;
+         tinselC.receiveShadow = true;
+         tinselC.position.set(0.0, 0.25, 0.0);
+         tinselC.rotation.set(1.6, 0.0 ,0.0);
+
         //Create pine tree 1 group
         var pineTreeGroup1 = new THREE.Group();
         pineTreeGroup1.add(star);
+        pineTreeGroup1.add(tinselA);
+        pineTreeGroup1.add(tinselB);
+        pineTreeGroup1.add(tinselC);
         pineTreeGroup1.add(pineTreeCrown[1]);
         pineTreeGroup1.add(pineTreeTrunk[1]);
         pineTreeGroup1.position.set(0.0, 2.0, 0.0); //set position of the tree
