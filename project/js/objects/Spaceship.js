@@ -42,6 +42,9 @@
             (this.getPosition().distanceTo(m_destinations[1])) / (m_speed / 1000)
         ]
 
+        console.log('distance vector - ');
+        console.log(m_distanceVectors[0]);
+
         //[m_elaspedMovementTime] Keeps track of how 
         //long the spaceship has been moving for.
         let m_elaspedMovementTime = 0;
@@ -79,7 +82,22 @@
 
         //PUBLIC METHODS...
 
-        let loopOnce = true;
+        //[m_previousDistance] Stores the last known distance between the spaceship and
+        //it's destination.
+        let m_previousDistance = this.getPosition().distanceTo(m_destinations[m_currentCourse]);
+
+        let startingPosition = this.getPosition().clone();
+
+        //[origin] Stores the centre of the scene. (Used for distance calculations).
+        let origin = new THREE.Vector3(0, 0, 0);
+        //[m_distanceToOriginFromDestination] Stores the distance between the current destination
+        //and the center of the scene.
+        let m_distanceToOriginFromDestination = origin.distanceTo(m_destinations[m_currentCourse]);
+        //[m_distanceToOriginFromStartingPosition] Stores the distance between the starting position
+        //of the spaceship and the center of the scene.
+        let m_distanceToOriginFromStartingPosition = origin.distanceTo(this.getPosition().clone());
+
+
 
         /**
          * Moves the spaceship.
@@ -91,10 +109,13 @@
             //Check if the current destination has been reached.
             if(this.getPosition().equals(m_destinations[m_currentCourse]))
             {
-                console.log('Arrived at destination');
+//                 console.log('Arrived at destination');
             }
             else
             {
+                console.log('#################################');
+                console.log('Begin movement loop:');
+
                 //Increment the elasped time.
                 m_elaspedMovementTime += frameTimeMs;
 
@@ -105,12 +126,9 @@
                     m_elaspedMovementTime = 0;
                 }
 
-                //console.log(m_timeToReachDestinations[1]);
-
                 //[increment] How far along is the spaceship on its course?
                 //(0 = beginning, 1 = end).
                 let increment = 1 / (m_timeToReachDestinations[m_currentCourse] / m_elaspedMovementTime);
-               
 
                 //If the increment is very close to 1, round it up.
                 if(increment > 0.99)
@@ -118,22 +136,45 @@
                     increment = 1;
                 }               
                 
+                //[movementVector] Stores how far the spaceship is along it's path to it's destination.
                 let movementVector = m_distanceVectors[m_currentCourse].clone().multiplyScalar(increment);
 
-                //temp hack.
-                if(m_distanceVectors[m_currentCourse].clone().sub(movementVector).x < m_destinations[m_currentCourse].x)
+                //[currentDistance] Stores the currently known distance between the spaceship
+                //and it's destination.
+                let currentPosition = this.getPosition().distanceTo(m_destinations[m_currentCourse]);
+
+                //If the spaceship has flown past its destination then clamp it
+                //to the destination.
+                if(currentPosition > m_previousDistance)
                 {
                     this.setPosition(m_destinations[m_currentCourse]);
                 }
                 else
                 {
-                    this.setPosition(m_distanceVectors[m_currentCourse].clone().sub(movementVector));
+                    //Check which direction the ship should be moving in.
+                    if(m_distanceToOriginFromDestination > m_distanceToOriginFromStartingPosition)
+                    {
+                        //Move the ship backwards
+                        this.setPosition(startingPosition.clone().sub(movementVector));
+                    }
+                    else
+                    {
+                        //Move the ship forwards.
+                        this.setPosition(m_distanceVectors[m_currentCourse].clone().sub(movementVector));
+                    }
                 }
+
+                //Update the previous distance.
+                m_previousDistance = currentPosition;
 
                 if(this.getPosition().equals(m_destinations[m_currentCourse]))
                 {
                     m_elaspedMovementTime = 0;
                 }
+
+                console.log('Current Pos -');
+                console.log(this.getPosition());
+                console.log('#################################')
             }
         }
 
