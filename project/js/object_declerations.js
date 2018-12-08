@@ -16,7 +16,7 @@ const NATURE_PLANET = new NaturePlanet(0.01, new THREE.Vector3(250, 0, 0), 0.52,
 const P_NATURE_PLANET = objectPointer++;
 const CITY_PLANET = new CityPlanet(0.01, new THREE.Vector3(370, 0, 0), 0.54, SUN, 25400, !(SUN.getSpinsClockwise()));
 const P_CITY_PLANET = objectPointer++;
-const DYING_PLANET = new DyingPlanet(MODEL_LOADER.load('dying_planet'), 0.01, new THREE.Vector3(425, 0, 0), 0.56, SUN, 46500, !(SUN.getSpinsClockwise()));
+const DYING_PLANET = new DyingPlanet(MODEL_LOADER.load('dying_planet'), 0.01, new THREE.Vector3(500, 0, 0), 0.56, SUN, 46500, !(SUN.getSpinsClockwise()));
 const P_DYING_PLANET = objectPointer++;
 
 //Asteroids:
