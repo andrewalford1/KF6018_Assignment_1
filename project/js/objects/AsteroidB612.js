@@ -6,10 +6,10 @@ class AsteroidB612 extends OrbitingObject
 {
     /**
      * Create AsteroidB612.
-     * @param {Vector3} initialPosition - The initial position of the planet.
-     * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
-     * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
-     * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
+     * @param {Vector3} initialPosition - The initial position of the asteroid.
+     * @param {number} orbitSpeed - How quickly the asteroid orbits around other objects.
+     * @param {AssignmentObject} orbitingObject - This is the object that the asteroid is orbiting.
+     * @param {number} fullOrbitMs - How long it takes the asteroid to fully orbit around the orbiting object.
      */
     constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
     {
@@ -116,8 +116,8 @@ class AsteroidB612 extends OrbitingObject
         this.addObjectToGroup(groupRose);
         this.addObjectToGroup(glassBell);
 
-         /**
-          * Updates the asteroid.
+        /**
+         * Updates the asteroid.
          * @param {number} frameTimeMs - The time in milliseconds it took to compute the previous rendered frame.
          */
         this.update = function(frameTimeMs)

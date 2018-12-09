@@ -25,6 +25,12 @@ const ASTEROID_B612 = new AsteroidB612(
 );
 const P_ASTEROID_B612 = objectPointer++;
 
+//Moons:
+const MOON = new Moon(
+    new THREE.Vector3(CITY_PLANET.getXPosition() + 35, 0, 0), 1, CITY_PLANET, 12000, !(CITY_PLANET.getOrbitsClockwise())
+);
+const P_MOON = objectPointer++;
+
 //Spaceship:
 const SPACESHIP = new Spaceship(new THREE.Vector3(150, 0, 0));
 const P_SPACESHIP = objectPointer++;
@@ -42,6 +48,8 @@ const UPDATEABLE_OBJECTS = [
     DYING_PLANET,
     //Asteroids:
     ASTEROID_B612,
+    //Moons:
+    MOON,
     //Spaceship:
     SPACESHIP
 ];
