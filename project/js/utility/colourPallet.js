@@ -17,7 +17,7 @@ const colours = {
     SIENNA:     0x8B4513,
     EARTH:      0x5A4D41,
     BROWN:      0x25201B,
+    SAND:       0xC2B280,
     PINK:       0xFF3361,
-    ORANGE:     0xFF963A,
-    SILVER:     0xCCCCCC
+    ORANGE:     0xFF963A
 };
