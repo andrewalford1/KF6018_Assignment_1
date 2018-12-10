@@ -17,13 +17,16 @@ pointLight.shadow.mapSize.height = 1024;
 scene.add(pointLight);
 
 //[camera] This is the camera to view the scene through.
-//let camera = new Camera(new THREE.Vector3(0, 0, 100), false, 0.001);
+let camera = new Camera(new THREE.Vector3(0, 500, 0), false, 0.001); //top down view.
+//let camera = new Camera(new THREE.Vector3(0, 2, 0), false, 0.001);
+//Add the camera to the spaceship.
+//UPDATEABLE_OBJECTS[P_SPACESHIP].addObjectToGroup(camera.getInstance());
 
 //EVENT LISTENERS...
 //Event listener to allow the scene to resize when the window is resized.
 window.addEventListener('resize', function()
 {
-   UPDATEABLE_OBJECTS[6].getCamera().setViewPort(window.innerWidth, window.innerHeight);
+   camera.setViewPort(window.innerWidth, window.innerHeight);
 });
 
 //STATS HERE FOR DEBUGGING, REMOVE FROM FINAL PROJECT!
@@ -55,7 +58,7 @@ function animate()
     frameTime = TIMER.getFrameTimeMs();
 
     //Update the camera.
-    //camera.update(scene, frameTime);
+    camera.update(scene, frameTime);
 
     //Animation code...
     //Update all the updateable objects on the canvas.
@@ -64,7 +67,7 @@ function animate()
         UPDATEABLE_OBJECTS[i].update(frameTime);
     }
 
-    UPDATEABLE_OBJECTS[6].getCamera().update(scene, frameTime);
+    //UPDATEABLE_OBJECTS[6].setXPosition(UPDATEABLE_OBJECTS[6].getXPosition() + 1);
 
     //Stop recording stats.
     stats.end();

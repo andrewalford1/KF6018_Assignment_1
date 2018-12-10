@@ -1,6 +1,7 @@
 /**
  * Class representing a star.
  * @extends UpdateableObject
+ * @author Andrew Alford (w16006135)
  */
 class Star extends UpdateableObject
 {
@@ -10,7 +11,7 @@ class Star extends UpdateableObject
      * @param {number} smoothness - How smooth the surface of the planet will be.
      * @param {number} rotationSpeed - How quickly the planet rotates.
      * @param {Vector3} initialPosition - The initial position of the planet.
-     * @param {boolean} spinsClockwise - If true then the star rotates clockwise.
+     * @param {boolean} spinsClockwise - If 'true' then the star rotates clockwise.
      */
     constructor(radius, smoothness, rotationSpeed, initialPosition, spinsClockwise)
     {
@@ -18,7 +19,10 @@ class Star extends UpdateableObject
         super(initialPosition);
 
         //Set the name for this planet.
-        this.getObject().name = 'Star';        
+        this.getObject().name = 'Star';       
+
+        //Scale the star.
+        this.getObject().scale.set(3, 3, 3); 
 
         //Create the planet's surface.
         const M_GEOMETRY = new THREE.OctahedronGeometry(radius, smoothness);

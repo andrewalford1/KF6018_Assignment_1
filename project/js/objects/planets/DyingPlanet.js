@@ -26,7 +26,7 @@ class DyingPlanet extends Planet
         this.addObjectToGroup(model);
 
         //Make the planet bigger.
-        this.getObject().scale.set(3, 3, 3);
+        this.getObject().scale.set(5, 5, 5);
         
         //[SURFACE_MATERIAL] This is the material used for any details added to the planet.
         const SURFACE_MATERIAL = new THREE.MeshStandardMaterial( 
