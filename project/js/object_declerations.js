@@ -10,8 +10,8 @@ const SUN = new Star(32, 2, 0.01, new THREE.Vector3(0, 0, 0), true);
 const P_SUN = objectPointer++;
 
 //Planets:
-const NEW_BORN_PLANET = new NewBornPlanet(0.01, new THREE.Vector3(150, 0, 0), 0.5, SUN, 18500, !(SUN.getSpinsClockwise()));
-const P_NEW_BORN_PLANET = objectPointer++;
+const TREASURE_PLANET = new TreasurePlanet(0.01, new THREE.Vector3(150, 0, 0), 0.5, SUN, 18500, !(SUN.getSpinsClockwise()));
+const P_TREASURE_PLANET = objectPointer++;
 const NATURE_PLANET = new NaturePlanet(0.01, new THREE.Vector3(250, 0, 0), 0.52, SUN, 12000, !(SUN.getSpinsClockwise()));
 const P_NATURE_PLANET = objectPointer++;
 const CITY_PLANET = new CityPlanet(0.01, new THREE.Vector3(370, 0, 0), 0.54, SUN, 25400, !(SUN.getSpinsClockwise()));
@@ -42,7 +42,7 @@ const UPDATEABLE_OBJECTS = [
     //Stars:
     SUN,
     //Planets:
-    NEW_BORN_PLANET,
+    TREASURE_PLANET,
     NATURE_PLANET,
     CITY_PLANET,
     DYING_PLANET,
