@@ -47,6 +47,7 @@ class CityPlanet extends Planet
         var protectionShieldMaterial = new THREE.MeshPhysicalMaterial(
             {color: colours.LIGHT_BLUE, flatShading: THREE.FlatShading, metalness: 0, roughness: 1,
             roughness: 0.5, reflectivity: 1, transparent: true, opacity: 0.5} );
+        var iFrame = 0;
         //Meshes for the shield
         var protectionWireShield = new THREE.Mesh(protectionShieldGeometry, protectionShieldWireFrameMaterial);
         var protectionShield = new THREE.Mesh(protectionShieldGeometry,protectionShieldMaterial); 
@@ -232,5 +233,24 @@ class CityPlanet extends Planet
         this.addObjectToGroup(museumGroup);
         this.addObjectToGroup(pineTreeGroup);
         this.addObjectToGroup(towerTGroup);
+        
+         /**
+          * Updates the planet.
+         * @param {number} frameTimeMs - The time in milliseconds it took to compute the previous rendered frame.
+         */
+        this.update = function(frameTimeMs)
+        {
+            //Check if the planet is active.
+            if(this.isActive())
+            {                
+                //Spin the planet on its axis.
+                this.getObject().rotation.y += rotationSpeed;
+                protectionShieldMaterial.opacity = Math.sin(iFrame * 0.006)*0.9;
+                //Move the planet along it's orbiting path.
+                this.moveAlongOrbitingPath(frameTimeMs); 
+
+                iFrame++;
+            }
+        }
     }
 }
