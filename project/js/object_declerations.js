@@ -32,7 +32,7 @@ const MOON = new Moon(
 const P_MOON = objectPointer++;
 
 //Spaceship:
-const SPACESHIP = new Spaceship(new THREE.Vector3(150, 0, 0));
+const SPACESHIP = new Spaceship(new THREE.Vector3(150, 0, 0), 0.25, SUN, 24000, !(SUN.getSpinsClockwise()));
 const P_SPACESHIP = objectPointer++;
 
 //GROUP OBJECTS TOGETHER...

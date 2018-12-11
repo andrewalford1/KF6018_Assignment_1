@@ -17,8 +17,8 @@ pointLight.shadow.mapSize.height = 1024;
 scene.add(pointLight);
 
 //[camera] This is the camera to view the scene through.
-let camera = new Camera(new THREE.Vector3(0, 500, 0), true, 0.001); //top down view.
-//let camera = new Camera(new THREE.Vector3(0, 2, 0), false, 0.001);
+let camera = new Camera(new THREE.Vector3(0, 500, 0), false, 0.001); //top down view.
+//let camera = new Camera(new THREE.Vector3(0, 2, 0), true, 0.001);
 //Add the camera to the spaceship.
 //UPDATEABLE_OBJECTS[P_SPACESHIP].addObjectToGroup(camera.getInstance());
 
