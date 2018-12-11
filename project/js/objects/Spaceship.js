@@ -53,7 +53,6 @@ class Spaceship extends OrbitingObject
             //Check if the object is active.
             if(this.isActive())
             {
-                
                 //Move the asteroid along it's orbiting path.
                 this.moveAlongOrbitingPath(frameTimeMs);
             }

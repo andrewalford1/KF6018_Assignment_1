@@ -229,7 +229,7 @@ class TreasurePlanet extends Planet
         const TREASURE_CHEST_LOCK = new THREE.Mesh(
             new THREE.BoxGeometry(0.1, 0.1, 0.1),
             new THREE.MeshStandardMaterial({
-                color: colours.GOLD,
+                color: colours.BROWN,
                 flatShading: THREE.FlatShading,
                 metalness: 5,
                 roughness: 1
@@ -248,7 +248,7 @@ class TreasurePlanet extends Planet
         TREASURE_CHEST_BOX.position.set(0, 0, 0);
         TREASURE_CHEST_LID.rotation.set(0, 0, Math.PI / 2);
         TREASURE_CHEST_LID.position.y = TREASURE_CHEST_BOX.position.y + 0.07;
-        TREASURE_CHEST_LOCK.position.z = TREASURE_CHEST_BOX.position.z + 0.05;
+        TREASURE_CHEST_LOCK.position.z = TREASURE_CHEST_BOX.position.z + 0.1;
 
         //Group together treasure chest components.
         const TREASURE_CHEST = new THREE.Group();

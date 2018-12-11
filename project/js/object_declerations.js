@@ -12,11 +12,11 @@ const P_SUN = objectPointer++;
 //Planets:
 const TREASURE_PLANET = new TreasurePlanet(0.01, new THREE.Vector3(150, 0, 0), 0.5, SUN, 18500, !(SUN.getSpinsClockwise()));
 const P_TREASURE_PLANET = objectPointer++;
-const NATURE_PLANET = new NaturePlanet(0.01, new THREE.Vector3(250, 0, 0), 0.52, SUN, 12000, !(SUN.getSpinsClockwise()));
+const NATURE_PLANET = new NaturePlanet(0.01, new THREE.Vector3(200, 0, 0), 0.52, SUN, 12000, !(SUN.getSpinsClockwise()));
 const P_NATURE_PLANET = objectPointer++;
-const CITY_PLANET = new CityPlanet(0.01, new THREE.Vector3(370, 0, 0), 0.54, SUN, 25400, !(SUN.getSpinsClockwise()));
+const CITY_PLANET = new CityPlanet(0.01, new THREE.Vector3(300, 0, 0), 0.54, SUN, 25400, !(SUN.getSpinsClockwise()));
 const P_CITY_PLANET = objectPointer++;
-const DYING_PLANET = new DyingPlanet(MODEL_LOADER.load('dying_planet'), 0.01, new THREE.Vector3(500, 0, 0), 0.56, SUN, 46500, !(SUN.getSpinsClockwise()));
+const DYING_PLANET = new DyingPlanet(MODEL_LOADER.load('dying_planet'), 0.01, new THREE.Vector3(375, 0, 0), 0.56, SUN, 46500, !(SUN.getSpinsClockwise()));
 const P_DYING_PLANET = objectPointer++;
 
 //Asteroids:
@@ -32,7 +32,7 @@ const MOON = new Moon(
 const P_MOON = objectPointer++;
 
 //Spaceship:
-const SPACESHIP = new Spaceship(new THREE.Vector3(150, 0, 0), 0.25, SUN, 24000, !(SUN.getSpinsClockwise()));
+const SPACESHIP = new Spaceship(new THREE.Vector3(250, 0, 0), 0.25, SUN, 24000, !(SUN.getSpinsClockwise()));
 const P_SPACESHIP = objectPointer++;
 
 //GROUP OBJECTS TOGETHER...
