@@ -26,7 +26,7 @@ class DyingPlanet extends Planet
         this.addObjectToGroup(model);
 
         //Make the planet bigger.
-        this.getObject().scale.set(5, 5, 5);
+        this.getObject().scale.set(3, 3, 3);
         
         //[SURFACE_MATERIAL] This is the material used for any details added to the planet.
         const SURFACE_MATERIAL = new THREE.MeshStandardMaterial( 
@@ -108,7 +108,7 @@ class DyingPlanet extends Planet
 
         //Add the debris to the planet.
         this.addObjectToGroup(debris);
-
+        
         //CREATE ROCK DETAIL...
         let rock = new THREE.Mesh(
             new THREE.OctahedronGeometry(RADIUS * 1.75, SMOOTHNESS),
@@ -120,5 +120,23 @@ class DyingPlanet extends Planet
 
         //Add the rock to the planet.
         this.addObjectToGroup(rock);
+
+        //PARTICLE EFFECTS...
+        const VOLCANO_ERUPTION = new Explosion(
+            new THREE.Vector3(0, 6.25, 0),
+            100,
+            0.05,
+            colours.LUMINOUSE_ORANGE,
+            0.35,
+            0,
+            5,
+            3,
+            0.8,
+            6.5,
+            true
+        );
+
+        //Add the particle effects to the planet.
+        this.addParticleEffect(VOLCANO_ERUPTION);
     }
 }

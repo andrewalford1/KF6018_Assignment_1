@@ -51,6 +51,15 @@ class Planet extends OrbitingObject
             return planetBase;
         }
 
+        let particleEffects = [];
+
+        this.addParticleEffect = function(effect)
+        {
+            this.addObjectToGroup(effect.getObject());
+            effect.setActive(true);
+            particleEffects.push(effect);
+        }
+
          /**
           * Updates the planet.
           * @param {number} frameTimeMs - The time in milliseconds it took to compute the previous rendered frame.
@@ -72,6 +81,16 @@ class Planet extends OrbitingObject
 
                 //Move the planet along it's orbiting path.
                 this.moveAlongOrbitingPath(frameTimeMs); 
+
+                //Update any particle effects if the planet has them (i.e. volcano erruptions).
+                if(particleEffects.length != 0)
+                {
+                    for(let i = 0; i <  particleEffects.length; i++)
+                    {
+                        particleEffects[i].update(frameTimeMs);
+                    }
+                }
+
             }
         }
     }

@@ -35,11 +35,11 @@ class ParticleEffect extends UpdateableObject
 
         //[M_DURATION] The amount of time (in seconds) that the
         //effect lasts for.
-        const M_DURATION = duration * 10000;
+        const M_DURATION = duration * 1000;
 
         //[M_LIFESPAN] The amount of time (in seconds) that each 
         //particle lasts for.
-        const M_LIFESPAN = 10000;
+        const M_LIFESPAN = 1000;
 
         //[M_DISPERTION] How fare out from the origin will the particles travel.
         const M_DISPERTION = dispertion;
