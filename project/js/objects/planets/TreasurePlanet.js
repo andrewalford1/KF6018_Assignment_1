@@ -188,6 +188,80 @@ class TreasurePlanet extends Planet
         //Add the palm tree to the planet.
         this.addObjectToGroup(PALM_TREE);
 
+//         //CREATE THE SHARK...
+
+//         const SHARK = sharkModel;
+
+//         //Define shadows for the shark.
+//         SHARK.castShadow = true;
+//         SHARK.receiveShadow = true;
+
+//         //Position the shark.
+//         SHARK.position.set(0, 0, 2.50);
+
+//         //Rotate the shark.
+//         SHARK.rotation.set(Math.PI / 2, 0, 0);
+
+//         //Scale the shark.
+//         SHARK.scale.set(0.5, 0.5, 0.5);
+
+//         //Add the shark to the planet.
+//         this.addObjectToGroup(SHARK);
+
+        //CREATE THE TREASURE CHEST...
+
+        const TREASURE_CHEST_MATERIAL = new THREE.MeshStandardMaterial({
+            color: colours.BROWN, 
+            side: THREE.DoubleSide,
+            flatShading: THREE.FlatShading, 
+            metalness: 0, 
+            roughness: 1,
+        });
+
+        const TREASURE_CHEST_BOX = new THREE.Mesh(
+            new THREE.BoxGeometry(0.75, 0.25, 0.25),
+            TREASURE_CHEST_MATERIAL
+        );
+        const TREASURE_CHEST_LID = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.13, 0.13, 0.75, 8, 10, false, 0, Math.PI),
+            TREASURE_CHEST_MATERIAL
+        );
+        const TREASURE_CHEST_LOCK = new THREE.Mesh(
+            new THREE.BoxGeometry(0.1, 0.1, 0.1),
+            new THREE.MeshStandardMaterial({
+                color: colours.GOLD,
+                flatShading: THREE.FlatShading,
+                metalness: 5,
+                roughness: 1
+            })
+        );
+
+        //Define shadows for the treasure chest.
+        TREASURE_CHEST_BOX.castShadow = true;
+        TREASURE_CHEST_BOX.receiveShadow = true;
+        TREASURE_CHEST_LID.castShadow = true;
+        TREASURE_CHEST_LID.receiveShadow = true;
+        TREASURE_CHEST_LOCK.castShadow = true;
+        TREASURE_CHEST_LOCK.receiveShadow = true;
+
+        //Position the treasure chest components.
+        TREASURE_CHEST_BOX.position.set(0, 0, 0);
+        TREASURE_CHEST_LID.rotation.set(0, 0, Math.PI / 2);
+        TREASURE_CHEST_LID.position.y = TREASURE_CHEST_BOX.position.y + 0.07;
+        TREASURE_CHEST_LOCK.position.z = TREASURE_CHEST_BOX.position.z + 0.05;
+
+        //Group together treasure chest components.
+        const TREASURE_CHEST = new THREE.Group();
+        TREASURE_CHEST.add(TREASURE_CHEST_BOX);
+        TREASURE_CHEST.add(TREASURE_CHEST_LID);
+        TREASURE_CHEST.add(TREASURE_CHEST_LOCK);
+
+        //Position the treasure chest.
+        TREASURE_CHEST.position.set(-0.70, 3.2, 0.30);
+
+        //Add the treasure chest to the group.
+        this.addObjectToGroup(TREASURE_CHEST);
+        
         //Make the planet bigger.
         this.getObject().scale.set(5, 5, 5);
     }
