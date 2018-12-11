@@ -24,8 +24,17 @@ class Camera
         //Set the initial position of the camera.
         M_CAMERA.position.copy(initialPosition);
 
-        //[M_CONTROLS] These are the controls for moving the camera.
-        const M_CONTROLS = new THREE.OrbitControls(M_CAMERA);
+        //[m_controls] These are the controls for moving the camera.
+        let m_controls;
+
+        if(vrEnabled)
+        {
+            m_controls = new THREE.DeviceOrientationControls(M_CAMERA);
+        }
+        else
+        {
+            m_controls = new THREE.OrbitControls(M_CAMERA);
+        }
 
         //[M_RENDERER] Used to render the scene to the camera.
         const M_RENDERER = new THREE.WebGLRenderer();
@@ -59,7 +68,7 @@ class Camera
         this.update = function(scene, frameTimeMs)
         {
             //Update the camera controls.
-            M_CONTROLS.update();
+            m_controls.update();
 
             //Render the scene.
             requestAnimationFrame(animate);
@@ -137,40 +146,6 @@ class Camera
         this.getInstance = function()
         {
             return M_CAMERA;
-        }
-
-        let m_elaspedTimeMs;
-        let distance;
-        let m_timeToReach;
-        let firstTimeCalled = true;
-
-        this.moveTo = function(position, frameTimeMs)
-        {
-            if(!M_CAMERA.position.equals(position))
-            {
-                if(firstTimeCalled)
-                {
-                    m_elaspedTimeMs = 0;
-                    distance = M_CAMERA.position.distanceTo(position);
-                    m_timeToReach = distance / speed;
-
-                    firstTimeCalled = false;
-                }
-                //Increment the elasped time.
-                m_elaspedTimeMs += frameTimeMs;
-
-                //Check if the new position has been reached.
-                if(m_elaspedTimeMs > m_timeToReach)
-                {
-                    m_elaspedTimeMs = 0;
-                }
-
-                let increment = 1 / (m_timeToReach / m_elaspedTimeMs);
-
-                //console.log(increment);
-
-                M_CAMERA.position.lerp(position, increment);
-            }
         }
     }
 }
