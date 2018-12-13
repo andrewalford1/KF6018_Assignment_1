@@ -246,7 +246,7 @@ class CityPlanet extends Planet
             {                
                 //Spin the planet on its axis.
                 this.getObject().rotation.y += rotationSpeed;
-                protectionShieldMaterial.opacity = Math.sin(iFrame * 0.006)*0.9;
+                protectionShieldMaterial.opacity = Math.sin(iFrame * 0.008)*0.9;
                 //Move the planet along it's orbiting path.
                 this.moveAlongOrbitingPath(frameTimeMs); 
 
