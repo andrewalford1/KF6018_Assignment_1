@@ -98,7 +98,7 @@ class Moon extends OrbitingObject
         this.addObjectToGroup(FLAG);
 
         //Scale the moon.
-        this.getObject().scale.set(0.5, 0.5, 0.5);
+        this.getObject().scale.set(0.25, 0.25, 0.25);
 
         //PRIVATE METHODS...
 

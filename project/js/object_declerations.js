@@ -27,7 +27,7 @@ const P_ASTEROID_B612 = objectPointer++;
 
 //Moons:
 const MOON = new Moon(
-    new THREE.Vector3(CITY_PLANET.getXPosition() + 35, 0, 0), 1, CITY_PLANET, 12000, !(CITY_PLANET.getOrbitsClockwise())
+    new THREE.Vector3(CITY_PLANET.getXPosition() + 35, 0, 0), 7, CITY_PLANET, 12000, !(CITY_PLANET.getOrbitsClockwise())
 );
 const P_MOON = objectPointer++;
 
