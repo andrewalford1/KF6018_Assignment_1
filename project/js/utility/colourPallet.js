@@ -13,6 +13,8 @@ const colours = {
     MAGENTA:            0xFF00FF,
     PURPLE:             0x800080,
     YELLOW:             0xFFFF00,
+    DARK_YELLOW:        0xFFC900,
+    DARK_BEIGE:         0x7E6500,
     CORAL:              0xFF7F50,
     SIENNA:             0x8B4513,
     EARTH:              0x5A4D41,
