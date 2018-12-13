@@ -2,6 +2,7 @@
  * Class describing an industrialised planet which has different cities around
  * it's surface. (This will be the third planet).
  * @extends Planet
+ * @author Sabina Irimia (w16001781)
  */
 class CityPlanet extends Planet
 {
