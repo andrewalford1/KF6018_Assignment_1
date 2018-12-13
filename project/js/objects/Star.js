@@ -1,7 +1,7 @@
 /**
  * Class representing a star.
  * @extends UpdateableObject
- * @author Andrew Alford (w16006135)
+ * @author Andrew Alford (w16006135) & Sabina Irimia (w16001781)
  */
 class Star extends UpdateableObject
 {
@@ -26,14 +26,19 @@ class Star extends UpdateableObject
 
         //Create the planet's surface.
         const M_GEOMETRY = new THREE.OctahedronGeometry(radius, smoothness);
-        const M_MATERIAL = new THREE.MeshStandardMaterial( {color: colours.YELLOW, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} );
-        const STAR = new THREE.Mesh(M_GEOMETRY, M_MATERIAL);
-
+        const M_MATERIAL = new THREE.MeshPhysicalMaterial( {emissive: colours.DARK_YELLOW, emissiveIntensity: 1, 
+                           color: colours.DARK_BEIGE, flatShading: THREE.FlatShading,
+                           metalness: 0.0, roughness: 0.0, reflectivity: 0.0} );
+        const STAR = new THREE.PointLight( colours.WHITE, 2, 1000, 4);
+        STAR.add( new THREE.Mesh(M_GEOMETRY, M_MATERIAL) );
+        
         //Set up shadows for the planet's surface.
         //Define shadow traits.
         STAR.castShadow = false;
         STAR.receiveShadow = false;
-
+        STAR.shadow.mapSize.width = 1024;
+        STAR.shadow.mapSize.height = 1024;
+        
         this.addObjectToGroup(STAR);
 
         let m_spinsClockwise = spinsClockwise;
