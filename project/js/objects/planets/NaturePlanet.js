@@ -2,6 +2,7 @@
  * Class describing a nature planet which only has natural elements on the surface,
  * containing trees, lakes, and mountians. (This will be the second planet).
  * @extends Planet
+ * @author Sabina Irimia (w16001781)
  */
 class NaturePlanet extends Planet 
 {
