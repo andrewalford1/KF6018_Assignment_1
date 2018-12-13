@@ -8,13 +8,22 @@ TEXTURE_LOADER.loadSkybox('skybox', '.JPEG', scene);
 let lightAmbient = new THREE.AmbientLight(colours.WHITE, 0.2); // soft white light
 scene.add(lightAmbient);
 
-//point light.
-let pointLight = new THREE.PointLight(colours.WHITE, 1);
-pointLight.position.set(25, 50, 25);
+//point light
+let pointLight = new THREE.PointLight(colours.WHITE, 1, 5000);
+pointLight.position.set(80, 200, 80);
 pointLight.castShadow = true;
 pointLight.shadow.mapSize.width = 1024;
 pointLight.shadow.mapSize.height = 1024;
 scene.add(pointLight);
+
+//point light2
+let pointLight2 = new THREE.PointLight(colours.WHITE, 1, 5000);
+pointLight2.position.set(-50, 150, -50);
+pointLight2.castShadow = true;
+pointLight2.shadow.mapSize.width = 1024;
+pointLight2.shadow.mapSize.height = 1024;
+scene.add(pointLight2);
+
 
 //[camera] This is the camera to view the scene through.
 let camera = new Camera(new THREE.Vector3(0, 500, 0), false, 0.001); //top down view.
