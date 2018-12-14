@@ -51,9 +51,69 @@ const TIMER = new Timer();
 //previously rendered frame.
 let frameTime = TIMER.getFrameTimeMs();
 
+//-----------------------------------------------------------
+
+let blueMaterial = new THREE.MeshPhysicalMaterial({color: colours.DARK_BLUE, flatShading: THREE.FlatShading,
+                   metalness: 0.0, roughness: 0.5, reflectivity: 0.0} );
+let greenMaterial= new THREE.MeshPhysicalMaterial({color: colours.DARK_GREEN, flatShading: THREE.FlatShading,
+                   metalness: 0.0, roughness: 0.5, reflectivity: 0.0} );
+
+let loadingScreen = {
+    scene: new THREE.Scene(),
+    camera: new Camera(new THREE.Vector3(0, 500, 0), false, 0.001),
+    renderer: new THREE.WebGLRenderer({ antialias: true }),
+    planetPartBlue: new THREE.Mesh(new THREE.OctahedronGeometry(1,2), blueMaterial),
+    planetPartGreen: new THREE.Mesh(new THREE.OctahedronGeometry(1,2), greenMaterial),
+    ambientLight: new THREE.AmbientLight( colours.WHITE, 0.4 ),
+    pointLight: new THREE.PointLight( colours.WHITE, 2, 50000),
+    loadingTime: 0,
+    planetGroup: new THREE.Group()
+};
+
+ let RESOURCES_LOADED = false;
+ loadingScreen.planetPartBlue.position.set(0, 0, 5);
+ loadingScreen.planetPartGreen.position.set(0, 0, 5);
+ //loadingScreen.camera.position.set(0, 0, 10);
+ loadingScreen.planetGroup.add(loadingScreen.planetPartGreen);
+ loadingScreen.planetGroup.add(loadingScreen.planetPartBlue);
+ ////if camera 1 is enabled
+ //loadingScreen.planetGroup.position.set(0, 490, 0);
+ ////if camera 2 is enabled
+ loadingScreen.planetGroup.position.set(0, -9, 0);
+ ////if camera 3 is enabled
+ 
+ loadingScreen.planetGroup.rotation.set(-1.5, 0, 0);
+ loadingScreen.scene.add(loadingScreen.planetGroup);
+ loadingScreen.scene.add(loadingScreen.ambientLight);
+ loadingScreen.pointLight.position.set( 100, 800, 100 );
+ loadingScreen.scene.add(loadingScreen.pointLight);
+ loadingScreen.renderer.setClearColor({color: 0x483E9B});
+
+//------------------------------------------------------------
+
 //ANIMATION FUNCTION...
 function animate()
 {
+   
+   /Animation of the loading screen
+    //The if statement will end once the loadingScreen.loadingTime will be over 100
+   //RESOURCES_LOADED == false
+    if( loadingScreen.loadingTime <100){
+        
+        loadingScreen.planetPartBlue.rotation.x = 0.5;//0.6;   
+        loadingScreen.planetPartBlue.rotation.z = 0.07;
+        loadingScreen.planetPartBlue.rotation.y += 0.001;
+        
+        loadingScreen.planetPartGreen.rotation.x = 0.05;//0.06;
+        loadingScreen.planetPartGreen.rotation.y += 0.01;
+        loadingScreen.planetPartGreen.rotation.z = 0.07;
+
+        loadingScreen.loadingTime++;
+
+        camera.update(loadingScreen.scene, loadingScreen.camera);
+        return;
+
+        }
     //Update timing variables.
     TIMER.update();
     frameTime = TIMER.getFrameTimeMs();
