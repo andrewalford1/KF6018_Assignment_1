@@ -56,7 +56,15 @@ const pCITY_PLANET = objectManager.addObject(
 
 const pDYING_PLANET = objectManager.addObject(
     new DyingPlanet(
-        MODEL_LOADER.load('dying_planet'), 
+        MODEL_LOADER.loadModel(
+            'dying_planet',
+            new THREE.MeshStandardMaterial({
+                color: colours.BROWN, 
+                flatShading: THREE.FlatShading, 
+                metalness: 0, 
+                roughness: 1
+            })
+        ), 
         0.01, 
         new THREE.Vector3(375, 0, 0), 
         0.56, 
