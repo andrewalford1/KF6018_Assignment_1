@@ -38,11 +38,6 @@ window.addEventListener('resize', function()
    camera.setViewPort(window.innerWidth, window.innerHeight);
 });
 
-//STATS HERE FOR DEBUGGING, REMOVE FROM FINAL PROJECT!
-let stats = new Stats();
-stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-document.body.appendChild( stats.dom );
-
 //ADD OBJECTS TO THE SCENE...
 //Add updatable objects to the scene.
 for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
@@ -59,9 +54,6 @@ let frameTime = TIMER.getFrameTimeMs();
 //ANIMATION FUNCTION...
 function animate()
 {
-    //Start recording stats.
-    stats.begin();
-
     //Update timing variables.
     TIMER.update();
     frameTime = TIMER.getFrameTimeMs();
@@ -75,11 +67,6 @@ function animate()
     {
         UPDATEABLE_OBJECTS[i].update(frameTime);
     }
-
-    //UPDATEABLE_OBJECTS[6].setXPosition(UPDATEABLE_OBJECTS[6].getXPosition() + 1);
-
-    //Stop recording stats.
-    stats.end();
 }
 
 //Run the animation loop.
