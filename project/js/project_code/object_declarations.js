@@ -76,8 +76,6 @@ const pASTEROID = declarator.addObject(
     )
 );
 
-console.log(declarator.getObject(pNATURE_PLANET));
-
 const pMOON = declarator.addObject(
     new Moon(
         new THREE.Vector3(declarator.getObject(pCITY_PLANET).getXPosition() + 35, 0, 0), 
@@ -87,8 +85,6 @@ const pMOON = declarator.addObject(
         !(declarator.getObject(pCITY_PLANET).getOrbitsClockwise())
     )
 );
-
-console.log(declarator.getObject(pCITY_PLANET).getXPosition());
 
 const pSPACESHIP = declarator.addObject(
     new Spaceship(

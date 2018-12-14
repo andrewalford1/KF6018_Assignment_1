@@ -26,10 +26,10 @@ scene.add(pointLight2);
 
 
 //[camera] This is the camera to view the scene through.
-//let camera = new Camera(new THREE.Vector3(0, 500, 0), false, 0.001); //top down view.
-let camera = new Camera(new THREE.Vector3(0, 2, 0), true, 0.001);
+let camera = new Camera(new THREE.Vector3(0, 500, 0), false, 0.001); //top down view.
+//let camera = new Camera(new THREE.Vector3(0, 2, 0), true, 0.001);
 //Add the camera to the spaceship.
-declarator.getObject(pSPACESHIP).addObjectToGroup(camera.getInstance());
+//declarator.getObject(pSPACESHIP).addObjectToGroup(camera.getInstance());
 
 //EVENT LISTENERS...
 //Event listener to allow the scene to resize when the window is resized.
@@ -91,8 +91,8 @@ let loadingScreen = {
 function animate()
 {
    
-   /Animation of the loading screen
-    //The if statement will end once the loadingScreen.loadingTime will be over 100
+   //Animation of the loading screen
+   //The if statement will end once the loadingScreen.loadingTime will be over 100
    //RESOURCES_LOADED == false
     if( loadingScreen.loadingTime <100){
         
@@ -109,7 +109,8 @@ function animate()
         camera.update(loadingScreen.scene, loadingScreen.camera);
         return;
 
-        }
+    }
+    
     //Update timing variables.
     TIMER.update();
     frameTime = TIMER.getFrameTimeMs();
