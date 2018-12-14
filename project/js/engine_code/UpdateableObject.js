@@ -48,7 +48,7 @@ class UpdateableObject extends AssignmentObject
          */
         this.update = function(frameTimeMs)
         {
-            throw new Error("You have to implement the method Update(frameTimeMs).");
+            throw new Error('You have to implement the method Update(frameTimeMs).');
         }
     }
 

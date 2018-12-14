@@ -26,10 +26,10 @@ scene.add(pointLight2);
 
 
 //[camera] This is the camera to view the scene through.
-let camera = new Camera(new THREE.Vector3(0, 500, 0), false, 0.001); //top down view.
-//let camera = new Camera(new THREE.Vector3(0, 2, 0), true, 0.001);
+//let camera = new Camera(new THREE.Vector3(0, 500, 0), false, 0.001); //top down view.
+let camera = new Camera(new THREE.Vector3(0, 2, 0), true, 0.001);
 //Add the camera to the spaceship.
-//UPDATEABLE_OBJECTS[P_SPACESHIP].addObjectToGroup(camera.getInstance());
+declarator.getObject(pSPACESHIP).addObjectToGroup(camera.getInstance());
 
 //EVENT LISTENERS...
 //Event listener to allow the scene to resize when the window is resized.
@@ -39,11 +39,7 @@ window.addEventListener('resize', function()
 });
 
 //ADD OBJECTS TO THE SCENE...
-//Add updatable objects to the scene.
-for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
-{
-    UPDATEABLE_OBJECTS[i].addToScene(scene);
-}
+declarator.addAllToScene(scene);
 
 //[TIMER] used for timing the program.
 const TIMER = new Timer();
@@ -63,10 +59,7 @@ function animate()
 
     //Animation code...
     //Update all the updateable objects on the canvas.
-    for(let i = 0; i < UPDATEABLE_OBJECTS.length; i++)
-    {
-        UPDATEABLE_OBJECTS[i].update(frameTime);
-    }
+    declarator.updateAllObjects(frameTime);
 }
 
 //Run the animation loop.
