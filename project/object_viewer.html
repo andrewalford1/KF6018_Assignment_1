@@ -2,21 +2,23 @@
 <html lang="en">
 
 <head>
-    <title>KF6018 Assignment 1</title>
+    <title>KF6018 Assignment 1 - Object Viewer</title>
     <link rel="stylesheet" href="style/stylesheet.css">
     <link href="res/textures/favicon.ico" rel="icon" type="image/x-icon"/>
 	<meta name="author" content="Andrew Alford & Ana-Sabina Irimia"/>
 	<meta charset="utf-8"/> 
 	<meta name="description"
-	   content="A VR experiance, created in WebGL using THREE.JS libraries,
-	   which allows you to look through the window of a spaceship and 
-	   explore the universe. (Made for Northumbria Universities Computer 
+	   content="Used to show off the models created for assignment 1. 
+	   (Made for Northumbria Universities Computer 
        Graphics and Animation module - 2018)"/>
 	<meta name="keywords" content="vr, space, planet, universe, explore, 
-	   stars, asteroid, threejs"/>
+	   stars, asteroid, threejs, model, viewer"/>
 </head>
 
 <body>
+
+    <div id="project_title">KF6018 Assignment 1 - Object Viewer</div>
+
     <!--Used to display information about objects being focused on.-->
     <div id="object_info"></div>
 
@@ -54,7 +56,9 @@
     <script src="js/project_code/objects/planets/CityPlanet.js"></script>
     <script src="js/project_code/objects/planets/NaturePlanet.js"></script>
 	<script src="js/project_code/object_declarations.js"></script>
-    <script src="js/project_code/rendering_engine.js"></script>
+    
+	<!--Add object viewer code-->
+    <script src="js/object_viewer/rendering_engine.js"></script>
     
 
 </body>

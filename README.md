@@ -4,6 +4,9 @@ Assignment 1 for Animation and Computer Graphics, created by Andrew Alford and A
 Link to the site can be found at: 
 http://unn-w16006135.newnumyspace.co.uk/KF6018_Assignment_1/project/
 
+To view all our model individually see:
+http://unn-w16006135.newnumyspace.co.uk/KF6018_Assignment_1/project/object_viewer.html
+
 Sources:
   Skybox textures:
     Downloaded: 01/12/2018
