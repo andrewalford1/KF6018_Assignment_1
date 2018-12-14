@@ -1,8 +1,8 @@
 /**
- * A class to declare all the objects for the animation.
+ * A class to manage all the objects in the project.
  * @author Andrew Alford
  */
-class ObjectDeclarator
+class ObjectManager
 {
     /**
      * Constructor for the object declarator.

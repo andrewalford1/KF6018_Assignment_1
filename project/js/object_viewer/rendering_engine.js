@@ -36,7 +36,7 @@ window.addEventListener('resize', function()
 });
 
 //ADD OBJECTS TO THE SCENE...
-declarator.addAllToScene(scene);
+objectManager.addAllToScene(scene);
 
 //[TIMER] used for timing the program.
 const TIMER = new Timer();
@@ -117,7 +117,7 @@ function animate()
 
     //Animation code...
     //Update all the updateable objects on the canvas.
-    declarator.updateAllObjects(frameTime);
+    objectManager.updateAllObjects(frameTime);
 }
 
 //Run the animation loop.
