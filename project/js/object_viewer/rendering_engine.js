@@ -35,7 +35,8 @@ window.addEventListener('resize', function()
    camera.setViewPort(window.innerWidth, window.innerHeight);
 });
 
-//ADD OBJECTS TO THE SCENE...
+//Make all objects active and add them to the scene.
+objectManager.setActive(pSUN, true);
 objectManager.addAllToScene(scene);
 
 //[TIMER] used for timing the program.

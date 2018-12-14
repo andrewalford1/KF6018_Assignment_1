@@ -95,7 +95,3 @@ const pSPACESHIP = objectManager.addObject(
         !(objectManager.getObject(pSUN).getSpinsClockwise())
     )
 );
-
-//Make all objects active.
-objectManager.setAllActive(true);
-
