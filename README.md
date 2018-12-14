@@ -2,7 +2,7 @@
 Assignment 1 for Animation and Computer Graphics, created by Andrew Alford and Ana-Sabina Irimia.
 
 Link to the site can be found at: 
-http://unn-w16006135.newnumyspace.co.uk/KF6018_Assignment_1/project/kf018_assignment_andrew_alford_&_ana-sabina_irimia.html
+http://unn-w16006135.newnumyspace.co.uk/KF6018_Assignment_1/project/
 
 Sources:
   Skybox textures:
