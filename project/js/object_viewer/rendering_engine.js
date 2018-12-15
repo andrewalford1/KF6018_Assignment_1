@@ -55,7 +55,7 @@ function viewObject(objectPointer, objectManager)
 
 
 //[camera] This is the camera to view the scene through.
-let camera = new Camera(new THREE.Vector3(150, 0, 0), false, 0.001);
+let camera = new Camera(new THREE.Vector3(100, 0, 0), false, 0.001);
 
 //EVENT LISTENERS...
 //Event listener to allow the scene to resize when the window is resized.
@@ -68,7 +68,7 @@ window.addEventListener('resize', function()
 objectManager.addAllToScene(scene);
 
 //[objectPointer] Points to the current object being viewed.
-let objectPointer = 4;
+let objectPointer = 0;
 //View the first object.
 viewObject(objectPointer, objectManager);
 
@@ -109,6 +109,8 @@ let loadingScreen = {
 
 //------------------------------------------------------------
 
+let iFrame = 0;
+
 //ANIMATION FUNCTION...
 function animate()
 {
@@ -143,6 +145,20 @@ function animate()
     //Animation code...
     //Update all the updateable objects on the canvas.
     objectManager.updateAllObjects(frameTime);
+
+    if(iFrame % 100 == 0)
+    {
+        objectPointer++;
+
+        if(objectPointer > objectManager.getSize() - 1)
+        {
+            objectPointer = 0;
+        }
+        
+        viewObject(objectPointer, objectManager);
+    }
+
+    iFrame++;
 }
 
 //Run the animation loop.

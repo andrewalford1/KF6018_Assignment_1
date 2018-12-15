@@ -187,7 +187,7 @@ class AssignmentObject
          */
         this.setScale = function(scale)
         {
-            if(!(position instanceof THREE.Vector3))
+            if(!(scale instanceof THREE.Vector3))
             {
                 throw new Error('AssignmentObject: scale ' +
                     'must be a Vector3.');

@@ -105,3 +105,13 @@ const pSPACESHIP = objectManager.addObject(
         true
     )
 );
+
+//Tweak objects to make them bigger/smaller to fit the screen.
+objectManager.getObject(pSUN).setScale(new THREE.Vector3(0.75, 0.75, 0.75));
+objectManager.getObject(pTREASURE_PLANET).setScale(new THREE.Vector3(7, 7, 7));
+objectManager.getObject(pNATURE_PLANET).setScale(new THREE.Vector3(9, 9, 9));
+objectManager.getObject(pCITY_PLANET).setScale(new THREE.Vector3(8, 8, 8));
+objectManager.getObject(pDYING_PLANET).setScale(new THREE.Vector3(5, 5, 5));
+objectManager.getObject(pASTEROID).setScale(new THREE.Vector3(12, 12, 12));
+objectManager.getObject(pMOON).setScale(new THREE.Vector3(3, 3, 3));
+objectManager.getObject(pSPACESHIP).setScale(new THREE.Vector3(5, 5, 5));
