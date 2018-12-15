@@ -78,8 +78,7 @@ const TIMER = new Timer();
 //previously rendered frame.
 let frameTime = TIMER.getFrameTimeMs();
 
-//-----------------------------------------------------------
-
+//--------------------------------------------------------------
 let blueMaterial = new THREE.MeshPhysicalMaterial({color: colours.DARK_BLUE, flatShading: THREE.FlatShading,
                    metalness: 0.0, roughness: 0.5, reflectivity: 0.0} );
 let greenMaterial= new THREE.MeshPhysicalMaterial({color: colours.DARK_GREEN, flatShading: THREE.FlatShading,
@@ -87,8 +86,6 @@ let greenMaterial= new THREE.MeshPhysicalMaterial({color: colours.DARK_GREEN, fl
 
 let loadingScreen = {
     scene: new THREE.Scene(),
-    camera: new Camera(new THREE.Vector3(0, 500, 0), false, 0.001),
-    renderer: new THREE.WebGLRenderer({ antialias: true }),
     planetPartBlue: new THREE.Mesh(new THREE.OctahedronGeometry(1,2), blueMaterial),
     planetPartGreen: new THREE.Mesh(new THREE.OctahedronGeometry(1,2), greenMaterial),
     ambientLight: new THREE.AmbientLight( colours.WHITE, 0.4 ),
@@ -97,24 +94,18 @@ let loadingScreen = {
     planetGroup: new THREE.Group()
 };
 
- let RESOURCES_LOADED = false;
- loadingScreen.planetPartBlue.position.set(0, 0, 5);
+ loadingScreen.planetPartBlue.position.set(0, 0, 5.001);
  loadingScreen.planetPartGreen.position.set(0, 0, 5);
- //loadingScreen.camera.position.set(0, 0, 10);
+ //add objects to the group
  loadingScreen.planetGroup.add(loadingScreen.planetPartGreen);
  loadingScreen.planetGroup.add(loadingScreen.planetPartBlue);
- ////if camera 1 is enabled
- //loadingScreen.planetGroup.position.set(0, 490, 0);
- ////if camera 2 is enabled
- loadingScreen.planetGroup.position.set(0, -9, 0);
- ////if camera 3 is enabled
- 
- loadingScreen.planetGroup.rotation.set(-1.5, 0, 0);
+ //position of  the group
+ loadingScreen.planetGroup.position.set(295, 0, -5);
  loadingScreen.scene.add(loadingScreen.planetGroup);
  loadingScreen.scene.add(loadingScreen.ambientLight);
- loadingScreen.pointLight.position.set( 100, 800, 100 );
+ //set pointLight
+ loadingScreen.pointLight.position.set( 350, 20, -20 );
  loadingScreen.scene.add(loadingScreen.pointLight);
- loadingScreen.renderer.setClearColor({color: 0x483E9B});
 
 //------------------------------------------------------------
 
@@ -124,16 +115,16 @@ function animate()
    
    //Animation of the loading screen
    //The if statement will end once the loadingScreen.loadingTime will be over 100
-   //RESOURCES_LOADED == false
+   
     if( loadingScreen.loadingTime <100){
         
-        loadingScreen.planetPartBlue.rotation.x = 0.5;//0.6;   
-        loadingScreen.planetPartBlue.rotation.z = 0.07;
-        loadingScreen.planetPartBlue.rotation.y += 0.001;
+        loadingScreen.planetPartBlue.rotation.x = 0.6;
+        loadingScreen.planetPartBlue.rotation.y = 0.01;  
+        loadingScreen.planetPartBlue.rotation.z = -0.7;
         
-        loadingScreen.planetPartGreen.rotation.x = 0.05;//0.06;
-        loadingScreen.planetPartGreen.rotation.y += 0.01;
-        loadingScreen.planetPartGreen.rotation.z = 0.07;
+        loadingScreen.planetPartGreen.rotation.x = 0.05;
+        loadingScreen.planetPartGreen.rotation.y += 0.008;
+        loadingScreen.planetPartGreen.rotation.z = 0.7;
 
         loadingScreen.loadingTime++;
 
