@@ -24,6 +24,25 @@ pointLight2.shadow.mapSize.width = 1024;
 pointLight2.shadow.mapSize.height = 1024;
 scene.add(pointLight2);
 
+function viewObject(objectPointer, objectManager)
+{
+    console.log('in func');
+    //Make all objects invisible except for the one being pointed to 
+    //by the object pointer.
+    for(let i = 0; i < objectManager.getSize(); i++)
+    { 
+        if(i != objectPointer)
+        {
+            objectManager.getObject(i).setVisibility(false);   
+        }
+        else
+        {
+
+            objectManager.getObject(i).setVisibility(true);   
+        }
+    }
+}
+
 
 //[camera] This is the camera to view the scene through.
 let camera = new Camera(new THREE.Vector3(300, 0, 0), false, 0.001);
@@ -36,8 +55,13 @@ window.addEventListener('resize', function()
 });
 
 //Make all objects active and add them to the scene.
-objectManager.setActive(pSUN, true);
+objectManager.setAllActive(true);
 objectManager.addAllToScene(scene);
+
+//[objectPointer] Points to the current object being viewed.
+let objectPointer = 0;
+//View the first object.
+viewObject(objectPointer, objectManager);
 
 //[TIMER] used for timing the program.
 const TIMER = new Timer();

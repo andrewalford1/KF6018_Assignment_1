@@ -57,6 +57,15 @@ class ObjectManager
         }
 
         /**
+         * Retrieves the size of the list of all objects being managed.
+         * @return Returns the length of the object manager.
+         */
+        this.getSize = function()
+        {
+            return m_updateableObjects.length;
+        }
+
+        /**
          * Sets all the objects active/inactive.
          * @param {boolean} active - If 'true' then all the
          *                           objects will become active.
