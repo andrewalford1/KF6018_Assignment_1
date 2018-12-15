@@ -55,7 +55,7 @@ function viewObject(objectPointer, objectManager)
 
 
 //[camera] This is the camera to view the scene through.
-let camera = new Camera(new THREE.Vector3(300, 0, 0), false, 0.001);
+let camera = new Camera(new THREE.Vector3(150, 0, 0), false, 0.001);
 
 //EVENT LISTENERS...
 //Event listener to allow the scene to resize when the window is resized.
@@ -68,7 +68,7 @@ window.addEventListener('resize', function()
 objectManager.addAllToScene(scene);
 
 //[objectPointer] Points to the current object being viewed.
-let objectPointer = 0;
+let objectPointer = 4;
 //View the first object.
 viewObject(objectPointer, objectManager);
 

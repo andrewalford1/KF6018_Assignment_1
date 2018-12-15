@@ -8,6 +8,8 @@ const MODEL_LOADER = new ModelLoader('res/models/');
 //[objectManager] Used to manage all our objects.
 let objectManager = new ObjectManager();
 
+let origin = new THREE.Vector3(0, 0, 0);
+
 //OBJECT DECLARATIONS...
 //(Note: Each variable is a pointer to the object 
 //so they can be accessed later on).
@@ -16,7 +18,7 @@ const pSUN = objectManager.addObject(
         32, 
         2, 
         0.01, 
-        new THREE.Vector3(0, 0, 0), 
+        origin, 
         true
     )
 );
@@ -24,33 +26,33 @@ const pSUN = objectManager.addObject(
 const pTREASURE_PLANET = objectManager.addObject(
     new TreasurePlanet(
         0.01, 
-        new THREE.Vector3(150, 0, 0), 
+        origin, 
         0.5, 
-        objectManager.getObject(pSUN), 
+        null, 
         18500, 
-        !(objectManager.getObject(pSUN).getSpinsClockwise())
+        true
     )
 );
 
 const pNATURE_PLANET = objectManager.addObject(
     new NaturePlanet(
         0.01, 
-        new THREE.Vector3(200, 0, 0), 
+        origin, 
         0.52, 
-        objectManager.getObject(pSUN), 
+        null, 
         12000, 
-        !(objectManager.getObject(pSUN).getSpinsClockwise())
+        true
     )
 );
 
 const pCITY_PLANET = objectManager.addObject(
     new CityPlanet(
         0.01, 
-        new THREE.Vector3(300, 0, 0), 
+        origin, 
         0.54, 
-        objectManager.getObject(pSUN), 
+        null, 
         25400, 
-        !(objectManager.getObject(pSUN).getSpinsClockwise())
+        true
     )
 );
 
@@ -66,40 +68,40 @@ const pDYING_PLANET = objectManager.addObject(
             })
         ), 
         0.01, 
-        new THREE.Vector3(375, 0, 0), 
+        origin, 
         0.56, 
-        objectManager.getObject(pSUN), 
+        null, 
         46500, 
-        !(objectManager.getObject(pSUN).getSpinsClockwise())
+        true
     )
 );
 
 const pASTEROID = objectManager.addObject(
     new AsteroidB612(
-        new THREE.Vector3(objectManager.getObject(pNATURE_PLANET).getXPosition() + 20, 0, 0), 
+        origin, 
         3, 
-        objectManager.getObject(pNATURE_PLANET), 
+        null, 
         3650, 
-        !(objectManager.getObject(pNATURE_PLANET).getOrbitsClockwise())
+        true
     )
 );
 
 const pMOON = objectManager.addObject(
     new Moon(
-        new THREE.Vector3(objectManager.getObject(pCITY_PLANET).getXPosition() + 35, 0, 0), 
+        origin, 
         7, 
-        objectManager.getObject(pCITY_PLANET), 
+        null, 
         12000, 
-        !(objectManager.getObject(pCITY_PLANET).getOrbitsClockwise())
+        true
     )
 );
 
 const pSPACESHIP = objectManager.addObject(
     new Spaceship(
-        new THREE.Vector3(250, 0, 0), 
+        origin, 
         0.25, 
-        objectManager.getObject(pSUN), 
+        null, 
         24000, 
-        !(objectManager.getObject(pSUN).getSpinsClockwise())
+        true
     )
 );

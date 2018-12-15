@@ -30,7 +30,7 @@ class OrbitingObject extends UpdateableObject
             throw new Error('OrbitingObject: orbitSpeed must be a number.');
         }
         if(!(orbitingObject instanceof AssignmentObject 
-            || orbitingObject != null))
+            || orbitingObject == null))
         {
             throw new Error('OrbitingObject: This object can only orbit ' 
                 + 'other AssignmentObjects');
