@@ -1,6 +1,7 @@
 /**
  * Abstract class representing an updatable object.
  * @extends AssignmentObject
+ * @author Andrew Alford
  */
 class UpdateableObject extends AssignmentObject
 {
@@ -38,13 +39,21 @@ class UpdateableObject extends AssignmentObject
          */
         this.setActive = function(active)
         {
+            if(!(typeof active === typeof true))
+            {
+                throw new Error('UpdateableObject: active must ' + 
+                    'be a boolean value.');
+            }
+
             this.m_active = active;
         }
 
         /**
          * Abstract method to be implemented in the subclass.
          * Will update the inheriting object.
-         * @param {number} frameTimeMs - The time in milliseconds it took to compute the previous rendered frame.
+         * @param {number} frameTimeMs - The time in milliseconds it took 
+         *                               to compute the previous rendered 
+         *                               frame.
          */
         this.update = function(frameTimeMs)
         {

@@ -72,19 +72,10 @@ class ObjectManager
          */
         this.setAllActive = function(active)
         {
-            //Error check the parameters.
-            if(!(typeof active === typeof true))
+            //Loop through all objects.
+            for(let i = 0; i < m_updateableObjects.length; i++)
             {
-                throw new Error('ObjectDeclarator: active must ' + 
-                    'be a boolean value.');
-            }
-            else
-            {
-                //Loop through all objects.
-                for(let i = 0; i < m_updateableObjects.length; i++)
-                {
-                    m_updateableObjects[i].setActive(active);
-                }
+                m_updateableObjects[i].setActive(active);
             }
         }
 
@@ -101,11 +92,6 @@ class ObjectManager
             {
                 throw new Error('ObjectDeclarator: the given object pointer ' +
                     'must be an integer.');
-            }
-            else if(!(typeof active === typeof true))
-            {
-                throw new Error('ObjectDeclarator: active must ' + 
-                    'be a boolean value.');
             }
             else
             {

@@ -1,11 +1,14 @@
 /**
- * This class is the top of the heiriarchy for all objects created for the assignment.
+ * This class is the top of the heiriarchy for all 
+ * objects created for the assignment.
+ * @author Andrew Alford
  */
 class AssignmentObject
 {
     /**
      * Creates an assignment object.
-     * @param {Vector3} initialPosition - This is the initial position of the assignment object.
+     * @param {Vector3} initialPosition - This is the initial position
+     *                                    of the assignment object.
      */
     constructor(initialPosition)
     {
@@ -30,7 +33,8 @@ class AssignmentObject
         let m_inFocus = false;
 
         /**
-         * @Return Returns 'true' if the object is in focus. (Otherwise 'false' is returned).
+         * @Return Returns 'true' if the object is in focus. 
+         *         (Otherwise 'false' is returned).
          */
         this.isInFocus = function()
         {
@@ -39,7 +43,8 @@ class AssignmentObject
 
         /**
          * Allows the object to be set in focus.
-         * @param {boolean} inFocus - If true then the object will be being focused on.
+         * @param {boolean} inFocus - If true then the object will 
+         *                            be focused on.
          */
         this.setInFocus = function(inFocus)
         {
@@ -216,7 +221,8 @@ class AssignmentObject
 
         /**
          * Allows another object to be added to the main object.
-         * @param {THREE.Object3D} object - This is the other object to be added to the main object. 
+         * @param {THREE.Object3D} object - This is the other object
+         *                                  to be added to the main object. 
          */
         this.addObjectToGroup = function(object)
         {
@@ -225,7 +231,7 @@ class AssignmentObject
                 throw new Error('AssignmentObject: object must be a ' +
                     'type of THREE.Object3D');
             }
-            
+
             OBJECT.add(object);
         }
 
