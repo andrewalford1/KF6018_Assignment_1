@@ -24,21 +24,31 @@ pointLight2.shadow.mapSize.width = 1024;
 pointLight2.shadow.mapSize.height = 1024;
 scene.add(pointLight2);
 
+/**
+ * Makes the object being poointed to visibile, and
+ * all other objects invisible.
+ * @param {number} objectPointer - A pointer to the object you
+ *                                 want to be visible.
+ * @param {ObjectManager} objectManager - The object manager
+ *                                        being used to manage all
+ *                                        the objects in the project.
+ */
 function viewObject(objectPointer, objectManager)
 {
-    console.log('in func');
     //Make all objects invisible except for the one being pointed to 
     //by the object pointer.
     for(let i = 0; i < objectManager.getSize(); i++)
     { 
         if(i != objectPointer)
         {
-            objectManager.getObject(i).setVisibility(false);   
+            objectManager.getObject(i).setVisibility(false);
+            objectManager.setActive(i, false);   
         }
         else
         {
 
-            objectManager.getObject(i).setVisibility(true);   
+            objectManager.getObject(i).setVisibility(true);
+            objectManager.setActive(i, true);   
         }
     }
 }
@@ -54,8 +64,7 @@ window.addEventListener('resize', function()
    camera.setViewPort(window.innerWidth, window.innerHeight);
 });
 
-//Make all objects active and add them to the scene.
-objectManager.setAllActive(true);
+//Add all objects to the scene.
 objectManager.addAllToScene(scene);
 
 //[objectPointer] Points to the current object being viewed.

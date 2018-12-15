@@ -9,11 +9,17 @@ class AssignmentObject
      */
     constructor(initialPosition)
     {
-        
         //Define this class as abstract.
         if (this.constructor === AssignmentObject) 
         {
-            throw new Error("Can't instantiate abstract class!");
+            throw new Error('AssignmentObject: You cannot ' + 
+                'instantiate abstract class!');
+        }
+        //ERROR CHECK PARAMETERS
+        if(!(initialPosition instanceof THREE.Vector3))
+        {
+            throw new Error('AssignmentObject: initialPosition ' +
+                'must be a Vector3.');
         }
 
         //[OBJECT] This is the object the class encases.
@@ -37,6 +43,12 @@ class AssignmentObject
          */
         this.setInFocus = function(inFocus)
         {
+            if(!(typeof inFocus === typeof true))
+            {
+                throw new Error('AssignmentObject: inFocus must be a ' +
+                    'boolean value');
+            }
+
             m_inFocus = inFocus;
 
             //Check if the object is in focus.
@@ -61,16 +73,29 @@ class AssignmentObject
          */
         this.setVisibility = function(visible)
         {
+            if(!(typeof visible === typeof true))
+            {
+                throw new Error('AssignmentObject: inFocus must be a ' +
+                    'boolean value');
+            }
+
             OBJECT.visible = visible;
         }
 
         /**
          * Allows the full position of the object to be set.
-         * @param {THREE.Vector3} position - A vector3 containing the new 'X', 'Y', and 'Z'
-         *                                   coordinates for the object.
+         * @param {THREE.Vector3} position - A vector3 containing the new
+         *                                  'X', 'Y', and 'Z' coordinates 
+         *                                   for the object.
          */
         this.setPosition = function(position)
         {
+            if(!(position instanceof THREE.Vector3))
+            {
+                throw new Error('AssignmentObject: position ' +
+                    'must be a Vector3.');
+            }   
+              
             OBJECT.position.copy(position);
         }
 
@@ -80,6 +105,12 @@ class AssignmentObject
          */
         this.setXPosition = function(x)
         {
+            if(!(typeof x === 'number'))
+            {
+                throw new Error('AssignmentObject: x ' +
+                    'must be an integer.');
+            }
+
             OBJECT.position.setX(x);
         }
 
@@ -89,6 +120,12 @@ class AssignmentObject
          */
         this.setYPosition = function(y)
         {
+            if(!(typeof y === 'number'))
+            {
+                throw new Error('AssignmentObject: y ' +
+                    'must be an integer.');
+            }
+
             OBJECT.position.setY(y);
         }
 
@@ -98,6 +135,12 @@ class AssignmentObject
          */
         this.setZPosition = function(z)
         {
+            if(!(typeof z === 'number'))
+            {
+                throw new Error('AssignmentObject: z ' +
+                    'must be an integer.');
+            }
+
             OBJECT.position.setZ(z);
         }
 
@@ -139,6 +182,12 @@ class AssignmentObject
          */
         this.setScale = function(scale)
         {
+            if(!(position instanceof THREE.Vector3))
+            {
+                throw new Error('AssignmentObject: scale ' +
+                    'must be a Vector3.');
+            } 
+
             OBJECT.scale.copy(scale);
         }
 
@@ -156,6 +205,12 @@ class AssignmentObject
          */
         this.addToScene = function(scene)
         {
+            if(!(scene instanceof THREE.Scene))
+            {
+                throw new Error('AssignmentObject: scene must be a ' +
+                    'type of THREE.Scene.');
+            }
+
             scene.add(OBJECT);
         }
 
@@ -165,6 +220,12 @@ class AssignmentObject
          */
         this.addObjectToGroup = function(object)
         {
+            if(!(object instanceof THREE.Object3D))
+            {
+                throw new Error('AssignmentObject: object must be a ' +
+                    'type of THREE.Object3D');
+            }
+            
             OBJECT.add(object);
         }
 

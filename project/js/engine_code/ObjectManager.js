@@ -121,18 +121,10 @@ class ObjectManager
          */
         this.addAllToScene = function(scene)
         {
-            if(!(scene instanceof THREE.Scene))
+            //Loop through all objects and add them to the scene.
+            for(let i = 0; i < m_updateableObjects.length; i++)
             {
-                throw new Error('ObjectDeclarator: scene must be a ' +
-                    'type of THREE.Scene.');
-            }
-            else
-            {
-                //Loop through all objects and add them to the scene.
-                for(let i = 0; i < m_updateableObjects.length; i++)
-                {
-                    m_updateableObjects[i].addToScene(scene);
-                }
+                m_updateableObjects[i].addToScene(scene);
             }
         }
 
