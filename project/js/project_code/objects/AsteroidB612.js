@@ -11,11 +11,12 @@ class AsteroidB612 extends OrbitingObject
      * @param {number} orbitSpeed - How quickly the asteroid orbits around other objects.
      * @param {AssignmentObject} orbitingObject - This is the object that the asteroid is orbiting.
      * @param {number} fullOrbitMs - How long it takes the asteroid to fully orbit around the orbiting object.
+     * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs)
+    constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
     {
         //Construct the superclass.
-        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
+        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise);
 
         //Set the name for this asteroid.
         this.getObject().name = 'Asteroid: B612';

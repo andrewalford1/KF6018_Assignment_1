@@ -20,33 +20,64 @@ class OrbitingObject extends UpdateableObject
         //Define this class as abstract.
         if (this.constructor === OrbitingObject) 
         {
-            throw new Error("Can't instantiate abstract class!");
+            throw new Error('OrbitingObject: Cannot instantiate ' +
+                'abstract class!');
         }
 
-        //[orbitsClockwise] If true then the object orbits the other object clockwise.
+        //ERROR CHECK PARAMETERS
+        if(!(typeof orbitSpeed === 'number'))
+        {
+            throw new Error('OrbitingObject: orbitSpeed must be a number.');
+        }
+        if(!(orbitingObject instanceof AssignmentObject 
+            || orbitingObject != null))
+        {
+            throw new Error('OrbitingObject: This object can only orbit ' 
+                + 'other AssignmentObjects');
+        }
+        if(!(typeof fullOrbitMs === 'number'))
+        {
+            throw new Error('OrbitingObject: fullOrbitMs must be a number.');
+        }
+        if(!(typeof orbitsClockwise === typeof true))
+        {
+            throw new Error('OrbitingObject: orbitsClockwise must be a ' +
+                'boolean value');
+        }
+
+        //[orbitsClockwise] If true then the object orbits the other 
+        //object clockwise.
         let m_orbitsClockwise = orbitsClockwise;
 
-        //[m_orbitSpeed] Member variable to determine how quickly this object will orbit other objects.
+        //[m_orbitSpeed] Member variable to determine how quickly
+        //this object will orbit other objects.
         let m_orbitSpeed = orbitSpeed;
 
-        //[m_fullOrbitMs] Member variable to determine how long it takes the object to do a full 
-        //cycle around the object it is orbiting (milliseconds).
+        //[m_fullOrbitMs] Member variable to determine how long it 
+        //takes the object to do a full cycle around the object 
+        //it is orbiting (milliseconds).
         let m_fullOrbitMs = fullOrbitMs;
 
-        //[m_elaspedTimeMs] Member variable to track how long an object is along it's orbit cycle (milliseconds).
+        //[m_elaspedTimeMs] Member variable to track how long an 
+        //object is along it's orbit cycle (milliseconds).
         let m_elaspedTimeMs = 0;
 
-        //[M_DISTANCE_TO_ORBITING_OBJECT] Member variable to determine the distance between this object
-        //and the object that it is rendering.
-        const M_DISTANCE_TO_ORBITING_OBJECT = Math.round(orbitingObject.getPosition().distanceTo(this.getPosition()));
+        //[m_distanceToOrbitingObject] Member variable to determine 
+        //the distance between this object and the object that it is rendering.
+        let m_distanceToOrbitingObject;
 
-        /**
-         * Allows the orbit speed to be set.
-         * @param {number} orbitSpeed - This is the new orbit speed for the object.
-         */
-        this.setOrbitSpeed = function(orbitSpeed)
+        //[m_orbiting] Will only be true if this object  
+        //is currently orbiting another object.
+        let m_orbiting = false;
+
+        //If an orbiting object has been given then calculate
+        //the distance between this object and the object it orbits.
+        if(orbitingObject != null)
         {
-            m_orbitSpeed = orbitSpeed;
+            m_distanceToOrbitingObject = Math.round(
+                orbitingObject.getPosition().distanceTo(this.getPosition())
+            );
+            m_orbiting = true;
         }
 
         /**
@@ -55,6 +86,20 @@ class OrbitingObject extends UpdateableObject
         this.getOrbitSpeed = function()
         {
             return m_orbitSpeed;
+        }
+
+        /**
+         * Allows the orbit speed to be set.
+         * @param {number} orbitSpeed - This is the new orbit speed for the object.
+         */
+        this.setOrbitSpeed = function(orbitSpeed)
+        {
+            if(!(typeof orbitSpeed === 'number'))
+            {
+                throw new Error('OrbitingObject: orbitSpeed must be a number.');
+            }
+
+            m_orbitSpeed = orbitSpeed;
         }
 
         /**
@@ -73,6 +118,12 @@ class OrbitingObject extends UpdateableObject
          */
         this.setOrbitsClockwise = function(orbitsClockwise)
         {
+            if(!(typeof orbitsClockwise === typeof true))
+            {
+                throw new Error('OrbitingObject: orbitsClockwise must be a ' +
+                    'boolean value');
+            }
+
             m_orbitsClockwise = orbitsClockwise;
         }
 
@@ -82,28 +133,40 @@ class OrbitingObject extends UpdateableObject
           */
         this.moveAlongOrbitingPath = function(frameTimeMs)
         {
-            //Increment the elasped time.
-            m_elaspedTimeMs += frameTimeMs;
-
-            //Check if a full orbit has occured.
-            if(m_elaspedTimeMs > m_fullOrbitMs)
+            if(!(typeof frameTimeMs === 'number' 
+                || Number.isInteger(frameTimeMs)))
             {
-                m_elaspedTimeMs = 0;
+                throw new Error('OrbitingObject: frameTimeMs must ' +
+                    'be a number.');
             }
 
-            //[increment] How far to increment the planet along it's orbiting path.
-            let increment = (Math.PI * 2) / (m_fullOrbitMs / m_elaspedTimeMs);
-
-            if(m_orbitsClockwise)
+            //Only do the maths if this object is orbiting 
+            //another object.
+            if(m_orbiting)
             {
-                increment *= -1;
-            }
+                //Increment the elasped time.
+                m_elaspedTimeMs += frameTimeMs;
 
-            this.setPosition(new THREE.Vector3(
-                orbitingObject.getXPosition() + M_DISTANCE_TO_ORBITING_OBJECT * Math.sin(increment),
-                0,
-                orbitingObject.getZPosition() + M_DISTANCE_TO_ORBITING_OBJECT * Math.cos(increment)
-            ));
+                //Check if a full orbit has occured.
+                if(m_elaspedTimeMs > m_fullOrbitMs)
+                {
+                    m_elaspedTimeMs = 0;
+                }
+
+                //[increment] How far to increment the planet along it's orbiting path.
+                let increment = (Math.PI * 2) / (m_fullOrbitMs / m_elaspedTimeMs);
+
+                if(m_orbitsClockwise)
+                {
+                    increment *= -1;
+                }
+
+                this.setPosition(new THREE.Vector3(
+                    orbitingObject.getXPosition() + m_distanceToOrbitingObject * Math.sin(increment),
+                    0,
+                    orbitingObject.getZPosition() + m_distanceToOrbitingObject * Math.cos(increment)
+                ));
+            }
         }
     }
 }

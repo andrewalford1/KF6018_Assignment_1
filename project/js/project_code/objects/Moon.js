@@ -21,7 +21,7 @@ class Moon extends OrbitingObject
     constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, spinsClockwise)
     {
         //Construct the superclass.
-        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs);
+        super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, spinsClockwise);
 
         //Set the name for the moon.
         this.getObject().name = 'Moon';

@@ -13,7 +13,7 @@ class Planet extends OrbitingObject
      * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
      * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, objectDescription, orbitsClockwise)
+    constructor(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
     {
         //Construct the superclass.
         super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise);
