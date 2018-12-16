@@ -51,6 +51,11 @@ function viewObject(objectPointer, objectManager)
             objectManager.setActive(i, true);   
         }
     }
+
+    //Add the objects name to the page.
+    htmlAccessor.OBJECT_INFORMATION.textContent = (
+        objectManager.getObject(objectPointer).getObject().name
+    );
 }
 
 
@@ -68,12 +73,17 @@ viewObject(objectPointer, objectManager);
 //[USER_INPUT] Used to retrieve input from the user.
 const USER_INPUT = new KeyboardInput();
 
+//Show the objects name.
+htmlAccessor.OBJECT_INFORMATION.style.visibility = 'visible';
+
 //EVENT LISTENERS...
 //Event listener to allow the scene to resize when the window is resized.
 window.addEventListener('resize', function()
 {
    camera.setViewPort(window.innerWidth, window.innerHeight);
 });
+//Event listener to switch the current object being viewed when the user
+//taps the screen and releases their finger.
 document.addEventListener('touchend', function()
 {
     objectPointer++;
