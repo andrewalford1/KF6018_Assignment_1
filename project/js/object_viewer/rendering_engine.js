@@ -72,6 +72,9 @@ let objectPointer = 0;
 //View the first object.
 viewObject(objectPointer, objectManager);
 
+//[USER_INPUT] Used to retrieve input from the user.
+const USER_INPUT = new KeyboardInput();
+
 //[TIMER] used for timing the program.
 const TIMER = new Timer();
 //[frameTime] Contains the time in milliseconds it took to compute the
@@ -109,8 +112,6 @@ let loadingScreen = {
 
 //------------------------------------------------------------
 
-let iFrame = 0;
-
 //ANIMATION FUNCTION...
 function animate()
 {
@@ -146,19 +147,32 @@ function animate()
     //Update all the updateable objects on the canvas.
     objectManager.updateAllObjects(frameTime);
 
-    if(iFrame % 100 == 0)
+    if(USER_INPUT.isPressed(keys.A) 
+        || USER_INPUT.isPressed(keys.D))
     {
-        objectPointer++;
-
-        if(objectPointer > objectManager.getSize() - 1)
+        if(USER_INPUT.isPressed(keys.D))
         {
-            objectPointer = 0;
+            objectPointer++;
+
+            if(objectPointer > objectManager.getSize() - 1)
+            {
+                objectPointer = 0;
+            }
         }
-        
+        else if(USER_INPUT.isPressed(keys.A))
+        {
+            objectPointer--;
+
+            if(objectPointer < 0)
+            {
+                objectPointer = objectManager.getSize() - 1;
+            }
+        }
+
         viewObject(objectPointer, objectManager);
     }
 
-    iFrame++;
+    USER_INPUT.update();
 }
 
 //Run the animation loop.
