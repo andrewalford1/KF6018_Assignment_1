@@ -15,7 +15,7 @@ class KeyboardInput
         {
             m_keyPressed = event.which;
         }); 
-
+        
         //PUBLIC METHODS...
 
         /**
@@ -32,7 +32,7 @@ class KeyboardInput
                 throw new Error('KeyboardInput: key ' +
                     'must be an integer.');
             }
-            
+
             if(key == m_keyPressed)
             {
                 return true;

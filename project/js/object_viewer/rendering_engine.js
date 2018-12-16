@@ -57,13 +57,6 @@ function viewObject(objectPointer, objectManager)
 //[camera] This is the camera to view the scene through.
 let camera = new Camera(new THREE.Vector3(100, 0, 0), false, 0.001);
 
-//EVENT LISTENERS...
-//Event listener to allow the scene to resize when the window is resized.
-window.addEventListener('resize', function()
-{
-   camera.setViewPort(window.innerWidth, window.innerHeight);
-});
-
 //Add all objects to the scene.
 objectManager.addAllToScene(scene);
 
@@ -74,6 +67,24 @@ viewObject(objectPointer, objectManager);
 
 //[USER_INPUT] Used to retrieve input from the user.
 const USER_INPUT = new KeyboardInput();
+
+//EVENT LISTENERS...
+//Event listener to allow the scene to resize when the window is resized.
+window.addEventListener('resize', function()
+{
+   camera.setViewPort(window.innerWidth, window.innerHeight);
+});
+document.addEventListener('touchend', function()
+{
+    objectPointer++;
+
+    if(objectPointer > objectManager.getSize() - 1)
+    {
+        objectPointer = 0;
+    }
+
+    viewObject(objectPointer, objectManager);
+});
 
 //[TIMER] used for timing the program.
 const TIMER = new Timer();
