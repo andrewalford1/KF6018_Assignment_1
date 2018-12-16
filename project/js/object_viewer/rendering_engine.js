@@ -5,11 +5,11 @@ let scene = new THREE.Scene();
 TEXTURE_LOADER.loadSkybox('skybox', '.JPEG', scene);
 
 // Ambient light
-let lightAmbient = new THREE.AmbientLight(colours.WHITE, 0.2); // soft white light
+let lightAmbient = new THREE.AmbientLight(colours.WHITE, 0.25); // soft white light
 scene.add(lightAmbient);
 
 //point light
-let pointLight = new THREE.PointLight(colours.WHITE, 1, 5000);
+let pointLight = new THREE.PointLight(colours.WHITE, 1, 7000);
 pointLight.position.set(80, 200, 80);
 pointLight.castShadow = true;
 pointLight.shadow.mapSize.width = 1024;
@@ -124,7 +124,7 @@ let loadingScreen = {
  loadingScreen.planetGroup.add(loadingScreen.planetPartGreen);
  loadingScreen.planetGroup.add(loadingScreen.planetPartBlue);
  //position of  the group
- loadingScreen.planetGroup.position.set(295, 0, -5);
+ loadingScreen.planetGroup.position.set(95, 0, -5);
  loadingScreen.scene.add(loadingScreen.planetGroup);
  loadingScreen.scene.add(loadingScreen.ambientLight);
  //set pointLight
@@ -148,7 +148,7 @@ function animate()
         
         loadingScreen.planetPartGreen.rotation.x = 0.05;
         loadingScreen.planetPartGreen.rotation.y += 0.008;
-        loadingScreen.planetPartGreen.rotation.z = 0.7;
+        loadingScreen.planetPartGreen.rotation.z = 6;
 
         loadingScreen.loadingTime++;
 
