@@ -30,7 +30,11 @@ class DyingPlanet extends Planet
         
         //[SURFACE_MATERIAL] This is the material used for any details added to the planet.
         const SURFACE_MATERIAL = new THREE.MeshStandardMaterial( 
-            {color: colours.BROWN, flatShading: THREE.FlatShading, metalness: 0, roughness: 1} 
+            {color: colours.BROWN, 
+            flatShading: THREE.FlatShading, 
+            metalness: 0, 
+            roughness: 1, 
+            side: THREE.DoubleSide}
         );
 
         //CREATE VOLCANOES...
@@ -42,8 +46,18 @@ class DyingPlanet extends Planet
         const RADIAL_SEGMENTS = 8;
 
         let volcanoA = new THREE.Mesh(
-            new THREE.CylinderGeometry(RADIUS_TOP, RADIUS_BOTTOM, HEIGHT, RADIAL_SEGMENTS), 
+            new THREE.CylinderGeometry(RADIUS_TOP, RADIUS_BOTTOM, HEIGHT, RADIAL_SEGMENTS, 1, true, 0, 6.3), 
             SURFACE_MATERIAL
+        );
+
+        let lava = new THREE.Mesh(
+            new THREE.CylinderGeometry(RADIUS_TOP + 0.05, RADIUS_TOP + 0.05, 1),
+            new THREE.MeshStandardMaterial({
+                color: colours.DARK_RED, 
+                flatShading: THREE.FlatShading, 
+                metalness: 0, 
+                roughness: 1
+            })
         );
         let volcanoB = new THREE.Mesh(
             new THREE.CylinderGeometry(RADIUS_TOP * 1.2, RADIUS_BOTTOM * 1.2, HEIGHT * 1.2, RADIAL_SEGMENTS), 
@@ -56,6 +70,7 @@ class DyingPlanet extends Planet
 
         //Postion the volcanoes.
         volcanoA.position.set(0, 5.5, 0);
+        lava.position.set(0, 5.5, 0);
         volcanoB.position.set(1, 1, 5);
         volcanoC.position.set(-0.3, -2.5, -4.5);
 
@@ -65,6 +80,7 @@ class DyingPlanet extends Planet
 
         //Add the volcanoes to the planet.
         this.addObjectToGroup(volcanoA);
+        this.addObjectToGroup(lava);
         this.addObjectToGroup(volcanoB);
         this.addObjectToGroup(volcanoC);
 
@@ -120,6 +136,20 @@ class DyingPlanet extends Planet
 
         //Add the rock to the planet.
         this.addObjectToGroup(rock);
+
+        //CREATE THE PLANETS CORE...
+        const CORE = new THREE.Mesh(
+            new THREE.OctahedronBufferGeometry(4.75, 2),
+            new THREE.MeshStandardMaterial({
+                color: colours.DARK_RED, 
+                flatShading: THREE.FlatShading, 
+                metalness: 0, 
+                roughness: 1
+            })  
+        );
+
+        //Add the core to the planet.
+        this.addObjectToGroup(CORE);
 
         //PARTICLE EFFECTS...
         const VOLCANO_ERUPTION = new Explosion(
