@@ -103,7 +103,14 @@ const pSPACESHIP = objectManager.addObject(
         null, 
         24000, 
         true,
-        MODEL_LOADER.loadTexturedModel('plane')
+        MODEL_LOADER.loadTexturedModel('plane'),
+                MODEL_LOADER.loadModel('propellers',
+                    new THREE.MeshStandardMaterial({
+                color: colours.GREY, 
+                flatShading: THREE.FlatShading, 
+                metalness: 0, 
+                roughness: 1
+            }))
     )
 );
 
