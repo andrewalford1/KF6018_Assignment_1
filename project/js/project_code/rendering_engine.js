@@ -95,7 +95,7 @@ function animate()
    //Animation of the loading screen
    //The if statement will end once the loadingScreen.loadingTime will be over 100
    //RESOURCES_LOADED == false
-    if( loadingScreen.loadingTime <100){
+    if( RESOURCES_LOADED == true){
         
         loadingScreen.planetPartBlue.rotation.x = 0.5;//0.6;   
         loadingScreen.planetPartBlue.rotation.z = 0.07;
