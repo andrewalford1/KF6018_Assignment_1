@@ -100,6 +100,7 @@ const pSPACESHIP = objectManager.addObject(
         0.25, 
         objectManager.getObject(pSUN), 
         24000, 
-        !(objectManager.getObject(pSUN).getSpinsClockwise())
+        !(objectManager.getObject(pSUN).getSpinsClockwise()),
+        MODEL_LOADER.loadTexturedModel('plane')
     )
 );

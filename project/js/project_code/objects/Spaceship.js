@@ -8,39 +8,19 @@ class Spaceship extends OrbitingObject
      * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
      * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
      */
-    constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
+    constructor(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise, model)
     {
         //Construct the superclass.
         super(initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise);
 
-        //CREATE SPACESHIP COMPONENTS...
-        const BASE = new THREE.Mesh(
-            new THREE.CylinderGeometry(5, 10, 2, 32),
-            new THREE.MeshStandardMaterial({
-                color: colours.SILVER,
-                flatShading: THREE.FlatShading,
-                metalness: 1,
-                roughness: 1
-            })
-        );
+        //Set the name for this planet.
+        this.getObject().name = 'Space Plane';
 
-        const DOME = new THREE.Mesh(
-            new THREE.SphereGeometry(5, 32, 32),
-            new THREE.MeshPhysicalMaterial({
-                color: colours.LIGHT_BLUE,
-                flatShading: THREE.FlatShading,
-                metalness: 0,
-                roughness: 0.5,
-                reflectivity: 1,
-                transparent: true,
-                opacity: 0.5,
-                side: THREE.DoubleSide
-            })
-        );
+        let PLANE = new THREE.Group();
+        PLANE.add(model);
 
-        //ADD COMPONENTS TO THE GROUP...
-        this.addObjectToGroup(BASE);
-        this.addObjectToGroup(DOME); 
+        //Add the planet's base model.
+        this.addObjectToGroup(model); 
 
         ///PUBLIC METHODS...
 

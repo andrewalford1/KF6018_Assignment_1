@@ -102,7 +102,8 @@ const pSPACESHIP = objectManager.addObject(
         0.25, 
         null, 
         24000, 
-        true
+        true,
+        MODEL_LOADER.loadTexturedModel('plane')
     )
 );
 

@@ -26,10 +26,10 @@ scene.add(pointLight2);
 
 
 //[camera] This is the camera to view the scene through.
-let camera = new Camera(new THREE.Vector3(0, 500, 0), false, 0.001); //top down view.
-//let camera = new Camera(new THREE.Vector3(0, 2, 0), true, 0.001);
+//let camera = new Camera(new THREE.Vector3(0, 500, 0), false, 0.001); //top down view.
+let camera = new Camera(new THREE.Vector3(0, 2, 0), true, 0.001);
 //Add the camera to the spaceship.
-//objectManager.getObject(pSPACESHIP).addObjectToGroup(camera.getInstance());
+objectManager.getObject(pSPACESHIP).addObjectToGroup(camera.getInstance());
 
 //EVENT LISTENERS...
 //Event listener to allow the scene to resize when the window is resized.
