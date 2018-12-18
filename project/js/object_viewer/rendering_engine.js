@@ -103,11 +103,13 @@ const TIMER = new Timer();
 let frameTime = TIMER.getFrameTimeMs();
 
 //--------------------------------------------------------------
+//material A for the objecs in the loading screen 
 let blueMaterial = new THREE.MeshPhysicalMaterial({color: colours.DARK_BLUE, flatShading: THREE.FlatShading,
                    metalness: 0.0, roughness: 0.5, reflectivity: 0.0} );
+//material B for the objecs in the loading screen 
 let greenMaterial= new THREE.MeshPhysicalMaterial({color: colours.DARK_GREEN, flatShading: THREE.FlatShading,
                    metalness: 0.0, roughness: 0.5, reflectivity: 0.0} );
-
+//declare objects in the loading screen
 let loadingScreen = {
     scene: new THREE.Scene(),
     planetPartBlue: new THREE.Mesh(new THREE.OctahedronGeometry(1,2), blueMaterial),
@@ -117,7 +119,7 @@ let loadingScreen = {
     loadingTime: 0,
     planetGroup: new THREE.Group()
 };
-
+//set position of the objects
  loadingScreen.planetPartBlue.position.set(0, 0, 5.001);
  loadingScreen.planetPartGreen.position.set(0, 0, 5);
  //add objects to the group
@@ -125,12 +127,14 @@ let loadingScreen = {
  loadingScreen.planetGroup.add(loadingScreen.planetPartBlue);
  //position of  the group
  loadingScreen.planetGroup.position.set(95, 0, -5);
+ //add the planetGroup to the loading screen scene
  loadingScreen.scene.add(loadingScreen.planetGroup);
+ //add ambient light to the loading screen scene
  loadingScreen.scene.add(loadingScreen.ambientLight);
  //set pointLight
  loadingScreen.pointLight.position.set( 350, 50, -50 );
+ //add the point light to the loading screen scene
  loadingScreen.scene.add(loadingScreen.pointLight);
-
 //------------------------------------------------------------
 
 //ANIMATION FUNCTION...
@@ -139,13 +143,12 @@ function animate()
    
    //Animation of the loading screen
    //The if statement will end once the loadingScreen.loadingTime will be over 100
-   
     if( loadingScreen.loadingTime <100){
-        
+        //rotate planetPartBlue
         loadingScreen.planetPartBlue.rotation.x = 0.6;
         loadingScreen.planetPartBlue.rotation.y = 0.01;  
         loadingScreen.planetPartBlue.rotation.z = -0.7;
-        
+        //rotate planetPartGreen
         loadingScreen.planetPartGreen.rotation.x = 0.05;
         loadingScreen.planetPartGreen.rotation.y += 0.008;
         loadingScreen.planetPartGreen.rotation.z = 6;
