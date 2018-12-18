@@ -78,12 +78,16 @@ let loadingScreen = {
  //loadingScreen.planetGroup.position.set(0, 490, 0);
  ////if camera 2 is enabled
  loadingScreen.planetGroup.position.set(0, -9, 0);
+ ////if spaceShip camera is enabled
+ //loadingScreen.planetGroup.position.set(245, 0, 0);
+ //rotation of the planetGroup
+ loadingScreen.planetGroup.rotation.set(-1.5, 0, 0);
  //add the planetGroup to the loading screen scene
  loadingScreen.scene.add(loadingScreen.planetGroup);
  //add ambient light to the loading screen scene
  loadingScreen.scene.add(loadingScreen.ambientLight);
 //set pointLight position
- loadingScreen.pointLight.position.set( 250, 50, -50 );
+ loadingScreen.pointLight.position.set( 300, 800, 100 );
  //add the point light to the loading screen scene
  loadingScreen.scene.add(loadingScreen.pointLight);
 
@@ -96,7 +100,7 @@ function animate()
    //Animation of the loading screen
    //The if statement will end once the loadingScreen.loadingTime will be over 100
    //RESOURCES_LOADED == false
-    if( RESOURCES_LOADED == true){
+    if(loadingScreen.loadingTime < 100){
         //rotate planetPartBlue
         loadingScreen.planetPartBlue.rotation.x = 0.5;//0.6;   
         loadingScreen.planetPartBlue.rotation.z = 0.07;
@@ -108,7 +112,7 @@ function animate()
 
         loadingScreen.loadingTime++;
 
-        camera.update(loadingScreen.scene, loadingScreen.camera);
+        camera.update(loadingScreen.scene, loadingScreen.loadingTime);
         return;
 
     }
