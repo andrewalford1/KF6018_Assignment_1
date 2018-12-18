@@ -155,7 +155,7 @@ function animate()
 
         loadingScreen.loadingTime++;
 
-        camera.update(loadingScreen.scene, loadingScreen.camera);
+        camera.update(loadingScreen.scene, loadingScreen.loadingTime);
         return;
 
     }
