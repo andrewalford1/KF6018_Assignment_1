@@ -49,12 +49,13 @@ const TIMER = new Timer();
 let frameTime = TIMER.getFrameTimeMs();
 
 //-----------------------------------------------------------
-
+//material A for the objecs in the loading screen 
 let blueMaterial = new THREE.MeshPhysicalMaterial({color: colours.DARK_BLUE, flatShading: THREE.FlatShading,
                    metalness: 0.0, roughness: 0.5, reflectivity: 0.0} );
+//material B for the objecs in the loading screen 
 let greenMaterial= new THREE.MeshPhysicalMaterial({color: colours.DARK_GREEN, flatShading: THREE.FlatShading,
                    metalness: 0.0, roughness: 0.5, reflectivity: 0.0} );
-
+//declare objects in the loading screen
 let loadingScreen = {
     scene: new THREE.Scene(),
     camera: new Camera(new THREE.Vector3(0, 500, 0), false, 0.001),
@@ -66,25 +67,25 @@ let loadingScreen = {
     loadingTime: 0,
     planetGroup: new THREE.Group()
 };
-
- let RESOURCES_LOADED = false;
+ //set position of the objects
  loadingScreen.planetPartBlue.position.set(0, 0, 5);
  loadingScreen.planetPartGreen.position.set(0, 0, 5);
- //loadingScreen.camera.position.set(0, 0, 10);
+//add objects to the group
  loadingScreen.planetGroup.add(loadingScreen.planetPartGreen);
  loadingScreen.planetGroup.add(loadingScreen.planetPartBlue);
+ //position of  the group
  ////if camera 1 is enabled
  //loadingScreen.planetGroup.position.set(0, 490, 0);
  ////if camera 2 is enabled
  loadingScreen.planetGroup.position.set(0, -9, 0);
- ////if camera 3 is enabled
- 
- loadingScreen.planetGroup.rotation.set(-1.5, 0, 0);
+ //add the planetGroup to the loading screen scene
  loadingScreen.scene.add(loadingScreen.planetGroup);
+ //add ambient light to the loading screen scene
  loadingScreen.scene.add(loadingScreen.ambientLight);
- loadingScreen.pointLight.position.set( 100, 800, 100 );
+//set pointLight position
+ loadingScreen.pointLight.position.set( 250, 50, -50 );
+ //add the point light to the loading screen scene
  loadingScreen.scene.add(loadingScreen.pointLight);
- loadingScreen.renderer.setClearColor({color: 0x483E9B});
 
 //------------------------------------------------------------
 
@@ -96,11 +97,11 @@ function animate()
    //The if statement will end once the loadingScreen.loadingTime will be over 100
    //RESOURCES_LOADED == false
     if( RESOURCES_LOADED == true){
-        
+        //rotate planetPartBlue
         loadingScreen.planetPartBlue.rotation.x = 0.5;//0.6;   
         loadingScreen.planetPartBlue.rotation.z = 0.07;
         loadingScreen.planetPartBlue.rotation.y += 0.001;
-        
+        //rotate planetPartGreen
         loadingScreen.planetPartGreen.rotation.x = 0.05;//0.06;
         loadingScreen.planetPartGreen.rotation.y += 0.01;
         loadingScreen.planetPartGreen.rotation.z = 0.07;
