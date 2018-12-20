@@ -5,54 +5,69 @@ const TEXTURE_LOADER = new TextureLoader('res/textures/');
 //[M_MODEL_LOADER] Used to load models.
 const MODEL_LOADER = new ModelLoader('res/models/');
 
+//Constants to make the code more readable.
+//[BASE_RADIUS] The base radius of an object.
+const BASE_RADIUS = 1;
+//[BASE_SMOOTHNESS] The base smoothness of an object.
+const BASE_SMOOTHNESS = 1;
+//[BASE_ROTATION_SPEED] The base rotation speed of an object.
+const BASE_ROTATION_SPEED = 0;
+//[BASE_ORBIT_SPEED] The base orbit speed of an object.
+const BASE_ORBIT_SPEED = 0;
+//[BASE_FULL_ROTATION_MS] The base amount of time it takes for an
+//object to perform a full rotation (in milliseconds).
+const BASE_FULL_ROTATION_MS = 0;
+//[rotatesClockwise] If 'true' then the object rotates clockwise.
+let rotatesClockwise = true;
+//[origin] The origin of the scene.
+let origin = new THREE.Vector3(0, 0, 0);
+
 //[objectManager] Used to manage all our objects.
 let objectManager = new ObjectManager();
-
-let origin = new THREE.Vector3(0, 0, 0);
 
 //OBJECT DECLARATIONS...
 //(Note: Each variable is a pointer to the object 
 //so they can be accessed later on).
 const pSUN = objectManager.addObject(
      new Star(
-        32, 
-        2, 
-        0.01, 
+        BASE_RADIUS * 32, 
+        BASE_SMOOTHNESS * 2, 
+        BASE_ROTATION_SPEED + 0.01, 
         origin, 
-        true
+        rotatesClockwise
     )
 );
 
 const pTREASURE_PLANET = objectManager.addObject(
     new TreasurePlanet(
-        0.01, 
+        BASE_ROTATION_SPEED + 0.01, 
         origin, 
-        0.5, 
+        BASE_ORBIT_SPEED + 0.5, 
         null, 
-        18500, 
-        true
+        BASE_FULL_ROTATION_MS + 18500, 
+        rotatesClockwise
     )
 );
 
 const pNATURE_PLANET = objectManager.addObject(
     new NaturePlanet(
-        0.01, 
+        BASE_ROTATION_SPEED + 0.01, 
         origin, 
-        0.52, 
+        BASE_ORBIT_SPEED + 0.52, 
         null, 
-        12000, 
-        true
+        BASE_FULL_ROTATION_MS + 12000, 
+        rotatesClockwise
     )
 );
 
 const pCITY_PLANET = objectManager.addObject(
     new CityPlanet(
-        0.01, 
+        BASE_ROTATION_SPEED + 0.01, 
         origin, 
-        0.54, 
+        BASE_ORBIT_SPEED + 0.54, 
         null, 
-        25400, 
-        true
+        BASE_FULL_ROTATION_MS + 25400, 
+        rotatesClockwise
     )
 );
 
@@ -67,42 +82,42 @@ const pDYING_PLANET = objectManager.addObject(
                 roughness: 1
             })
         ), 
-        0.01, 
+        BASE_ROTATION_SPEED + 0.01, 
         origin, 
-        0.56, 
+        BASE_ORBIT_SPEED + 0.56, 
         null, 
-        46500, 
-        true
+        BASE_FULL_ROTATION_MS + 46500, 
+        rotatesClockwise
     )
 );
 
 const pASTEROID = objectManager.addObject(
     new AsteroidB612(
         origin, 
-        3, 
+        BASE_ORBIT_SPEED + 3, 
         null, 
-        3650, 
-        true
+        BASE_FULL_ROTATION_MS + 3650, 
+        rotatesClockwise
     )
 );
 
 const pMOON = objectManager.addObject(
     new Moon(
         origin, 
-        7, 
+        BASE_ORBIT_SPEED + 7, 
         null, 
-        12000, 
-        true
+        BASE_FULL_ROTATION_MS + 12000, 
+        rotatesClockwise
     )
 );
 
 const pSPACESHIP = objectManager.addObject(
     new Spaceship(
         origin, 
-        0.25, 
+        BASE_ORBIT_SPEED + 0.25, 
         null, 
-        24000, 
-        true,
+        BASE_FULL_ROTATION_MS + 24000, 
+        rotatesClockwise,
         MODEL_LOADER.loadTexturedModel('plane'),
                 MODEL_LOADER.loadModel('propellers',
                     new THREE.MeshStandardMaterial({
