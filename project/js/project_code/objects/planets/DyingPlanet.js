@@ -1,29 +1,47 @@
 /**
  * Class describing a dying planet.
  * @extends Planet
+ * @author Andrew Alford (w16006135)
  */
 class DyingPlanet extends Planet
 {
     /**
      * Create the dying planet.
-     * @param {THREE.Object3D} model - This is the model to be used for the base planet.
+     * @param {ModelLoader} modelLoader - This is a model loader used to load 
+     *                                    the model for the planet.
      * @param {number} rotationSpeed - How quickly the planet rotates.
      * @param {Vector3} initialPosition - The initial position of the planet.
-     * @param {number} orbitSpeed - How quickly the planet orbits around other objects.
-     * @param {AssignmentObject} orbitingObject - This is the object that the planet is orbiting.
-     * @param {number} fullOrbitMs - How long it takes the planet to fully orbit around the orbiting object.
-     * @param {boolean} orbitsClockwise - If true then the object orbits the other object clockwise.
+     * @param {number} orbitSpeed - How quickly the planet orbits around other
+     *                              objects.
+     * @param {AssignmentObject} orbitingObject - This is the object that the 
+     *                                            planet is orbiting.
+     * @param {number} fullOrbitMs - How long it takes the planet to fully 
+     *                               orbit around the orbiting object.
+     * @param {boolean} orbitsClockwise - If true then the object orbits the
+     *                                    other object clockwise.
      */
-    constructor(model, rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise)
+    constructor(modelLoader, rotationSpeed, initialPosition, orbitSpeed, 
+        orbitingObject, fullOrbitMs, orbitsClockwise)
     {
         //Construct the superclass.
-        super(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, fullOrbitMs, orbitsClockwise);
+        super(rotationSpeed, initialPosition, orbitSpeed, orbitingObject, 
+                fullOrbitMs, orbitsClockwise);
 
         //Set the name for this planet.
         this.getObject().name = 'Dying Planet';
 
         //Add the planet's base model.
-        this.addObjectToGroup(model);
+        this.addObjectToGroup(
+                modelLoader.loadModel(
+                    'dying_planet',
+                    new THREE.MeshStandardMaterial({
+                        color: colours.BROWN, 
+                        flatShading: THREE.FlatShading, 
+                        metalness: 0, 
+                        roughness: 1
+                    })
+                )
+        );
 
         //Make the planet bigger.
         this.getObject().scale.set(3, 3, 3);

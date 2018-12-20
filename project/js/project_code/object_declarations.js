@@ -71,15 +71,7 @@ const pCITY_PLANET = objectManager.addObject(
 
 const pDYING_PLANET = objectManager.addObject(
     new DyingPlanet(
-        MODEL_LOADER.loadModel(
-            'dying_planet',
-            new THREE.MeshStandardMaterial({
-                color: colours.BROWN, 
-                flatShading: THREE.FlatShading, 
-                metalness: 0, 
-                roughness: 1
-            })
-        ), 
+        MODEL_LOADER, 
         BASE_ROTATION_SPEED + 0.01, 
         new THREE.Vector3(375, 0, 0), 
         BASE_ORBIT_SPEED + 0.56, 
@@ -116,13 +108,6 @@ const pSPACESHIP = objectManager.addObject(
         objectManager.getObject(pSUN), 
         BASE_FULL_ROTATION_MS + 24000, 
         !(objectManager.getObject(pSUN).getSpinsClockwise()),
-        MODEL_LOADER.loadTexturedModel('plane'),
-        MODEL_LOADER.loadModel('propellers',
-                    new THREE.MeshStandardMaterial({
-                color: colours.GREY, 
-                flatShading: THREE.FlatShading, 
-                metalness: 0, 
-                roughness: 1
-            }))
+        MODEL_LOADER
     )
 );
