@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>KF6018 Assignment 1 - Object Viewer</title>
+    <link rel="stylesheet" href="style/stylesheet.css">
+    <link href="res/textures/favicon.ico" rel="icon" type="image/x-icon"/>
+	<meta name="author" content="Andrew Alford & Ana-Sabina Irimia"/>
+	<meta charset="utf-8"/> 
+	<meta name="description"
+	   content="Used to show off the models created for assignment 1. 
+	   (Made for Northumbria Universities Computer 
+       Graphics and Animation module - 2018)"/>
+	<meta name="keywords" content="vr, space, planet, universe, explore, 
+	   stars, asteroid, threejs, model, viewer"/>
+</head>
+
+<body>
+
+    <div id="project_title">KF6018 Assignment 1 - Object Viewer</div>
+
+    <div id="about">
+    This page allows you to view all the objects made for 
+    <a href="index.html">Assignment 1</a>. Use the 'A' and 'D'
+    keys to scroll through objects (or simply just tap the screen
+    and release your finger on mobile devices).
+    </div>
+
+    <!--Used to display information about objects being focused on.-->
+    <div id="object_info"></div>
+
+    <!--Add THREE JS library-->
+    <script src="https://threejs.org/build/three.js"></script>
+    <!--Add project files.-->
+    <script src="js/lib/OrbitControls.js"></script>
+    <script src="js/lib/DeviceOrientationControls.js"></script>
+    <script src="js/lib/StereoEffect.js"></script>
+    <script src="js/lib/MTLLoader.js"></script>
+    <script src="js/lib/OBJLoader.js"></script>
+
+    <!--Add engine code-->
+    <script src="js/engine_code/AssignmentObject.js"></script>
+    <script src="js/engine_code/UpdateableObject.js"></script>
+    <script src="js/engine_code/ParticleEffect.js"></script>
+    <script src="js/engine_code/utility/colourPallet.js"></script>
+    <script src="js/engine_code/utility/htmlAccessor.js"></script>
+    <script src="js/engine_code/utility/Timer.js"></script>
+    <script src="js/engine_code/utility/TextureLoader.js"></script>
+    <script src="js/engine_code/utility/ModelLoader.js"></script>
+    <script src="js/engine_code/utility/Camera.js"></script>
+    <script src="js/engine_code/utility/KeyboardInput.js"></script>
+	<script src="js/engine_code/ObjectManager.js"></script>
+
+    <!--Add project code-->
+    <script src="js/project_code/objects/OrbitingObject.js"></script>
+    <script src="js/project_code/objects/Star.js"></script>
+    <script src="js/project_code/objects/AsteroidB612.js"></script>
+    <script src="js/project_code/objects/Moon.js"></script>
+    <script src="js/project_code/objects/Spaceship.js"></script>
+    <script src="js/project_code/objects/particles/Explosion.js"></script>
+    <script src="js/project_code/objects/planets/Planet.js"></script>
+    <script src="js/project_code/objects/planets/TreasurePlanet.js"></script>
+    <script src="js/project_code/objects/planets/DyingPlanet.js"></script>
+    <script src="js/project_code/objects/planets/CityPlanet.js"></script>
+    <script src="js/project_code/objects/planets/NaturePlanet.js"></script>
+    
+	<!--Add object viewer code-->
+	<script src="js/object_viewer/object_declarations.js"></script>
+    <script src="js/object_viewer/rendering_engine.js"></script>
+    
+
+</body>
+</html>

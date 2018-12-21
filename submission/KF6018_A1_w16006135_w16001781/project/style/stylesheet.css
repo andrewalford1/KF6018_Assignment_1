@@ -1,0 +1,40 @@
+body {margin: 0; overflow: hidden;}
+canvas {width: 100%; height: 100%}
+
+#project_title {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    color: #FFFFFF;
+    padding: 5px;
+    font-family: 'Courier New';
+    font-size: 16px;
+    text-align:center;
+}
+
+#object_info {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    color: #89CFF0;
+    padding: 5px;
+    font-family: 'Courier New';
+    font-size: 18px;
+    text-align:center;
+}
+
+#about {
+    position: absolute;
+    background-color: rgba(95, 95, 95, 0.6);
+    top: 15%;
+    width: 20%;
+    color: #FFFFFF;
+    padding: 5px;
+    font-family: 'Courier New';
+    font-size: 14px;
+    text-align:left;
+}
+
+a:visited {
+    color: #0000EE
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>KF6018 Assignment 1</title>
+    <link rel="stylesheet" href="style/stylesheet.css">
+    <link href="res/textures/favicon.ico" rel="icon" type="image/x-icon"/>
+	<meta name="author" content="Andrew Alford & Ana-Sabina Irimia"/>
+	<meta charset="utf-8"/> 
+	<meta name="description"
+	   content="A VR experiance, created in WebGL using THREE.JS libraries,
+	   which allows you to look through the window of a spaceship and 
+	   explore the universe. (Made for Northumbria Universities Computer 
+       Graphics and Animation module - 2018)"/>
+	<meta name="keywords" content="vr, space, planet, universe, explore, 
+	   stars, asteroid, threejs"/>
+</head>
+
+<body>
+    <!--Used to display information about objects being focused on.-->
+    <div id="object_info"></div>
+
+    <!--Add THREE JS library-->
+    <script src="https://threejs.org/build/three.js"></script>
+    <!--Add project files.-->
+    <script src="js/lib/OrbitControls.js"></script>
+    <script src="js/lib/DeviceOrientationControls.js"></script>
+    <script src="js/lib/StereoEffect.js"></script>
+    <script src="js/lib/MTLLoader.js"></script>
+    <script src="js/lib/OBJLoader.js"></script>
+
+    <!--Add engine code-->
+    <script src="js/engine_code/AssignmentObject.js"></script>
+    <script src="js/engine_code/UpdateableObject.js"></script>
+    <script src="js/engine_code/ParticleEffect.js"></script>
+    <script src="js/engine_code/utility/colourPallet.js"></script>
+    <script src="js/engine_code/utility/htmlAccessor.js"></script>
+    <script src="js/engine_code/utility/Timer.js"></script>
+    <script src="js/engine_code/utility/TextureLoader.js"></script>
+    <script src="js/engine_code/utility/ModelLoader.js"></script>
+    <script src="js/engine_code/utility/Camera.js"></script>
+	<script src="js/engine_code/ObjectManager.js"></script>
+
+    <!--Add project code-->
+    <script src="js/project_code/objects/OrbitingObject.js"></script>
+    <script src="js/project_code/objects/Star.js"></script>
+    <script src="js/project_code/objects/AsteroidB612.js"></script>
+    <script src="js/project_code/objects/Moon.js"></script>
+    <script src="js/project_code/objects/Spaceship.js"></script>
+    <script src="js/project_code/objects/particles/Explosion.js"></script>
+    <script src="js/project_code/objects/planets/Planet.js"></script>
+    <script src="js/project_code/objects/planets/TreasurePlanet.js"></script>
+    <script src="js/project_code/objects/planets/DyingPlanet.js"></script>
+    <script src="js/project_code/objects/planets/CityPlanet.js"></script>
+    <script src="js/project_code/objects/planets/NaturePlanet.js"></script>
+	<script src="js/project_code/object_declarations.js"></script>
+    <script src="js/project_code/rendering_engine.js"></script>
+    
+
+</body>
+</html>
